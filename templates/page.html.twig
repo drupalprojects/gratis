@@ -73,7 +73,7 @@
 <div id="wrapper">
 
   <div id="top-bar">
-    <header role="banner" class="grid-container banner" style="max-width:{#{ thegrid }#}">
+    <header role="banner" class="grid-container banner" style="max-width:{{ thegrid }}">
       <div class="grid-25 logo-wrapper header-grid">
         <span id="brand">
           <div id="logo">
@@ -118,7 +118,7 @@
 </div>
 
 <div id="menu-wrapper">
-  <div class="grid-container main-menu-wrapper" style="max-width:{#{ thegrid }#}">
+  <div class="grid-container main-menu-wrapper" style="max-width:{{ thegrid }}">
     <div class="grid-100">
       <section id="main-menu" role="navigation">
         {% if main_menu %}
@@ -142,7 +142,7 @@
 
     {% if breadcrumb %}
   <div id="breadcrumbs">
-    <header class="grid-container" style="max-width:{#{ thegrid }#}">
+    <header class="grid-container" style="max-width:{{ thegrid }}">
     <div class="grid-100">{{ breadcrumb }}</div>
 </header>
 </div>
@@ -153,7 +153,7 @@
 #}{% if page.preface_first or page.preface_second or page.preface_third %}
 
 <div id ="preface-wrapper">
-  <div class="grid-container" id="preface-container" style="max-width:{#{ thegrid }#}">
+  <div class="grid-container" id="preface-container" style="max-width:{{ thegrid }}">
 
     <!--Preface -->
     {% if page.preface_first %}
@@ -179,7 +179,7 @@
 
 {% endif %}
 
-<main role="main" class="grid-container" style="max-width:{#{ thegrid }#}" id="content" >
+<main role="main" class="grid-container" style="max-width:{{ thegrid }}" id="content" >
   <div class="{# PHP: print _gratis_content_grid($columns); #}">
     {{ messages }}
     {% if tabs %}
@@ -202,21 +202,16 @@
   {{ page.content_top }}
 {% endif %}
 
-{% if not is_node %}
-  {{ title_prefix }}
-  {% if title %}
-  <h1 class="page-header">
-    {{ title }}
-  </h1>
-{% endif %}
-{{ title_suffix }}
-{% endif %}
+      <a id="main-content"></a>
+      {{ title_prefix }}
+      {% if title %}
+          <h1 class="title" id="page-title">
+              {{ title }}
+          </h1>
+      {% endif %}
+      {{ title_suffix }}
 
 {{ page.content }}
-
-{% if page.node_block %}
-{{ page.node_block }}
-{% endif %}
 
 </div>
 

@@ -1,0 +1,158 @@
+<?php
+
+/**
+ * @file
+ * Contains theme override functions and preprocess functions
+ */
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function gratis_preprocess_html(&$vars) {
+
+  // Add an ie10 class if needed.
+//  $inline_script = <<<EOL
+//  <script>if (Function('/*@cc_on return document.documentMode===10@*/') ()) {
+//    document.documentElement.className+=' ie10';
+//  }</script>
+//EOL;
+//  $element = array(
+//    '#type' => 'markup',
+//    '#markup' => $inline_script,
+//  );
+//
+//  drupal_add_html_head($element, 'javascript');
+
+//  $vars['html_attributes_array'] = array();
+//  $vars['body_attributes_array'] = array();
+//
+//  // HTML element attributes.
+//  $vars['html_attributes_array']['lang'] = $vars['language']->language;
+//  $vars['html_attributes_array']['dir']  = $vars['language']->dir;
+//
+//  // Adds RDF namespace prefix bindings in the form of an RDFa 1.1 prefix
+//  // attribute inside the html element.
+//  if (function_exists('rdf_get_namespaces')) {
+//    $vars['rdf'] = new stdClass();
+//    $vars['rdf']->prefix = '';
+//    foreach (rdf_get_namespaces() as $prefix => $uri) {
+//      $vars['rdf']->prefix .= $prefix . ': ' . $uri . "\n";
+//    }
+//    $vars['html_attributes_array']['prefix'] = $vars['rdf']->prefix;
+//  }
+//
+//  // BODY element attributes.
+//  $vars['body_attributes_array']['class'] = $vars['classes_array'];
+//  $vars['body_attributes_array'] += $vars['attributes_array'];
+//  $vars['attributes_array'] = '';
+
+  // Add opensans from Google fonts.
+  // http://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400italic,600italic,700italic,400,600,700
+  drupal_add_css('//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700',array('type' => 'external'));
+
+  // Add a body class is the site name is hidden or not.
+  if (theme_get_setting('toggle_name') == FALSE) {
+    $vars['attributes']['class'][] = 'site-name-hidden';
+  }
+  else {
+    $vars['attributes']['class'][] = 'site-name';
+  }
+
+  // Add a body class is the site slogan is hidden or not.
+  if (theme_get_setting('toggle_slogan')) {
+    $vars['attributes']['class'][] = 'site-slogan';
+  }
+  else {
+    $vars['attributes']['class'][] = 'site-slogan-hidden';
+  }
+
+  // Add a body class is the theme logo is hidden or not.
+  if (theme_get_setting('gratis_themelogo') == TRUE) {
+    $vars['attributes']['class'][] = 'theme-logo';
+  }
+  else {
+    $vars['attributes']['class'][] = 'theme-logo-none';
+  }
+
+  // Add IE 9 fixes style sheet.
+  drupal_add_css(path_to_theme() . '/css/ie9-fixes.css',
+    array(
+//      'group' => CSS_THEME,
+      'browsers' =>
+        array(
+          'IE' => 'iE 9',
+          '!IE' => FALSE),
+      'preprocess' => FALSE));
+
+  // Extra body classes for theme variables.
+  // The Color Palette.
+  $file = theme_get_setting('theme_color_palette');
+  $vars['attributes']['class'][] = drupal_html_class('color-palette-' . $file);
+
+  // Local css within theme folder if checked.
+  if (theme_get_setting('gratis_localcss') == TRUE) {
+    drupal_add_css(path_to_theme() . '/css/local.css',
+      array(
+        'group' => CSS_THEME,
+        'media' => 'screen',
+        'preprocess' => TRUE,
+        'weight' => '9997',
+      )
+    );
+  }
+
+  // Custom css file path if checked and file exists.
+  if (theme_get_setting('gratis_custom_css_location') == TRUE) {
+    $path = theme_get_setting('gratis_custom_css_path');
+    if (file_exists($path)) {
+      drupal_add_css("$path",
+        array(
+          'group' => CSS_THEME,
+          'preprocess' => TRUE,
+          'weight' => 9998,
+        )
+      );
+    }
+  }
+
+// Add general JS.
+  drupal_add_js(drupal_get_path('theme', 'gratis') . '/js/scripts.js',
+    array(
+      'group' => JS_THEME,
+      'preprocess' => TRUE,
+      'weight' => '999',
+    ));
+
+  $vars['scripts'] = drupal_get_js();
+
+
+  // Test if page is a node or not and then add a body class.
+  if ($node = menu_get_object()) {
+    $vars['attributes']['class'][] = 'is-node';
+  }
+  else {
+    $vars['attributes']['class'][] = 'not-node';
+  }
+
+}
+
+/**
+ * Override or insert variables into the page template.
+ */
+function gratis_preprocess_page(&$vars, $hook) {
+  // If the default logo is used, then determine which color and set the path.
+  $file = theme_get_setting('theme_color_palette');
+  if (theme_get_setting('gratis_themelogo') == TRUE) {
+    $vars['logo'] = base_path() . path_to_theme() . '/images/logo-' . $file . '.png';
+  }
+
+  // Check if it's a node and set a variable.
+  $vars['is_node'] = FALSE;
+  if ($node = menu_get_object()) {
+    $vars['is_node'] = TRUE;
+  }
+
+  // Set the custom grid width in a variable.
+  $gridwidth = theme_get_setting('gratis_grid_container_width');
+  $vars['thegrid'] = $gridwidth;
+}

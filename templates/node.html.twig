@@ -81,28 +81,25 @@
 
   {{ user_picture }}
 
-  {{ title_prefix }}
-  {% if not page and title %}
-  <header>
-    <h2{{ title_attributes }}><a href="{{ node_url }}"
-    title="{{ title }}">{{ title }}</a></h2>
-  {% else %}
-  {% if title %}<h1{{ title_attributes }} class="node-page-title">{{ title }}</h1>{% endif %}
-</header>
-{% endif %}
-{{ title_suffix }}
+    {{ title_prefix }}
+    {% if not page %}
+        <h2{{ title_attributes }}>
+            <a href="{{ node_url }}">{{ label }}</a>
+        </h2>
+    {% endif %}
+    {{ title_suffix }}
 
 {% if display_submitted %}
   <span class="submit-wrapper">
     <!-- Overidden in template.php to show just username. -->
     <span class="submitted">
       <i class="icon-fixed-width">&#xf007;</i> {{ submitted }} |  <i class="icon-fixed-width">&#xf073;</i>
-      {{ thedate }} / {{ themonth }} / {{ theyear }}
+      {#{{ thedate }} / {{ themonth }} / {{ theyear }}#}
     </span>
   </span><!--//submit-wrapper-->
 {% endif %}
 
-{# // We hide the comments and links now so that we can render them later. #}
+{# We hide the comments and links now so that we can render them later. #}
 
  <div class="content clearfix"{{ content_attributes }}>
 
