@@ -148,28 +148,27 @@
 </div>
 {% endif %}
 
-{#
-// Define and divide the preface page regions.
-#}{% if page.preface_first or page.preface_second or page.preface_third %}
+{# Define and divide the preface page regions. #}
+    {% if page.preface_first or page.preface_second or page.preface_third %}
 
 <div id ="preface-wrapper">
   <div class="grid-container" id="preface-container" style="max-width:{{ thegrid }}">
 
     <!--Preface -->
     {% if page.preface_first %}
-    <div class="{# PHP: print _gratis_content_preface($precolumns); #} ">
+        <div class="{{ pre_columns }}">
       {{ page.preface_first }}
     </div>
   {% endif %}
 
   {% if page.preface_second %}
-  <div class="{# PHP: print _gratis_content_preface($precolumns); #} ">
+      <div class="{{ pre_columns }}">
     {{ page.preface_second }}
   </div>
 {% endif %}
 
 {% if page.preface_third %}
-  <div class="{# PHP: print _gratis_content_preface($precolumns); #} ">
+    <div class="{{ pre_columns }}">
     {{ page.preface_third }}
   </div>
 {% endif %}
@@ -234,28 +233,27 @@
 
 </main>
 
-{#
-// Define and divide the postscript page regions.
-#}{% if page.postscript_first or page.postscript_second or page.postscript_third %}
+{# Define and divide the postscript page regions. #}
+    {% if page.postscript_first or page.postscript_second or page.postscript_third %}
 
 <div id ="postscript-wrapper">
-  <div class="grid-container" id="postscript-container" >
+  <div class="grid-container" id="postscript-container" style="max-width:{{ thegrid }}">
 
     <!--Postscript -->
     {% if page.postscript_first %}
-    <div class="{# PHP: print _gratis_content_postscript($pscolumns); #} ">
+    <div class="{{ pos_columns }}">
       {{ page.postscript_first }}
     </div>
   {% endif %}
 
   {% if page.postscript_second %}
-  <div class="{# PHP: print _gratis_content_postscript($pscolumns); #} ">
+  <div class="{{ pos_columns }}">
     {{ page.postscript_second }}
   </div>
 {% endif %}
 
 {% if page.postscript_third %}
-  <div class="{# PHP: print _gratis_content_postscript($pscolumns); #} ">
+    <div class="{{ pos_columns }}">
     {{ page.postscript_third }}
   </div>
 {% endif %}

@@ -125,7 +125,6 @@ EOL;
 
   $vars['scripts'] = drupal_get_js();
 
-
   // Test if page is a node or not and then add a body class.
   if ($node = menu_get_object()) {
     $vars['attributes']['class'][] = 'is-node';
@@ -175,6 +174,40 @@ function gratis_preprocess_page(&$vars, $hook) {
   // no sidebars
   else {
     $vars['sb_columns'] = 1;
+  }
+
+  // Postscript columns ('$pos_columns').
+  if (!empty($vars['page']['postscript_first']) && !empty($vars['page']['postscript_second']) && !empty($vars['page']['postscript_third'])) {
+    $vars['pos_columns'] =  'grid-33 postscript';
+  }
+  elseif (!empty($vars['page']['postscript_first']) && !empty($vars['page']['postscript_second'])) {
+    $vars['pos_columns'] = 'grid-50 postscript';
+  }
+  elseif (!empty($vars['page']['postscript_first']) && !empty($vars['page']['postscript_third'])) {
+    $vars['pos_columns'] = 'grid-50 postscript';
+  }
+  elseif (!empty($vars['page']['postscript_second']) && !empty($vars['page']['postscript_third'])) {
+    $vars['pos_columns'] = 'grid-50 postscript';
+  }
+  else {
+    $vars['pos_columns'] =  'grid-100 postscript';
+  }
+
+  // Postscript columns ('$pre_columns').
+  if (!empty($vars['page']['preface_first']) && !empty($vars['page']['preface_second']) && !empty($vars['page']['preface_third'])) {
+    $vars['pre_columns'] =  'grid-33 preface';
+  }
+  elseif (!empty($vars['page']['preface_first']) && !empty($vars['page']['preface_second'])) {
+    $vars['pre_columns'] = 'grid-50 preface';
+  }
+  elseif (!empty($vars['page']['preface_first']) && !empty($vars['page']['preface_third'])) {
+    $vars['pre_columns'] = 'grid-50 preface';
+  }
+  elseif (!empty($vars['page']['preface_second']) && !empty($vars['page']['preface_third'])) {
+    $vars['pre_columns'] = 'grid-50 preface';
+  }
+  else {
+    $vars['pre_columns'] =  'grid-100 preface';
   }
 
 }

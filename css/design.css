@@ -189,6 +189,10 @@ article .field li {
   margin-top: 50px;
 }
 
+#postscript-wrapper {
+  margin-top: 20px;
+}
+
 #footer {
   background: #202020;
   color: #fff;
