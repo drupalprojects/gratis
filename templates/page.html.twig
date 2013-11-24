@@ -180,7 +180,7 @@
 {% endif %}
 
 <main role="main" class="grid-container" style="max-width:{{ thegrid }}" id="content" >
-  <div class="{# PHP: print _gratis_content_grid($columns); #}">
+  <div class="content-grid {{ content_columns }}">
 
       {% if messages %}
           <div id="messages"><div class="section clearfix">
@@ -215,7 +215,7 @@
 
 <!--Sidebar first-->
 {% if page.sidebar_first %}
-  <aside id="sidebar-first" class="sidebar {# PHP: print _gratis_content_sidebar_grid($columns); #}
+  <aside id="sidebar-first" class="sidebar {{ sb_columns }}
     ">
     {% if page.sidebar_first %}
     {{ page.sidebar_first }}
