@@ -79,8 +79,6 @@
 
 <article id="node-{{ node.id }}" class="{{ attributes.class}} clearfix"{{ attributes }} role="article">
 
-  {{ user_picture }}
-
     {{ title_prefix }}
     {% if not page %}
         <h2{{ title_attributes }}>
@@ -91,7 +89,7 @@
 
 {% if display_submitted %}
   <span class="submit-wrapper">
-    <!-- Overidden in template.php to show just username. -->
+    <!-- Overidden in gratis.theme to show just username. -->
     <span class="submitted">
       <i class="icon-fixed-width">&#xf007;</i> {{ submitted }} |  <i class="icon-fixed-width">&#xf073;</i>
       {#{{ thedate }} / {{ themonth }} / {{ theyear }}#}

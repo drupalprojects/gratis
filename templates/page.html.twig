@@ -181,27 +181,14 @@
 
 <main role="main" class="grid-container" style="max-width:{{ thegrid }}" id="content" >
   <div class="{# PHP: print _gratis_content_grid($columns); #}">
-    {{ messages }}
-    {% if tabs %}
-    {{ tabs }}
-  {% endif %}
-  {% if page.help %}
 
-  <div class="well">
-    {{ page.help }}
-  </div>
+      {% if messages %}
+          <div id="messages"><div class="section clearfix">
+                  {{ messages }}
+              </div></div> <!-- /.section, /#messages -->
+      {% endif %}
 
-{% endif %}
-{% if action_links %}
-  <ul class="action-links">
-    {{ action_links }}
-  </ul>
-{% endif %}
-
-{% if page.content_top %}
-  {{ page.content_top }}
-{% endif %}
-
+      {% if page.highlighted %}<div id="highlighted">{{ page.highlighted }}</div>{% endif %}
       <a id="main-content"></a>
       {{ title_prefix }}
       {% if title %}
@@ -210,8 +197,19 @@
           </h1>
       {% endif %}
       {{ title_suffix }}
-
-{{ page.content }}
+      {% if tabs %}
+          <nav class="tabs" role="navigation">
+              {{ tabs }}
+          </nav>
+      {% endif %}
+      {{ page.help }}
+      {% if action_links %}
+          <ul class="action-links">
+              {{ action_links }}
+          </ul>
+      {% endif %}
+      {{ page.content }}
+      {#{{ feed_icons }}#}
 
 </div>
 

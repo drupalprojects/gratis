@@ -11,17 +11,17 @@
 function gratis_preprocess_html(&$vars) {
 
   // Add an ie10 class if needed.
-//  $inline_script = <<<EOL
-//  <script>if (Function('/*@cc_on return document.documentMode===10@*/') ()) {
-//    document.documentElement.className+=' ie10';
-//  }</script>
-//EOL;
-//  $element = array(
-//    '#type' => 'markup',
-//    '#markup' => $inline_script,
-//  );
-//
-//  drupal_add_html_head($element, 'javascript');
+  $inline_script = <<<EOL
+  <script>if (Function('/*@cc_on return document.documentMode===10@*/') ()) {
+    document.documentElement.className+=' ie10';
+  }</script>
+EOL;
+  $element = array(
+    '#type' => 'markup',
+    '#markup' => $inline_script,
+  );
+
+  drupal_add_html_head($element, 'javascript');
 
 //  $vars['html_attributes_array'] = array();
 //  $vars['body_attributes_array'] = array();
@@ -77,7 +77,7 @@ function gratis_preprocess_html(&$vars) {
   // Add IE 9 fixes style sheet.
   drupal_add_css(path_to_theme() . '/css/ie9-fixes.css',
     array(
-//      'group' => CSS_THEME,
+//      'group' => CSS_AGGREGATE_THEME,
       'browsers' =>
         array(
           'IE' => 'iE 9',
@@ -93,7 +93,7 @@ function gratis_preprocess_html(&$vars) {
   if (theme_get_setting('gratis_localcss') == TRUE) {
     drupal_add_css(path_to_theme() . '/css/local.css',
       array(
-        'group' => CSS_THEME,
+        'group' => CSS_AGGREGATE_THEME,
         'media' => 'screen',
         'preprocess' => TRUE,
         'weight' => '9997',
@@ -107,7 +107,7 @@ function gratis_preprocess_html(&$vars) {
     if (file_exists($path)) {
       drupal_add_css("$path",
         array(
-          'group' => CSS_THEME,
+          'group' => CSS_AGGREGATE_THEME,
           'preprocess' => TRUE,
           'weight' => 9998,
         )
