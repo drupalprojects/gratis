@@ -121,15 +121,15 @@
   <div class="grid-container main-menu-wrapper" style="max-width:{{ thegrid }}">
     <div class="grid-100">
       <section id="main-menu" role="navigation">
-        {% if main_menu %}
+        {#{% if main_menu %}#}
         <!-- <div class="menu-button"><i class="menu-icon icon-fixed-width">&#xf0ca;</i></div> -->
         <a class="menu-link" href="#menu">Menu</a>
         <nav id="menu" class="menu">
-          {% if primary_nav %}
-          {{ primary_nav }}
-        {% endif %}
+          {#{% if primary_nav %}#}
+            {#{{ primary_nav }}#}
+        {#{% endif %}#}
       </nav>
-    {% endif %}
+    {#{% endif %}#}
 
     <!-- for third party menu systems or modules-->
     {% if page.thirdparty_menu %}

@@ -30,7 +30,7 @@ regions:
    top_panel: 'Top Panel (special use)'
 settings:
    gratis_themelogo: '1'
-#   breadcrumbs: '1'
+   breadcrumbs: '1'
    gratis_viewport: '0'
    theme_color_palette: 'orange'
    gratis_localcss: '0'

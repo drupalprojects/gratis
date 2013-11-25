@@ -23,29 +23,6 @@ EOL;
 
   drupal_add_html_head($element, 'javascript');
 
-//  $vars['html_attributes_array'] = array();
-//  $vars['body_attributes_array'] = array();
-//
-//  // HTML element attributes.
-//  $vars['html_attributes_array']['lang'] = $vars['language']->language;
-//  $vars['html_attributes_array']['dir']  = $vars['language']->dir;
-//
-//  // Adds RDF namespace prefix bindings in the form of an RDFa 1.1 prefix
-//  // attribute inside the html element.
-//  if (function_exists('rdf_get_namespaces')) {
-//    $vars['rdf'] = new stdClass();
-//    $vars['rdf']->prefix = '';
-//    foreach (rdf_get_namespaces() as $prefix => $uri) {
-//      $vars['rdf']->prefix .= $prefix . ': ' . $uri . "\n";
-//    }
-//    $vars['html_attributes_array']['prefix'] = $vars['rdf']->prefix;
-//  }
-//
-//  // BODY element attributes.
-//  $vars['body_attributes_array']['class'] = $vars['classes_array'];
-//  $vars['body_attributes_array'] += $vars['attributes_array'];
-//  $vars['attributes_array'] = '';
-
   // Add opensans from Google fonts.
   // http://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400italic,600italic,700italic,400,600,700
   drupal_add_css('//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700',array('type' => 'external'));
@@ -115,7 +92,7 @@ EOL;
     }
   }
 
-// Add general JS.
+ // Add general JS.
   drupal_add_js(drupal_get_path('theme', 'gratis') . '/js/scripts.js',
     array(
       'group' => JS_THEME,
@@ -211,5 +188,3 @@ function gratis_preprocess_page(&$vars, $hook) {
   }
 
 }
-
-
