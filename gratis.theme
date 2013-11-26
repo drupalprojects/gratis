@@ -10,18 +10,33 @@
  */
 function gratis_preprocess_html(&$vars) {
 
-  // Add an ie10 class if needed.
-  $inline_script = <<<EOL
-  <script>if (Function('/*@cc_on return document.documentMode===10@*/') ()) {
-    document.documentElement.className+=' ie10';
-  }</script>
-EOL;
-  $element = array(
-    '#type' => 'markup',
-    '#markup' => $inline_script,
-  );
+  if (theme_get_setting('gratis_viewport') == FALSE) {
 
-  drupal_add_html_head($element, 'javascript');
+    // No pinch and zoom.
+    $viewport = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'viewport',
+        'content' => 'initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no',
+      ),
+    );
+    drupal_add_html_head($viewport, 'viewport');
+  }
+
+  else {
+
+    // Pinch and Zoom enabled.
+    $viewport = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'viewport',
+        'content' => 'width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=0.55, user-scalable=yes',
+      ),
+    );
+    drupal_add_html_head($viewport, 'viewport');
+  }
 
   // Add opensans from Google fonts.
   // http://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400italic,600italic,700italic,400,600,700
@@ -187,4 +202,38 @@ function gratis_preprocess_page(&$vars, $hook) {
     $vars['pre_columns'] =  'grid-100 preface';
   }
 
+}
+
+/**
+ * Override or insert variables into the node template.
+ */
+function gratis_preprocess_node(&$vars, $hook) {
+  // Global node.
+  $node = $vars['node'];
+
+  if ($vars['view_mode'] == 'full' && node_is_page($node)) {
+    $vars['attributes']['class'][]= 'node-full';
+  }
+
+  if ($vars['view_mode'] == 'teaser' && node_is_page($node)) {
+    $vars['attributes']['class'][] = 'node-teaser';
+  }
+
+  // Some nice expanded classes for Nodes.
+  $vars['attributes_array']['role'][] = 'article';
+  $vars['title_attributes_array']['class'][] = 'article-title';
+  $vars['content_attributes_array']['class'][] = 'article-content';
+
+  // Show only the username in submitted, the date is handled by node.tpl.php.
+  $vars['submitted'] = t('Submitted by !username',
+    array('!username' => $vars['name']));
+
+  /*
+  Set date variables using drupal's format_date function.
+  node base fields have methods now, that are defined in NodeInterface.
+  https://api.drupal.org/api/drupal/core!modules!node!lib!Drupal!node!NodeInterface.php/interface/NodeInterface/8
+   */
+  $vars['thedate'] = format_date($node->getCreatedTime(), "custom", "j");
+  $vars['themonth'] = format_date($node->getCreatedTime(), "custom", "M");
+  $vars['theyear'] = format_date($node->getCreatedTime(), "custom", "Y");
 }
