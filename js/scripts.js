@@ -113,7 +113,9 @@
         $(this).prepend('<i class="icon-fixed-width">&#xf040;</i>');
       });
 
-      $('.comment-comments').prepend('<i class="icon-fixed-width">&#xf02d;</i>');
+      $('.comment-comments').once(function () {
+      $(this).prepend('<i class="icon-fixed-width">&#xf02d;</i>');
+      });
 
       $('.node-readmore').once(function () {
         $(this).prepend('<i class="icon-fixed-width">&#xf0a9;</i>');

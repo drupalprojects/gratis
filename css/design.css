@@ -12,6 +12,12 @@ body {
   min-width: 270px !important;
 }
 
+.element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
 #wrapper {
   height: auto !important;
   height: 100%;
