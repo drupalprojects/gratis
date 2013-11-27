@@ -136,6 +136,9 @@ function gratis_preprocess_page(&$vars, $hook) {
   $vars['primary_nav'] = FALSE;
   if (!empty($vars['main_menu'])) {
     // Build links.
+    $config = Drupal::config('menu.settings');
+    $menu_enabled = Drupal::moduleHandler()->moduleExists('menu');
+    // When menu module is not enabled, we need a hardcoded default values.
     $main_links_source = $menu_enabled ? $config->get('main_links') : 'main';
     $vars['main_menu'] = menu_tree($main_links_source);
     $vars['main_menu']['#theme_wrappers'] = array('menu_tree__primary');
@@ -286,14 +289,14 @@ function gratis_breadcrumb($vars) {
  * Overrides theme_menu_tree().
  */
 function gratis_menu_tree(&$vars) {
-  return '<ul class="menereru nav">' . $vars['tree'] . '</ul>';
+  return '<ul class="menu nav">' . $vars['tree'] . '</ul>';
 }
 
 /**
  * Bootstrap theme wrapper function for the primary menu links.
  */
 function gratis_menu_tree__primary(&$vars) {
-  return '<ul class="meerernu nav navbar-nav">' . $vars['tree'] . '</ul>';
+  return '<ul class="menu nav navbar-nav">' . $vars['tree'] . '</ul>';
 }
 
 
