@@ -117,6 +117,17 @@ function gratis_preprocess_html(&$vars) {
 
   $vars['scripts'] = drupal_get_js();
 
+//  $vars['#attached']['js'] = array(
+//    array(
+//      'data' => drupal_get_path('theme', 'gratis') . '/js/scripts.js',
+//      'options' => array(
+//        'group' => JS_THEME,
+//        'preprocess' => TRUE,
+//        'every_page' => TRUE,
+//      ),
+//    ),
+//  );
+
   // Test if page is a node or not and then add a body class.
   if ($node = menu_get_object()) {
     $vars['attributes']['class'][] = 'is-node';
@@ -305,4 +316,3 @@ function gratis_breadcrumb($vars) {
 function gratis_menu_tree__primary(&$vars) {
   return '<ul class="toggle-menu">' . $vars['tree'] . '</ul>';
 }
-
