@@ -288,16 +288,21 @@ function gratis_breadcrumb($vars) {
 /**
  * Overrides theme_menu_tree().
  */
-function gratis_menu_tree(&$vars) {
-  return '<ul class="menu nav">' . $vars['tree'] . '</ul>';
-}
+//function gratis_menu_tree(&$vars) {
+//  return '<ul class="menu nav">' . $vars['tree'] . '</ul>';
+//}
 
 /**
- * Bootstrap theme wrapper function for the primary menu links.
+ * Gratis theme wrapper function for the main menu links.
+ */
+//function gratis_menu_tree__primary(&$vars) {
+//  return '<ul class="menu nav navbar-nav">' . $vars['tree'] . '</ul>';
+//}
+
+/**
+ * Theme wrapper function for the primary menu links.
  */
 function gratis_menu_tree__primary(&$vars) {
-  return '<ul class="menu nav navbar-nav">' . $vars['tree'] . '</ul>';
+  return '<ul class="toggle-menu" data-breakpoint="769">' . $vars['tree'] . '</ul>';
 }
-
-
 

@@ -61,15 +61,15 @@
 
 //$('#main-menu li.expanded.level-1 a.ula-depth-1').not("page-admin").append('<i class="icon-fixed-width desktop-nav">&#xf13a;</i>');
 
-      $('#main-menu li.expanded.level-1 a.ula-depth-1').once(function () {
+      $('#main-menu li.expanded.li-depth-0 a.ula-depth-1').once(function () {
         $(this).append('<i class="icon-fixed-width desktop-nav">&#xf13a;</i>');
       });
 
-      $('#main-menu li.expanded.level-1').once(function () {
+      $('#main-menu li.expanded.li-depth-0').once(function () {
         $(this).append('<i class="icon-fixed-width mobile-nav">&#xf13a;</i>');
       });
 
-      $('#main-menu li.expanded.level-1 a.ula-depth-2').once(function () {
+      $('#main-menu li.expanded.li-depth-0 a.ula-depth-2').once(function () {
         $(this).prepend('<i class="icon-fixed-width sub-menu-item">&#xf138;</i>');
       });
 
