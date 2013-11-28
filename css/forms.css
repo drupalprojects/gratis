@@ -174,3 +174,7 @@ input[type="submit"] {
 label {
   margin-top: 8px;
 }
+
+.form-actions.form-wrapper input {
+  margin-right: 10px;
+}
