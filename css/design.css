@@ -533,11 +533,11 @@ ul.links.inline li {
   background: #e04604;
 }
 
-#main-menu ul li.level-2 a {
+#main-menu ul li.li-depth-1 a {
   background: #333;
 }
 
-#main-menu ul li.level-2 a:hover {
+#main-menu ul li.li-depth-1 a:hover {
   background: #e04604;
 }
 
@@ -641,11 +641,11 @@ li.leaf {
   background: #e04604;
 }
 
-.color-palette-orange #main-menu ul li.level-2 a {
+.color-palette-orange #main-menu ul li.li-depth-1 a {
   background: #333;
 }
 
-.color-palette-orange #main-menu ul li.level-2 a:hover {
+.color-palette-orange #main-menu ul li.li-depth-1 a:hover {
   background: #e04604;
 }
 
@@ -688,11 +688,11 @@ li.leaf {
   background: #02b4ce;
 }
 
-.color-palette-turquoise #main-menu ul li.level-2 a {
+.color-palette-turquoise #main-menu ul li.li-depth-1 a {
   background: #333;
 }
 
-.color-palette-turquoise #main-menu ul li.level-2 a:hover {
+.color-palette-turquoise #main-menu ul li.li-depth-1 a:hover {
   background: #02b4ce;
 }
 
@@ -739,11 +739,11 @@ li.leaf {
   background: #6a8500;
 }
 
-.color-palette-green #main-menu ul li.level-2 a {
+.color-palette-green #main-menu ul li.li-depth-1 a {
   background: #333;
 }
 
-.color-palette-green #main-menu ul li.level-2 a:hover {
+.color-palette-green #main-menu ul li.li-depth-1 a:hover {
   background: #6a8500;
 }
 
@@ -794,11 +794,11 @@ li.leaf {
   background: #491f70;
 }
 
-.color-palette-purple #main-menu ul li.level-2 a {
+.color-palette-purple #main-menu ul li.li-depth-1 a {
   background: #333;
 }
 
-.color-palette-purple #main-menu ul li.level-2 a:hover {
+.color-palette-purple #main-menu ul li.li-depth-1 a:hover {
   background: #491f70;
 }
 
@@ -841,11 +841,11 @@ li.leaf {
   background: #16a085;
 }
 
-.color-palette-seafoam #main-menu ul li.level-2 a {
+.color-palette-seafoam #main-menu ul li.li-depth-1 a {
   background: #333;
 }
 
-.color-palette-seafoam #main-menu ul li.level-2 a:hover {
+.color-palette-seafoam #main-menu ul li.li-depth-1 a:hover {
   background: #16a085;
 }
 
@@ -888,11 +888,11 @@ li.leaf {
   background: #c0392b;
 }
 
-.color-palette-pomegranate #main-menu ul li.level-2 a {
+.color-palette-pomegranate #main-menu ul li.li-depth-1 a {
   background: #333;
 }
 
-.color-palette-pomegranate #main-menu ul li.level-2 a:hover {
+.color-palette-pomegranate #main-menu ul li.li-depth-1 a:hover {
   background: #c0392b;
 }
 
@@ -935,11 +935,11 @@ li.leaf {
   background: #7f8c8d;
 }
 
-.color-palette-greengray #main-menu ul li.level-2 a {
+.color-palette-greengray #main-menu ul li.li-depth-1 a {
   background: #333;
 }
 
-.color-palette-greengray #main-menu ul li.level-2 a:hover {
+.color-palette-greengray #main-menu ul li.li-depth-1 a:hover {
   background: #7f8c8d;
 }
 
@@ -982,10 +982,10 @@ li.leaf {
   background: #b72898;
 }
 
-.color-palette-pink #main-menu ul li.level-2 a {
+.color-palette-pink #main-menu ul li.li-depth-1 a {
   background: #333;
 }
 
-.color-palette-pink #main-menu ul li.level-2 a:hover {
+.color-palette-pink #main-menu ul li.li-depth-1 a:hover {
   background: #b72898;
 }
