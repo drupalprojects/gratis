@@ -177,34 +177,30 @@ function gratis_preprocess_page(&$vars, $hook) {
     $vars['pre_columns'] =  'grid-100 preface';
   }
 
-  // @todo fix weighting
   $path = drupal_get_path('theme', 'gratis');
 
   if (theme_get_setting('gratis_localcss') == TRUE) {
     $local_css = array(
       '#attached' => array(
         'css' => array(
-          $path . '/css/local.css',
-          'group' => CSS_AGGREGATE_THEME,
-          'weight' => 9999,
-          'preprocess' => TRUE,
+          $path . '/css/local.css' => array(
+            'group' => CSS_AGGREGATE_THEME,
+            'weight' => 999),
         ),
       ),
     );
   }
   drupal_render($local_css);
 
-  // @todo fix weighting
   if (theme_get_setting('gratis_custom_css_location') == TRUE) {
     $custompath = theme_get_setting('gratis_custom_css_path');
     if (file_exists($path)) {
       $custompathcss = array(
         '#attached' => array(
           'css' => array(
-            $path . $custompath,
-            'group' => CSS_AGGREGATE_THEME,
-            'weight' => 9999,
-            'preprocess' => TRUE,
+            $path . $custompath => array(
+              'group' => CSS_AGGREGATE_THEME,
+              'weight' => 999),
           ),
         ),
       );
@@ -217,10 +213,9 @@ function gratis_preprocess_page(&$vars, $hook) {
   $local_js = array(
     '#attached' => array(
       'js' => array(
-        $path . '/js/scripts.js',
-        'group' => JS_THEME,
-        'weight' => 9999,
-        'preprocess' => TRUE,
+        $path . '/js/scripts.js' => array(
+          'group' => JS_THEME,
+          'weight' => 9),
       ),
     ),
   );
@@ -345,4 +340,7 @@ function gratis_css_alter(&$css) {
     'browsers' => array('IE' => TRUE, '!IE' => TRUE),
     'weight' => -2,
   );
+
+//  unset($css[drupal_get_path('module', 'system') . '/css/system.theme.css']);
+
 }
