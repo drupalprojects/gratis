@@ -1,8 +1,8 @@
-Version 1.2, September 15, 2013
+Version 8.x-1.0-alpha3, November, 2013
 
 -- SUMMARY --
 
-Gratis is a responsive Drupal 7 HTML5 theme designed and developed by Danny
+Gratis is a responsive Drupal 8 HTML5 theme designed and developed by Danny
 Englander (Twitter: @highrockmedia). Based on the CSS Unsemantic Framework,
 it allows for a choice color palettes in the theme's settings page. There
 also may be support in the future for the color module to choose your own
@@ -16,7 +16,8 @@ with building sites. This theme also does not require any base theme.
 
 -- Theme Dependency (NONE) -- 
 
-As of Alpha 24, there is no longer a dependency on jQuery update.
+As of Drupal 7, Alpha 24, there was no longer a dependency on jQuery update
+and that's been carried forward to Drupal 8.
 
 -- CONFIGURATION --
 

@@ -212,7 +212,8 @@ function gratis_preprocess_page(&$vars, $hook) {
   }
   drupal_render($custompathcss);
 
-
+  // Render the main scripts file.
+  // @todo fix weighting
   $local_js = array(
     '#attached' => array(
       'js' => array(
