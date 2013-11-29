@@ -10,7 +10,6 @@ stylesheets:
    - css/style.css
    - css/design.css
    - css/forms.css
-   - css/font-awesome.css
    - css/unsemantic-grid-responsive.css
    - css/responsive.css
    - css/menu.css

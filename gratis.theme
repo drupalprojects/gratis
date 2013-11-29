@@ -38,11 +38,6 @@ function gratis_preprocess_html(&$vars) {
     drupal_add_html_head($viewport, 'viewport');
   }
 
-  // @todo - get rid of depricated function.
-  // Add opensans from Google fonts.
-  // http://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400italic,600italic,700italic,400,600,700
-  drupal_add_css('//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700',array('type' => 'external'));
-
   // Add a body class is the site name is hidden or not.
   if (theme_get_setting('toggle_name') == FALSE) {
     $vars['attributes']['class'][] = 'site-name-hidden';
@@ -184,7 +179,7 @@ function gratis_preprocess_page(&$vars, $hook) {
 
   // @todo fix weighting
   $path = drupal_get_path('theme', 'gratis');
-  
+
   if (theme_get_setting('gratis_localcss') == TRUE) {
     $local_css = array(
       '#attached' => array(
@@ -315,4 +310,38 @@ function gratis_breadcrumb($vars) {
  */
 function gratis_menu_tree__primary(&$vars) {
   return '<ul class="toggle-menu">' . $vars['tree'] . '</ul>';
+}
+
+/**
+ * Implements hook_css_alter().
+ *
+ * @TODO bootstrap_css_alter() - Refactor if needed.
+ */
+function gratis_css_alter(&$css) {
+  $theme_path = drupal_get_path('theme', 'gratis');
+// Add googlefonts.
+  $googlefonts = '//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700';
+  $css[$googlefonts] = array(
+    'data' => $googlefonts,
+    'type' => 'external',
+    'every_page' => TRUE,
+    'media' => 'all',
+    'preprocess' => FALSE,
+    'group' => CSS_AGGREGATE_THEME,
+    'browsers' => array('IE' => TRUE, '!IE' => TRUE),
+    'weight' => -2,
+  );
+
+   // Add FontAwesome.
+  $fontawesome = '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css';
+  $css[$fontawesome] = array(
+    'data' => $fontawesome,
+    'type' => 'external',
+    'every_page' => TRUE,
+    'media' => 'all',
+    'preprocess' => FALSE,
+    'group' => CSS_AGGREGATE_THEME,
+    'browsers' => array('IE' => TRUE, '!IE' => TRUE),
+    'weight' => -2,
+  );
 }
