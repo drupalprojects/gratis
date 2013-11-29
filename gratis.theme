@@ -38,6 +38,7 @@ function gratis_preprocess_html(&$vars) {
     drupal_add_html_head($viewport, 'viewport');
   }
 
+  // @todo - get rid of depricated function.
   // Add opensans from Google fonts.
   // http://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400italic,600italic,700italic,400,600,700
   drupal_add_css('//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700',array('type' => 'external'));
@@ -80,53 +81,6 @@ function gratis_preprocess_html(&$vars) {
   // The Color Palette.
   $file = theme_get_setting('theme_color_palette');
   $vars['attributes']['class'][] = drupal_html_class('color-palette-' . $file);
-
-  // Local css within theme folder if checked.
-  if (theme_get_setting('gratis_localcss') == TRUE) {
-    drupal_add_css(path_to_theme() . '/css/local.css',
-      array(
-        'group' => CSS_AGGREGATE_THEME,
-        'media' => 'screen',
-        'preprocess' => TRUE,
-        'weight' => '9997',
-      )
-    );
-  }
-
-  // Custom css file path if checked and file exists.
-  if (theme_get_setting('gratis_custom_css_location') == TRUE) {
-    $path = theme_get_setting('gratis_custom_css_path');
-    if (file_exists($path)) {
-      drupal_add_css("$path",
-        array(
-          'group' => CSS_AGGREGATE_THEME,
-          'preprocess' => TRUE,
-          'weight' => 9998,
-        )
-      );
-    }
-  }
-
- // Add general JS.
-  drupal_add_js(drupal_get_path('theme', 'gratis') . '/js/scripts.js',
-    array(
-      'group' => JS_THEME,
-      'preprocess' => TRUE,
-      'weight' => '999',
-    ));
-
-  $vars['scripts'] = drupal_get_js();
-
-//  $vars['#attached']['js'] = array(
-//    array(
-//      'data' => drupal_get_path('theme', 'gratis') . '/js/scripts.js',
-//      'options' => array(
-//        'group' => JS_THEME,
-//        'preprocess' => TRUE,
-//        'every_page' => TRUE,
-//      ),
-//    ),
-//  );
 
   // Test if page is a node or not and then add a body class.
   if ($node = menu_get_object()) {
@@ -228,8 +182,54 @@ function gratis_preprocess_page(&$vars, $hook) {
     $vars['pre_columns'] =  'grid-100 preface';
   }
 
-}
+  // @todo fix weighting
+  $path = drupal_get_path('theme', 'gratis');
+  
+  if (theme_get_setting('gratis_localcss') == TRUE) {
+    $local_css = array(
+      '#attached' => array(
+        'css' => array(
+          $path . '/css/local.css',
+          'group' => CSS_AGGREGATE_THEME,
+          'weight' => 9999,
+          'preprocess' => TRUE,
+        ),
+      ),
+    );
+  }
+  drupal_render($local_css);
 
+  // @todo fix weighting
+  if (theme_get_setting('gratis_custom_css_location') == TRUE) {
+    $custompath = theme_get_setting('gratis_custom_css_path');
+    if (file_exists($path)) {
+      $custompathcss = array(
+        '#attached' => array(
+          'css' => array(
+            $path . $custompath,
+            'group' => CSS_AGGREGATE_THEME,
+            'weight' => 9999,
+            'preprocess' => TRUE,
+          ),
+        ),
+      );
+    }
+  }
+  drupal_render($custompathcss);
+
+
+  $local_js = array(
+    '#attached' => array(
+      'js' => array(
+        $path . '/js/scripts.js',
+        'group' => JS_THEME,
+        'weight' => 9999,
+        'preprocess' => TRUE,
+      ),
+    ),
+  );
+  drupal_render($local_js);
+}
 
 /**
  * Override or insert variables into the node template.
