@@ -315,7 +315,7 @@ function gratis_menu_tree__primary(&$vars) {
 /**
  * Implements hook_css_alter().
  *
- * @TODO bootstrap_css_alter() - Refactor if needed.
+ * @TODO gratis_css_alter() - Refactor if needed.
  */
 function gratis_css_alter(&$css) {
   $theme_path = drupal_get_path('theme', 'gratis');
