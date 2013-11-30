@@ -208,18 +208,37 @@ function gratis_preprocess_page(&$vars, $hook) {
   }
   drupal_render($custompathcss);
 
-  // Render the main scripts file.
-  // @todo fix weighting
+  function gratis_library_info() {
+    $libraries['gratis.once'] = array(
+      'title' => 'Add jquery .once when scripts js gets loaded',
+      'version' => '1.0',
+      'js' => array(
+        drupal_get_path('theme', 'gratis') . '/js/scripts.js' => array(),
+      ),
+      'dependencies' => array(
+        array('system', 'jquery.once'),
+      ),
+    );
+    return $libraries;
+  }
+
+  drupal_add_library('gratis', 'gratis.once');
+
+  // Now, render the main scripts file.
   $local_js = array(
     '#attached' => array(
       'js' => array(
         $path . '/js/scripts.js' => array(
           'group' => JS_THEME,
           'weight' => 9),
+          'dependencies' => array(
+          array('system', 'jquery.once'),
+        ),
       ),
     ),
   );
   drupal_render($local_js);
+
 }
 
 /**
