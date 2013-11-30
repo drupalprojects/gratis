@@ -1,9 +1,15 @@
+.clearfix:before,
+.clearfix:after {
+  height: inherit;
+  overflow: auto;
+  visibility: visible;
+}
+
 #menu-wrapper {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 
 .menu-link {
   display: none;
@@ -12,24 +18,24 @@
   text-decoration: none;
 }
 
-.menu { 
+#main-menu .menu {
   -moz-transition: all 0.3s ease-out;
   -ms-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out; 
-  width:100%; 
+  transition: all 0.3s ease-out;
+  width:100%;
 }
 
-.menu ul {
+#main-menu .menu ul {
   list-style: none;
-  margin: 0px; 
+  margin: 0px;
   padding: 0px;
   position: relative;
   text-align:left;
 }
 
-.menu > li > ul.menu.ul-depth-1 {
+#main-menu .menu > li > ul.menu.ul-depth-1 {
   background-color: #f4f4f4;
   background-clip: padding-box;
   border: 1px solid #CCC;
@@ -43,63 +49,62 @@
   -moz-background-clip: padding;
 }
 
-.menu ul:after { clear: both;
+#main-menu .menu ul:after { clear: both;
   content: ""; display: block;
 }
 
-.menu ul li {
+#main-menu .menu ul li {
   padding: 0px;
 }
 
-.menu > ul > li { 
+#main-menu .menu > ul > li {
   display: inline-block;
   margin-left: -4px;
 }
 
-.menu ul li a {
-  color: #ae5c10; 
+#main-menu .menu ul li a {
   display: block;
   font-size: .9em;
   text-decoration: none;
 }
 
-.menu ul li > a.ula-depth-1 { 
+#main-menu .menu ul li > a.ula-depth-1 {
   padding: 14px 16px;
 }
 
-.menu ul ul { 
+#main-menu .menu ul ul {
   display: none;
-  min-width: 160px; 
-  position: absolute; 
+  min-width: 160px;
+  position: absolute;
   top:100%;
 }
 
-.menu ul li:hover > ul {
+#main-menu .menu ul li:hover > ul {
   display: block;
 }
 
-.menu ul ul > li {
+#main-menu .menu ul ul > li {
   position: relative;
 }
 
-.menu ul ul > li a {
+#main-menu .menu ul ul > li a {
   height: auto;
-  padding: 5px 15px 5px 10px;  
+  padding: 5px 15px 5px 10px;
   -moz-transition: background-color 0.2s ease-out;
   -ms-transition: background-color 0.2s ease-out;
   -o-transition: background-color 0.2s ease-out;
   -webkit-transition: background-color 0.2s ease-out;
-  transition: background-color 0.2s ease-out; 
+  transition: background-color 0.2s ease-out;
 }
 
-.menu ul ul > li a:hover {
+#main-menu .menu ul ul > li a:hover {
   background-color: rgba(174, 92,16, 0.9);
   color: #fff;
 }
 
-.menu ul ul ul { 
+#main-menu .menu ul ul ul {
   left: 100%;
-  position: absolute; 
+  position: absolute;
   top:0;
 }
 
@@ -128,7 +133,7 @@
     position: relative;
   }
 
-  .menu {
+  #main-menu  .menu {
     width: inherit;
   }
 
@@ -138,11 +143,10 @@
     position: relative;
   }
 
-  #main-menu ul li.li-depth-1 a {
+  #main-menu .menu ul li.li-depth-1 a {
     font-size: .9em;
     padding: 12px;
   }
-
 
 }
 
@@ -166,7 +170,7 @@
     font-weight: bold;
   }
 
-  .menu ul ul {
+  #main-menu .menu ul ul {
     width: 100%;
   }
 
@@ -179,7 +183,7 @@
     top: 10px;
   }
 
-  .menu {
+  #main-menu .menu {
     clear: both;
     float: none;
     min-width: inherit;
@@ -200,13 +204,14 @@
     position: relative;
   }
 
-  .menu, .menu > ul ul {
+  #main-menu .menu,
+  #main-menu .menu > ul ul {
     background-color: #f4f4f4;
     max-height: 0;
     overflow: hidden;
   }
 
-  .menu > li > ul.menu.ul-depth-1 {
+  #main-menu .menu > li > ul.menu.ul-depth-1 {
     background-clip: padding-box;
     border: none;
     -moz-border-radius: 0px;
@@ -217,28 +222,30 @@
     -moz-background-clip: padding;
   }
 
-  .menu.active, .menu > ul ul.active {
+  #main-menu .menu.active,
+  #main-menu .menu > ul ul.active {
     max-height: 55em;
 
   }
 
-  .menu ul {
+  #main-menu .menu ul {
     display: inline;
   }
 
-  .menu li, .menu > ul > li {
+  #main-menu .menu li,
+  #main-menu .menu > ul > li {
     display: block;
     position: relative;
   }
 
-  .menu li a {
+  #main-menu .menu li a {
     color: #000;
     display: block;
     padding: 0.8em;
     position: relative;
   }
 
-  .menu li.expanded > a:after {
+  #main-menu .menu li.expanded > a:after {
     display: block;
     font-size: 1.5em;
     padding: 0.55em 0.5em;
@@ -247,16 +254,17 @@
     top: 0;
   }
 
-  .menu a.ula-depth-2 {
+  #main-menu .menu a.ula-depth-2 {
     text-indent: 20px;
   }
 
-  .menu ul ul > li a {
+  #main-menu .menu ul ul > li a {
     background-color: #e4e4e4;
     padding: 10px 18px 10px 0px;
   }
 
-  .menu ul ul, .menu ul ul ul {
+  #main-menu .menu ul ul,
+  #main-menu .menu ul ul ul {
     border:none;
     display: inherit;
     left: auto;

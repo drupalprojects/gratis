@@ -550,3 +550,14 @@ span.mailto {
 .forum-post-panel-main .post-title h2 {
   font-size: 2em;
 }
+
+/* system.theme overrides */
+
+.menu .collapsed {
+  list-style-image: none;
+  list-style-type: none;
+}
+
+details > .details-wrapper {
+  padding: 0.5em 0;
+}

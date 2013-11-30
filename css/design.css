@@ -90,7 +90,7 @@ img {
 }
 
 .icon-li.icon-chevron-right {
-  color: #666;
+  color: #999;
 }
 
 a {
@@ -293,7 +293,8 @@ aside .block-content  ul li {
   padding: 3px 0;
 }
 
-aside input[type="text"] {
+aside input[type="text"],
+aside input[type="password"]{
   width: 90%;
 }
 
