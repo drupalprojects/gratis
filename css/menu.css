@@ -198,6 +198,11 @@
     background: none;
   }
 
+  /* compensate for the toolbar if logged in as admin */
+  .contextualToolbar-init-processed  #menu-wrapper {
+    top: 39px;
+  }
+
   .grid-container.main-menu-wrapper,
   .grid-container.main-menu-wrapper .grid-100 {
     padding: 0;

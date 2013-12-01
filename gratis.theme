@@ -214,15 +214,15 @@ function gratis_preprocess_page(&$vars, $hook) {
       'js' => array(
         $path . '/js/scripts.js' => array(
           'group' => JS_THEME,
-          'weight' => 9),
+          'weight' => 9999),
       ),
     ),
   );
   drupal_render($local_js);
 
   function gratis_library_info() {
-    // Add jquery.once as a dependancy on scripts.js
-    $libraries['gratis.once'] = array(
+    // Add core drupal scripts back in as a dependancy on scripts.js
+    $libraries['gratis.corescripts'] = array(
       'title' => 'Add jquery .once when scripts js gets loaded',
       'version' => '1.0',
       'js' => array(
@@ -230,11 +230,15 @@ function gratis_preprocess_page(&$vars, $hook) {
       ),
       'dependencies' => array(
         array('system', 'jquery.once'),
+        array('system', 'jquery'),
+        array('system', 'drupalSettings'),
+        array('system', 'drupal'),
+        array('system', 'drupal.ajax'),
       ),
     );
     return $libraries;
   }
-  drupal_add_library('gratis', 'gratis.once');
+  drupal_add_library('gratis', 'gratis.corescripts');
 
 }
 
