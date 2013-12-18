@@ -141,6 +141,7 @@ function gratis_preprocess_page(&$vars, $hook) {
   // no sidebars
   else {
     $vars['sb_columns'] = 1;
+    $vars['content_columns'] = 'grid-100';
   }
 
   // Postscript columns ('$pos_columns').
