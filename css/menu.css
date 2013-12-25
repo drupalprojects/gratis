@@ -1,11 +1,5 @@
-.clearfix:before,
-.clearfix:after {
-  height: inherit;
-  overflow: auto;
-  visibility: visible;
-}
 
-#menu-wrapper {
+#main-menu {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -14,31 +8,33 @@
 .menu-link {
   display: none;
   float: right;
-  padding: 20px;
+  padding: 7px 7px 6px 7px;
   text-decoration: none;
+  position: relative;
+  top: -1px;
 }
 
-#main-menu .menu {
+.main-navigation {
   -moz-transition: all 0.3s ease-out;
   -ms-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-  width:100%;
+  width: 100%;
 }
 
-#main-menu .menu ul {
+.main-navigation ul {
   list-style: none;
   margin: 0px;
   padding: 0px;
   position: relative;
-  text-align:left;
+  text-align: left;
 }
 
-#main-menu .menu > li > ul.menu.ul-depth-1 {
+.main-navigation > li > ul.main-navigation.ul-depth-1 {
   background-color: #f4f4f4;
   background-clip: padding-box;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -49,45 +45,48 @@
   -moz-background-clip: padding;
 }
 
-#main-menu .menu ul:after { clear: both;
-  content: ""; display: block;
+.main-navigation ul:after {
+  clear: both;
+  content: "";
+  display: block;
 }
 
-#main-menu .menu ul li {
+.main-navigation ul li {
   padding: 0px;
 }
 
-#main-menu .menu > ul > li {
+.main-navigation > ul > li {
   display: inline-block;
   margin-left: -4px;
 }
 
-#main-menu .menu ul li a {
+.main-navigation ul li a {
+  color: #ae5c10;
   display: block;
   font-size: .9em;
   text-decoration: none;
 }
 
-#main-menu .menu ul li > a.ula-depth-1 {
+.main-navigation ul li > a.ula-depth-1 {
   padding: 14px 16px;
 }
 
-#main-menu .menu ul ul {
+.main-navigation ul ul {
   display: none;
   min-width: 160px;
   position: absolute;
-  top:100%;
+  top: 100%;
 }
 
-#main-menu .menu ul li:hover > ul {
+.main-navigation ul li:hover > ul {
   display: block;
 }
 
-#main-menu .menu ul ul > li {
+.main-navigation ul ul > li {
   position: relative;
 }
 
-#main-menu .menu ul ul > li a {
+.main-navigation ul ul > li a {
   height: auto;
   padding: 5px 15px 5px 10px;
   -moz-transition: background-color 0.2s ease-out;
@@ -97,15 +96,15 @@
   transition: background-color 0.2s ease-out;
 }
 
-#main-menu .menu ul ul > li a:hover {
-  background-color: rgba(174, 92,16, 0.9);
+.main-navigation ul ul > li a:hover {
+  background-color: rgba(174, 92, 16, 0.9);
   color: #fff;
 }
 
-#main-menu .menu ul ul ul {
+.main-navigation ul ul ul {
   left: 100%;
   position: absolute;
-  top:0;
+  top: 0;
 }
 
 #main-menu li.li-depth-0 li:not(.last) .ula-depth-2 {
@@ -133,7 +132,7 @@
     position: relative;
   }
 
-  #main-menu  .menu {
+  .main-navigation {
     width: inherit;
   }
 
@@ -143,7 +142,7 @@
     position: relative;
   }
 
-  #main-menu .menu ul li.li-depth-1 a {
+  #main-menu ul li.li-depth-1 a {
     font-size: .9em;
     padding: 12px;
   }
@@ -151,6 +150,10 @@
 }
 
 @media screen and (max-width: 768px) {
+
+  #header-bar > header > div.grid-75.branding-grid.header-grid {
+    height: 36px;
+  }
 
   .icon-fixed-width.sub-menu-item {
     left: -27px;
@@ -164,13 +167,13 @@
 
   a.menu-link {
     background-color: #AE5C10;
-    background-color: rgba(174, 92,16, 0.9);
+    background-color: rgba(174, 92, 16, 0.9);
     color: #fff !important;
     display: block;
     font-weight: bold;
   }
 
-  #main-menu .menu ul ul {
+  .main-navigation ul ul {
     width: 100%;
   }
 
@@ -178,29 +181,24 @@
     color: #fff;
     cursor: pointer;
     font-size: 30px;
-    left: 84%;
+    right: 0;
     position: absolute;
     top: 10px;
   }
 
-  #main-menu .menu {
+  .main-navigation {
     clear: both;
     float: none;
     min-width: inherit;
   }
 
   #menu-wrapper {
-    position: absolute;
+    position: relative;
     z-index: 300;
-    top: 0;
+    top: -42px;
     right: 0;
     border-top: none !important;
     background: none;
-  }
-
-  /* compensate for the toolbar if logged in as admin */
-  .contextualToolbar-init-processed  #menu-wrapper {
-    top: 39px;
   }
 
   .grid-container.main-menu-wrapper,
@@ -209,14 +207,14 @@
     position: relative;
   }
 
-  #main-menu .menu,
-  #main-menu .menu > ul ul {
+  .main-navigation,
+  .main-navigation > ul ul {
     background-color: #f4f4f4;
     max-height: 0;
     overflow: hidden;
   }
 
-  #main-menu .menu > li > ul.menu.ul-depth-1 {
+  .main-navigation > li > ul.main-navigation.ul-depth-1 {
     background-clip: padding-box;
     border: none;
     -moz-border-radius: 0px;
@@ -227,30 +225,29 @@
     -moz-background-clip: padding;
   }
 
-  #main-menu .menu.active,
-  #main-menu .menu > ul ul.active {
+  .main-navigation.active,
+  .main-navigation > ul ul.active {
     max-height: 55em;
-
   }
 
-  #main-menu .menu ul {
+  .main-navigation ul {
     display: inline;
   }
 
-  #main-menu .menu li,
-  #main-menu .menu > ul > li {
+  .main-navigation li,
+  .main-navigation > ul > li {
     display: block;
     position: relative;
   }
 
-  #main-menu .menu li a {
+  .main-navigation li a {
     color: #000;
     display: block;
     padding: 0.8em;
     position: relative;
   }
 
-  #main-menu .menu li.expanded > a:after {
+  .main-navigation li.expanded > a:after {
     display: block;
     font-size: 1.5em;
     padding: 0.55em 0.5em;
@@ -259,21 +256,26 @@
     top: 0;
   }
 
-  #main-menu .menu a.ula-depth-2 {
+  .main-navigation a.ula-depth-2 {
     text-indent: 20px;
   }
 
-  #main-menu .menu ul ul > li a {
+  .main-navigation ul ul > li a {
     background-color: #e4e4e4;
     padding: 10px 18px 10px 0px;
   }
 
-  #main-menu .menu ul ul,
-  #main-menu .menu ul ul ul {
-    border:none;
+  .main-navigation ul ul, .main-navigation ul ul ul {
+    border: none;
     display: inherit;
     left: auto;
-    position: relative; top:auto;
-
+    position: relative;
+    top: auto;
   }
+
+  #menu {
+    position: absolute;
+    top: 42px;
+  }
+
 }

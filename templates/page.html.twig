@@ -74,11 +74,21 @@
 
 <div id="wrapper">
 
-    <div id="top-bar">
+{% if page.top_links %}
+<div id="top-bar" class="top-wrapper">
+    <div class="grid-container top-wrapper-inner" style="max-width:{{ thegrid }}">
+        <div class="grid-100 top-links">
+            {{ page.top_links }}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+    <div id="header-bar">
         <header role="banner" class="grid-container banner" style="max-width:{{ thegrid }}">
             <div class="grid-25 logo-wrapper header-grid">
-<span id="brand">
-<div id="logo">
+        <div id="brand">
+          <div id="logo">
 
     {% if logo %}
         <a href="{{ front_page }}" title="{{ site_name }} » {{ site_slogan }}">
@@ -92,7 +102,7 @@
 
     {% endif %}
 </div>
-</span>
+</div>
             </div>
             <!--//logo-wrapper-->
 
@@ -126,9 +136,10 @@
 
                 <section id="main-menu" role="navigation">
                     {% if main_menu %}
-                        <!-- <div class="menu-button"><i class="menu-icon icon-fixed-width">&#xf0ca;</i></div> -->
-                        <a class="menu-link" href="#menu">Menu</a>
-                        <nav id="menu" class="menu">
+                        <a class="menu-link" href="#menu">
+                            <i class="icon-fixed-width menu-icon">&#xf039;</i>
+                        </a>
+                        <nav id="menu" class="main-navigation">
                             {{ main_menu }}
                         </nav>
                     {% endif %}

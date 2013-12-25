@@ -1,5 +1,5 @@
 /* sticky footer
-http://ryanfait.com/sticky-footer
+*  http://ryanfait.com/sticky-footer
 */
 
 * {
@@ -10,12 +10,6 @@ html,
 body {
   height: 100%;
   min-width: 270px !important;
-}
-
-.element-invisible {
-  position: absolute !important;
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
 }
 
 #wrapper {
@@ -33,7 +27,7 @@ body {
 
 /* End sticky footer. */
 
-/*headings, links, paragraphs, images*/
+/* Headings, links, paragraphs, images. */
 
 h1,
 h2,
@@ -85,13 +79,7 @@ img {
   border: none;
 }
 
-#content li {
-  margin: 6px 0;
-}
-
-.icon-li.icon-chevron-right {
-  color: #999;
-}
+/* Links */
 
 a {
   text-decoration: none;
@@ -116,6 +104,48 @@ a.logo {
   padding-left: 10px;
 }
 
+/* Lists */
+
+#content li {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+article .field ul li,
+aside .block-content ul li {
+  list-style: none;
+  position: relative;
+  left: 20px;
+}
+
+aside .block-content ul li {
+  left: 0;
+}
+
+article .field ul li:before,
+aside .block-content ul li:before {
+  content: "\f054";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  position: absolute;
+  left: -16px;
+  color: #ccc;
+  top: 2px;
+}
+
+article .field-type-taxonomy-term-reference ul li {
+}
+
+article .field-type-taxonomy-term-reference ul li:before {
+  content: '';
+}
+
+.icon-li.icon-chevron-right {
+  color: #666;
+}
+
 ol li {
   margin-left: 30px;
 }
@@ -125,10 +155,6 @@ ol {
 }
 
 /* Regions */
-
-.js .flexnav {
-/*  display: none;*/
-}
 
 #sidebar-second,
 #sidebar-first {
@@ -159,12 +185,22 @@ ol {
   margin-top: 8px;
 }
 
-#top-bar {
+#header-bar {
   background: #000;
   padding: 6px 0 8px 0;
 }
 
- .ie10 #top-bar {
+#top-bar {
+  background: #333;
+  min-height: 36px;
+  text-align: right;
+}
+
+#top-bar ul.menu {
+  overflow: inherit;
+}
+
+.ie10 #header-bar {
   height: 59px;
 }
 
@@ -183,20 +219,12 @@ figcaption {
   font-style: italic;
 }
 
-article .field li {
-  padding-left: 8px;
-}
-
 #breadcrumbs {
   padding-top: 8px;
 }
 
 .front .region.region-postscript {
   margin-top: 50px;
-}
-
-#postscript-wrapper {
-  margin-top: 20px;
 }
 
 #footer {
@@ -232,17 +260,33 @@ span.submitted {
   font-style: italic;
 }
 
-.item-list ul {
-  margin: 0 0 0.25em 1.4em;
+.item-list ul,
+aside.sidebar .block-content ul {
+  margin: 0 1.4em 0.25em 0;
+}
+
+aside.sidebar .block-content ul li {
+  margin: 0 0 0.25em 1.5em;
+  padding: 0;
+}
+
+.calendar {
+  width: inherit;
 }
 
 .item-list ul.pager {
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
 }
 
 .item-list ul.pager li {
   border: 1px solid #999;
-  margin: 0 0 0.25em 1.4em;
+  margin: 0 0 0.25em .4em;
+}
+
+.pager-current {
+  font-weight: bold;
+  background: #999;
+  color: #fff;
 }
 
 .main-container.container {
@@ -278,7 +322,7 @@ pre {
 /* Sidebars */
 
 aside h2 {
-  background: url(../images/diagstripe.png);
+  background: url('../images/diagstripe.png');
   border-left: 5px solid #f60;
   clear: both;
   font-size: 140%;
@@ -290,11 +334,10 @@ aside h2 {
 
 aside .block-content  ul li {
   border-bottom: 1px solid #d6d6d6;
-  padding: 3px 0;
+  padding-bottom: 4px;
 }
 
-aside input[type="text"],
-aside input[type="password"]{
+aside input[type="text"] {
   width: 90%;
 }
 
@@ -321,18 +364,19 @@ aside .region.region-sidebar-second {
   color: #666;
   float: left;
   font-weight: bold;
-  margin-right: 0;
-  margin-top: 4px;
+  margin: 0;
+}
+
+#content .field-type-taxonomy-term-reference ul {
+  margin: 0 0 14px 0;
 }
 
 #content .field-type-taxonomy-term-reference ul li {
-  background: url(../images/tag.png) no-repeat;
+  background: url('../images/tag.png') 0 1px no-repeat;
   display: inline-block;
-  height: 22px;
-  margin-left: 6px;
-  margin-right: 4px;
-  padding: 0 8px 0 16px;
+  padding: 0px 8px 1px 16px;
   text-transform: uppercase;
+  margin: 0 4px 0 6px;
 }
 
 span.image-block,
@@ -423,7 +467,7 @@ span.image-block,
 }
 
 .comment .comment-arrow {
-  background: url(../images/comment-arrow.gif) no-repeat 0 center transparent;
+  background: url('../images/comment-arrow.gif') no-repeat 0 center transparent;
   border-left: 1px solid #fff;
   border-right: 1px solid #fff;
   height: 40px;
@@ -481,8 +525,6 @@ p.comment-time {
 
 #comments h3 {
   font-size: 1.5em;
-  margin: 0;
-  padding: 0;
 }
 
 #comments h3 a {
@@ -497,7 +539,7 @@ p.comment-time {
   cursor: pointer;
 }
 
-.region-top-bar {
+.region-header-bar {
   float: right;
 }
 
@@ -515,15 +557,6 @@ ul.links.inline li {
   max-height: 52px;
   overflow: hidden;
 }
-
-/*#main-menu ul li .ula-depth-1 {
-  background: #000;
-  padding: .7em 3.2em .7em .9em;
-}
-
-#main-menu ul li.li-depth-0:not(.item-with-ul) a {
-  padding: .7em .8em;
-}*/
 
 #main-menu ul li a {
   color: #fff;
@@ -569,7 +602,41 @@ ul.links.inline li {
 
 .menu-icon.icon-fixed-width {
   color: #fff;
-  font-size: 1.9em;
+  font-size: 2.2em;
+}
+
+.top-links .block-content ul {
+  margin: 0;
+  padding: 0;
+}
+
+.top-links .block-content ul li {
+  display: inline-block;
+  margin: 8px 2px;
+}
+
+.top-links .block-content ul li a:hover {
+  color: #ccc;
+}
+
+.top-links .block-content ul li:after {
+  color: #999;
+  content: ' | ';
+  margin-left: 6px;
+  margin-right: 2px;
+}
+
+.top-links .block-content li:last-child:after {
+  content: '';
+  margin: 0;
+}
+
+.top-links .block-content li:last-child {
+  margin-right: 0;
+}
+
+.top-links .block-content ul li a.active {
+  color: #ccc;
 }
 
 .go-arrow {
@@ -718,7 +785,7 @@ li.leaf {
 }
 
 .color-palette-green a,
-.color-palette-green a.active, 
+.color-palette-green a.active,
 .color-palette-green li a.active,
 .color-palette-green #comments h3 a,
 .theme-logo.site-name.color-palette-green h1.site-name:after,
@@ -783,6 +850,14 @@ li.leaf {
 
 .color-palette-purple a:hover {
   color: #333;
+}
+
+.color-palette-purple .top-links .block-content ul li a {
+  color: #fff;
+}
+
+.color-palette-purple .top-links .block-content ul li a:hover {
+  color: #999;
 }
 
 .color-palette-purple #main-menu ul li a.active,
@@ -964,7 +1039,7 @@ li.leaf {
 .color-palette-pink a.active,
 .color-palette-pink li a.active,
 .color-palette-pink #comments h3 a,
-.theme-logo.site-name.color-palette-pink h1.site-name:after, 
+.theme-logo.site-name.color-palette-pink h1.site-name:after,
 .color-palette-pink .icon-quote-left {
   color: #b72898;
 }
