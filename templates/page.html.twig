@@ -195,6 +195,10 @@
     <main role="main" class="grid-container" style="max-width:{{ thegrid }}" id="content">
         <div  id = "main-content"  class="content-grid {{ content_columns }}">
 
+            {% if page.content_top %}
+                {{ page.content_top }}
+            {% endif %}
+
             {% if messages %}
                 <div id="messages">
                     <div class="section clearfix">
