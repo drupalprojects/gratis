@@ -198,6 +198,7 @@ ol {
 
 #top-bar ul.menu {
   overflow: inherit;
+  text-align: right;
 }
 
 .ie10 #header-bar {
