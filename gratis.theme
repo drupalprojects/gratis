@@ -62,16 +62,6 @@ function gratis_preprocess_html(&$vars) {
     $vars['attributes']['class'][] = 'theme-logo-none';
   }
 
-  // Add IE 9 fixes style sheet.
-  drupal_add_css(path_to_theme() . '/css/ie9-fixes.css',
-    array(
-//      'group' => CSS_AGGREGATE_THEME,
-      'browsers' =>
-        array(
-          'IE' => 'iE 9',
-          '!IE' => FALSE),
-      'preprocess' => FALSE));
-
   // Extra body classes for theme variables.
   // The Color Palette.
   $file = theme_get_setting('theme_color_palette');
@@ -180,6 +170,19 @@ function gratis_preprocess_page(&$vars, $hook) {
 
   $path = drupal_get_path('theme', 'gratis');
 
+  // Add IE 9 fixes style sheet.
+  $ie9_css = array(
+    '#attached' => array(
+      'css' => array(
+        $path . '/css/ie9-fixes.css' => array(
+          'group' => CSS_AGGREGATE_THEME,
+          'weight' => 999),
+      ),
+    ),
+  );
+  drupal_render($ie9_css);
+
+  // Add local css if true.
   if (theme_get_setting('gratis_localcss') == TRUE) {
     $local_css = array(
       '#attached' => array(
@@ -193,6 +196,7 @@ function gratis_preprocess_page(&$vars, $hook) {
   }
   drupal_render($local_css);
 
+  // Add local path css if true.
   if (theme_get_setting('gratis_custom_css_location') == TRUE) {
     $custompath = theme_get_setting('gratis_custom_css_path');
     if (file_exists($path)) {
@@ -209,7 +213,7 @@ function gratis_preprocess_page(&$vars, $hook) {
   }
   drupal_render($custompathcss);
 
-  // Now, render the main scripts file.
+  // Render the main scripts file.
   $local_js = array(
     '#attached' => array(
       'js' => array(
