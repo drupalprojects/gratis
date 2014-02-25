@@ -68,13 +68,12 @@ function gratis_preprocess_html(&$vars) {
   $vars['attributes']['class'][] = drupal_html_class('color-palette-' . $file);
 
   // Test if page is a node or not and then add a body class.
-  // @todo fix this, menu_get_object is gone
-//  if ($node = menu_get_object()) {
-//    $vars['attributes']['class'][] = 'is-node';
-//  }
-//  else {
-//    $vars['attributes']['class'][] = 'not-node';
-//  }
+    if ($node = \Drupal::request()->attributes->get('node')) {
+    $vars['attributes']['class'][] = 'is-node';
+  }
+  else {
+    $vars['attributes']['class'][] = 'not-node';
+  }
 
 }
 
@@ -104,11 +103,10 @@ function gratis_preprocess_page(&$vars, $hook) {
   }
 
   // Check if it's a node and set a variable.
-  // @todo fix this, menu_get_object is gone
-//  $vars['is_node'] = FALSE;
-//  if ($node = menu_get_object()) {
-//    $vars['is_node'] = TRUE;
-//  }
+  $vars['is_node'] = FALSE;
+    if ($node = \Drupal::request()->attributes->get('node')) {
+    $vars['is_node'] = TRUE;
+  }
 
   // Set the custom grid width in a variable.
   $gridwidth = theme_get_setting('gratis_grid_container_width');
@@ -227,7 +225,9 @@ function gratis_preprocess_page(&$vars, $hook) {
   );
   drupal_render($local_js);
 
-  function gratis_library_info() {
+  // Old hook_library_info to bring in jQuery once.
+ /*
+function gratis_library_info() {
     // Add core drupal scripts back in as a dependancy on scripts.js
     $libraries['gratis.corescripts'] = array(
       'title' => 'Add jquery .once when scripts js gets loaded',
@@ -246,6 +246,11 @@ function gratis_preprocess_page(&$vars, $hook) {
     return $libraries;
   }
   drupal_add_library('gratis', 'gratis.corescripts');
+  */
+
+  // Render the library as laid out in gratis.libraries.yml
+  $libraries['#attached']['library'][] = array('gratis', 'gratis-corescripts');
+  drupal_render($libraries);
 
 }
 
