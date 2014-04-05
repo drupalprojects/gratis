@@ -37,5 +37,3 @@ settings:
    theme_color_palette: 'orange'
    gratis_localcss: '0'
    gratis_custom_css_location: '0'
-scripts:
-  - js/test.js

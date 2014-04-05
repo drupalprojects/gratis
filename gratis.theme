@@ -213,43 +213,20 @@ function gratis_preprocess_page(&$vars, $hook) {
   }
   drupal_render($custompathcss);
 
-  // Render the main scripts file.
-  $local_js = array(
-    '#attached' => array(
-      'js' => array(
-        $path . '/js/scripts.js' => array(
-          'group' => JS_THEME,
-          'weight' => 9999),
-      ),
-    ),
-  );
-  drupal_render($local_js);
-
-  // Old hook_library_info to bring in jQuery once.
- /*
-function gratis_library_info() {
-    // Add core drupal scripts back in as a dependancy on scripts.js
-    $libraries['gratis.corescripts'] = array(
-      'title' => 'Add jquery .once when scripts js gets loaded',
-      'version' => '1.0',
-      'js' => array(
-        drupal_get_path('theme', 'gratis') . '/js/scripts.js' => array(),
-      ),
-      'dependencies' => array(
-        array('system', 'jquery.once'),
-        array('system', 'jquery'),
-        array('system', 'drupalSettings'),
-        array('system', 'drupal'),
-        array('system', 'drupal.ajax'),
-      ),
-    );
-    return $libraries;
-  }
-  drupal_add_library('gratis', 'gratis.corescripts');
-  */
+//  // Render the main scripts file.
+//  $local_js = array(
+//    '#attached' => array(
+//      'js' => array(
+//        $path . '/js/scripts.js' => array(
+//          'group' => JS_THEME,
+//          'weight' => 9999),
+//      ),
+//    ),
+//  );
+//  drupal_render($local_js);
 
   // Render the library as laid out in gratis.libraries.yml
-  $libraries['#attached']['library'][] = array('gratis', 'gratis-corescripts');
+  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
   drupal_render($libraries);
 
 }
