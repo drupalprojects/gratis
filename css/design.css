@@ -8,21 +8,21 @@
 
 html,
 body {
-  height: 100%;
   min-width: 270px !important;
+  height: 100%;
 }
 
 #wrapper {
-  height: auto !important;
-  height: 100%;
   margin: 0 auto -140px;
   min-height: 100%;
+  height: auto !important;
+  height: 100%;
 }
 
 #footer,
 .push-sticky {
-  height: 140px;
   padding-bottom: 14px;
+  height: 140px;
 }
 
 /* End sticky footer. */
@@ -36,23 +36,23 @@ h3,
 h4,
 h5 {
   color: #666;
-  font-family: 'Open Sans', arial, sans-serif;
   font-weight: normal;
+  font-family: 'Open Sans', arial, sans-serif;
 }
 
 h1 {
+  margin: 10px 0;
   color: #666;
   font-size: 4em;
   line-height: 1.1em;
-  margin: 10px 0;
 }
 
 h1.site-name {
   display: inline-block;
+  margin: 5px 0 8px 0;
+  font-weight: normal;
   font-size: 1.5em;
   font-family: 'Open Sans', arial, sans-serif;
-  font-weight: normal;
-  margin: 5px 0 8px 0;
   text-rendering: optimizeLegibility;
 }
 
@@ -65,14 +65,14 @@ h1.page-header {
 }
 
 .theme-logo.site-name.site-slogan h1.site-name:after {
-  content: "\003A";
   margin-left: -4px;
+  content: "\003A";
 }
 
 p {
+  margin-bottom: 10px;
   font-size: 1.1em;
   line-height: 1.7em;
-  margin-bottom: 10px;
 }
 
 img {
@@ -83,10 +83,10 @@ img {
 
 a {
   text-decoration: none;
+  -webkit-transition: color .2s ease-in-out;
   -moz-transition: color .2s ease-in-out;
   -ms-transition: color .2s ease-in-out;
   -o-transition: color .2s ease-in-out;
-  -webkit-transition: color .2s ease-in-out;
   transition: color .2s ease-in-out;
 }
 
@@ -113,9 +113,9 @@ a.logo {
 
 article .field ul:not(.links.inline) li,
 aside .block-content ul li {
-  list-style: none;
   position: relative;
   left: 20px;
+  list-style: none;
 }
 
 aside .block-content ul li {
@@ -124,15 +124,15 @@ aside .block-content ul li {
 
 article .field ul:not(.links.inline) li:before,
 aside .block-content ul li:before {
-  content: "\f054";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
   position: absolute;
+  top: 2px;
   left: -16px;
   color: #ccc;
-  top: 2px;
+  content: "\f054";
+  text-decoration: inherit;
+  font-weight: normal;
+  font-style: normal;
+  font-family: FontAwesome;
 }
 
 article .field-type-taxonomy-term-reference ul li {
@@ -170,29 +170,29 @@ ol {
 }
 
 #branding-wrapper {
-  text-align: right;
   padding-top: 6px;
+  text-align: right;
 }
 
 #footer {
-  background: #333;
-  margin: 0 auto;
   position: relative;
+  margin: 0 auto;
+  background: #333;
 }
 
 #logo-img {
-  max-height: 48px;
   margin-top: 8px;
+  max-height: 48px;
 }
 
 #header-bar {
-  background: #000;
   padding: 6px 0 8px 0;
+  background: #000;
 }
 
 #top-bar {
-  background: #333;
   min-height: 36px;
+  background: #333;
   text-align: right;
 }
 
@@ -229,17 +229,17 @@ figcaption {
 }
 
 #footer {
+  padding: 0;
   background: #202020;
   color: #fff;
-  padding: 0;
 }
 
 h3.branding {
-  color: #fff;
-  font-size: 1.3em;
+  display: inline-block;
   margin: 0;
   padding: 2px 0;
-  display: inline-block;
+  color: #fff;
+  font-size: 1.3em;
 }
 
 .site-name h3.branding {
@@ -251,9 +251,9 @@ h3.branding {
 }
 
 span.submitted {
-  border: 1px dotted #999;
   display: block;
   padding: 4px;
+  border: 1px dotted #999;
 }
 
 .img-caption {
@@ -280,14 +280,14 @@ aside.sidebar .block-content ul li {
 }
 
 .item-list ul.pager li {
-  border: 1px solid #999;
   margin: 0 0 0.25em .4em;
+  border: 1px solid #999;
 }
 
 .pager-current {
-  font-weight: bold;
   background: #999;
   color: #fff;
+  font-weight: bold;
 }
 
 .main-container.container {
@@ -307,35 +307,35 @@ aside.sidebar .block-content ul li {
 
 code,
 pre {
-  background-color: #f8f8f8;
-  border: 1px solid #ccc;
-  color: #222;
   display: block;
-  font-size: 0.88em;
-  line-height: 1.3;
-  margin: 0.5em;
   overflow: auto;
+  margin: 0.5em;
   padding: 0.5em;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  color: #222;
   text-shadow: none;
   white-space: inherit;
+  font-size: 0.88em;
+  line-height: 1.3;
 }
 
 /* Sidebars */
 
 aside h2 {
-  background: url('../images/diagstripe.png');
-  border-left: 5px solid #f60;
   clear: both;
-  font-size: 140%;
-  line-height: 1.5em;
   margin: 0 0 20px 0;
   padding-left: 6px;
+  border-left: 5px solid #f60;
+  background: url('../images/diagstripe.png');
   text-transform: uppercase;
+  font-size: 140%;
+  line-height: 1.5em;
 }
 
 aside .block-content  ul li {
-  border-bottom: 1px solid #d6d6d6;
   padding-bottom: 4px;
+  border-bottom: 1px solid #d6d6d6;
 }
 
 aside input[type="text"] {
@@ -362,10 +362,10 @@ aside .region.region-sidebar-second {
 }
 
 .field-type-taxonomy-term-reference span.field-label {
-  color: #666;
   float: left;
-  font-weight: bold;
   margin: 0;
+  color: #666;
+  font-weight: bold;
 }
 
 #content .field-type-taxonomy-term-reference ul {
@@ -373,11 +373,11 @@ aside .region.region-sidebar-second {
 }
 
 #content .field-type-taxonomy-term-reference ul li {
-  background: url('../images/tag.png') 0 1px no-repeat;
   display: inline-block;
-  padding: 0px 8px 1px 16px;
-  text-transform: uppercase;
   margin: 0 4px 0 6px;
+  padding: 0px 8px 1px 16px;
+  background: url('../images/tag.png') 0 1px no-repeat;
+  text-transform: uppercase;
 }
 
 span.image-block,
@@ -386,13 +386,13 @@ span.image-block,
 }
 
 .is-node .field-type-image img {
-  height: auto;
   max-width: 100%;
+  height: auto;
 }
 
 .page-node-edit.is-node .field-type-image img {
-  height: auto;
   width: inherit;
+  height: auto;
 }
 
 .not-node span.image-block {
@@ -440,13 +440,13 @@ span.image-block,
 }
 
 .comment .attribution img {
-  border: 1px solid #d3d7d9;
   margin: 0;
+  border: 1px solid #d3d7d9;
 }
 
 .comment .submitted p {
-  line-height: 1.2;
   margin: 4px 0;
+  line-height: 1.2;
 }
 
 .comment .submitted .comment-time {
@@ -455,8 +455,8 @@ span.image-block,
 }
 
 .comment .submitted .comment-permalink {
-  font-size: 0.786em;
   text-transform: lowercase;
+  font-size: 0.786em;
 }
 
 .comment .content {
@@ -468,21 +468,21 @@ span.image-block,
 }
 
 .comment .comment-arrow {
-  background: url('../images/comment-arrow.gif') no-repeat 0 center transparent;
-  border-left: 1px solid #fff;
-  border-right: 1px solid #fff;
-  height: 40px;
-  margin-left: -47px;
-  margin-top: 10px;
   position: absolute;
+  margin-top: 10px;
+  margin-left: -47px;
   width: 20px;
+  height: 40px;
+  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
+  background: url('../images/comment-arrow.gif') no-repeat 0 center transparent;
 }
 
 .comment .comment-text {
-  border: 1px solid #d3d7d9;
+  position: relative;
   display: table-cell;
   padding: 10px 25px;
-  position: relative;
+  border: 1px solid #d3d7d9;
   vertical-align: top;
 }
 
@@ -505,8 +505,8 @@ span.image-block,
 }
 
 .comment-unpublished .comment-text .comment-arrow {
-  border-left: 1px solid #fff4f4;
   border-right: 1px solid #fff4f4;
+  border-left: 1px solid #fff4f4;
 }
 
 p.comment-time {
@@ -514,14 +514,14 @@ p.comment-time {
 }
 
 .comment-by-node-author .submitted {
-  background: #eaeaea;
   padding: 6px;
+  background: #eaeaea;
 }
 
 .comment-by-node-author .submitted:after {
+  color: #666;
   content: 'Author';
   font-size: .85em;
-  color: #666;
 }
 
 #comments h3 {
@@ -555,8 +555,8 @@ ul.links.inline li {
 }
 
 #logo {
-  max-height: 52px;
   overflow: hidden;
+  max-height: 52px;
 }
 
 #main-menu ul li a {
@@ -583,12 +583,12 @@ ul.links.inline li {
 }
 
 #main-menu li a {
-  font-size: 1.01em;
-  font-weight: normal;
-  letter-spacing: .1em;
-  text-rendering: optimizeLegibility;
   text-transform: capitalize;
+  letter-spacing: .1em;
+  font-weight: normal;
+  font-size: 1.01em;
   font-family: 'Open Sans', serif;
+  text-rendering: optimizeLegibility;
 }
 
 .menu-navigation ul {
@@ -597,8 +597,8 @@ ul.links.inline li {
 
 .arrow.icon-fixed-width {
   color: #fff;
-  font-size: 3.7em;
   text-align: left !important;
+  font-size: 3.7em;
 }
 
 .menu-icon.icon-fixed-width {
@@ -621,15 +621,15 @@ ul.links.inline li {
 }
 
 .top-links .block-content ul li:after {
+  margin-right: 2px;
+  margin-left: 6px;
   color: #999;
   content: ' | ';
-  margin-left: 6px;
-  margin-right: 2px;
 }
 
 .top-links .block-content li:last-child:after {
-  content: '';
   margin: 0;
+  content: '';
 }
 
 .top-links .block-content li:last-child {
@@ -641,11 +641,11 @@ ul.links.inline li {
 }
 
 .go-arrow {
-  border: 1px dotted #fff;
   display: block;
   float: right;
   padding: 5px;
   width: 42px;
+  border: 1px dotted #fff;
 }
 
 .home-featured-content {

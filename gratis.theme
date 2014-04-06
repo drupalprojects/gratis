@@ -12,7 +12,7 @@ function gratis_preprocess_html(&$vars) {
 
   if (theme_get_setting('gratis_viewport') == FALSE) {
 
-    // No pinch and zoom.
+  // No pinch and zoom.
     $viewport = array(
       '#type' => 'html_tag',
       '#tag' => 'meta',
@@ -26,7 +26,7 @@ function gratis_preprocess_html(&$vars) {
 
   else {
 
-    // Pinch and Zoom enabled.
+  // Pinch and Zoom enabled.
     $viewport = array(
       '#type' => 'html_tag',
       '#tag' => 'meta',
@@ -68,7 +68,7 @@ function gratis_preprocess_html(&$vars) {
   $vars['attributes']['class'][] = drupal_html_class('color-palette-' . $file);
 
   // Test if page is a node or not and then add a body class.
-    if ($node = \Drupal::request()->attributes->get('node')) {
+  if ($node = \Drupal::request()->attributes->get('node')) {
     $vars['attributes']['class'][] = 'is-node';
   }
   else {
@@ -82,10 +82,10 @@ function gratis_preprocess_html(&$vars) {
  */
 function gratis_preprocess_page(&$vars, $hook) {
 
-  // Build the main menu links tree.
+// Build the main menu links tree.
   $vars['primary_nav'] = FALSE;
   if (!empty($vars['main_menu'])) {
-    // Build links.
+  // Build links.
     $config = Drupal::config('menu.settings');
     $menu_enabled = Drupal::moduleHandler()->moduleExists('menu');
     // When menu module is not enabled, we need a hardcoded default values.
@@ -96,7 +96,7 @@ function gratis_preprocess_page(&$vars, $hook) {
     $vars['main_menu']['#attributes']['class'] = array('links', 'clearfix');
   }
 
-    // If the default logo is used, then determine which color and set the path.
+  // If the default logo is used, then determine which color and set the path.
   $file = theme_get_setting('theme_color_palette');
   if (theme_get_setting('gratis_themelogo') == TRUE) {
     $vars['logo'] = base_path() . path_to_theme() . '/images/logo-' . $file . '.png';
@@ -104,7 +104,7 @@ function gratis_preprocess_page(&$vars, $hook) {
 
   // Check if it's a node and set a variable.
   $vars['is_node'] = FALSE;
-    if ($node = \Drupal::request()->attributes->get('node')) {
+  if ($node = \Drupal::request()->attributes->get('node')) {
     $vars['is_node'] = TRUE;
   }
 
@@ -118,17 +118,19 @@ function gratis_preprocess_page(&$vars, $hook) {
     $vars['sb_columns'] = 'grid-20 pull-60';
     $vars['content_columns'] = 'grid-60 push-20';
   }
+
   // Sidebar first.
   elseif (!empty($vars['page']['sidebar_first'])) {
     $vars['sb_columns'] = 'grid-20 pull-80';
     $vars['content_columns'] = 'grid-80 push-20';
   }
+
   // Sidebar second.
   elseif (!empty($vars['page']['sidebar_second'])) {
     $vars['sb_columns'] = 'grid-20 sidebar';
     $vars['content_columns'] = 'grid-80';
   }
-  // no sidebars
+// no sidebars
   else {
     $vars['sb_columns'] = 1;
     $vars['content_columns'] = 'grid-100';
@@ -136,7 +138,7 @@ function gratis_preprocess_page(&$vars, $hook) {
 
   // Postscript columns ('$pos_columns').
   if (!empty($vars['page']['postscript_first']) && !empty($vars['page']['postscript_second']) && !empty($vars['page']['postscript_third'])) {
-    $vars['pos_columns'] =  'grid-33 postscript';
+    $vars['pos_columns'] = 'grid-33 postscript';
   }
   elseif (!empty($vars['page']['postscript_first']) && !empty($vars['page']['postscript_second'])) {
     $vars['pos_columns'] = 'grid-50 postscript';
@@ -148,12 +150,12 @@ function gratis_preprocess_page(&$vars, $hook) {
     $vars['pos_columns'] = 'grid-50 postscript';
   }
   else {
-    $vars['pos_columns'] =  'grid-100 postscript';
+    $vars['pos_columns'] = 'grid-100 postscript';
   }
 
   // Postscript columns ('$pre_columns').
   if (!empty($vars['page']['preface_first']) && !empty($vars['page']['preface_second']) && !empty($vars['page']['preface_third'])) {
-    $vars['pre_columns'] =  'grid-33 preface';
+    $vars['pre_columns'] = 'grid-33 preface';
   }
   elseif (!empty($vars['page']['preface_first']) && !empty($vars['page']['preface_second'])) {
     $vars['pre_columns'] = 'grid-50 preface';
@@ -165,7 +167,7 @@ function gratis_preprocess_page(&$vars, $hook) {
     $vars['pre_columns'] = 'grid-50 preface';
   }
   else {
-    $vars['pre_columns'] =  'grid-100 preface';
+    $vars['pre_columns'] = 'grid-100 preface';
   }
 
   $path = drupal_get_path('theme', 'gratis');
@@ -176,7 +178,8 @@ function gratis_preprocess_page(&$vars, $hook) {
       'css' => array(
         $path . '/css/ie9-fixes.css' => array(
           'group' => CSS_AGGREGATE_THEME,
-          'weight' => 999),
+          'weight' => 999
+        ),
       ),
     ),
   );
@@ -189,7 +192,8 @@ function gratis_preprocess_page(&$vars, $hook) {
         'css' => array(
           $path . '/css/local.css' => array(
             'group' => CSS_AGGREGATE_THEME,
-            'weight' => 999),
+            'weight' => 999
+          ),
         ),
       ),
     );
@@ -205,25 +209,14 @@ function gratis_preprocess_page(&$vars, $hook) {
           'css' => array(
             $path . $custompath => array(
               'group' => CSS_AGGREGATE_THEME,
-              'weight' => 999),
+              'weight' => 999
+            ),
           ),
         ),
       );
     }
   }
   drupal_render($custompathcss);
-
-//  // Render the main scripts file.
-//  $local_js = array(
-//    '#attached' => array(
-//      'js' => array(
-//        $path . '/js/scripts.js' => array(
-//          'group' => JS_THEME,
-//          'weight' => 9999),
-//      ),
-//    ),
-//  );
-//  drupal_render($local_js);
 
   // Render the library as laid out in gratis.libraries.yml
   $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
@@ -235,11 +228,12 @@ function gratis_preprocess_page(&$vars, $hook) {
  * Override or insert variables into the node template.
  */
 function gratis_preprocess_node(&$vars, $hook) {
-  // Global node.
+
+// Global node.
   $node = $vars['node'];
 
   if ($vars['view_mode'] == 'full' && node_is_page($node)) {
-    $vars['attributes']['class'][]= 'node-full';
+    $vars['attributes']['class'][] = 'node-full';
   }
 
   if ($vars['view_mode'] == 'teaser' && node_is_page($node)) {
@@ -252,15 +246,15 @@ function gratis_preprocess_node(&$vars, $hook) {
   $vars['content_attributes_array']['class'][] = 'article-content';
 
   // Show only the username in submitted, the date is handled by node.tpl.php.
-  $vars['submitted'] = t('Submitted by !username',
-    array('!username' => $vars['name']));
+  $vars['submitted'] = t('Submitted by !username', array('!username' => $vars['name']));
 
   /*
   Set date variables using drupal's format_date function.
   node base fields have methods now, that are defined in NodeInterface.
   https://api.drupal.org/api/drupal/core!modules!node!lib!Drupal!node!NodeInterface.php/interface/NodeInterface/8
-   */
- // $vars['themonth'] = format_date($node->created, "custom", "M");
+  */
+
+  // $vars['themonth'] = format_date($node->created, "custom", "M");
   $vars['thedate'] = format_date($node->getCreatedTime(), "custom", "j");
   $vars['themonth'] = format_date($node->getCreatedTime(), "custom", "M");
   $vars['theyear'] = format_date($node->getCreatedTime(), "custom", "Y");
@@ -281,12 +275,13 @@ function gratis_preprocess_comment(&$vars) {
  * Insert themed breadcrumb page navigation at top of the node content.
  */
 function gratis_breadcrumb($vars) {
-  // Show breadcrumbs if checked.
+
+// Show breadcrumbs if checked.
   if (theme_get_setting('breadcrumb') == 1) {
-    // Theme the breadcrumbs.
+  // Theme the breadcrumbs.
     $breadcrumb = $vars['breadcrumb'];
     if (!empty($breadcrumb)) {
-      // Use CSS to hide titile .element-invisible.
+    // Use CSS to hide titile .element-invisible.
       $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
       // Comment below line to hide current page to breadcrumb.
       $breadcrumb[] = drupal_get_title();
@@ -310,7 +305,7 @@ function gratis_menu_tree__primary(&$vars) {
  */
 function gratis_css_alter(&$css) {
   $theme_path = drupal_get_path('theme', 'gratis');
-// Add googlefonts.
+  // Add googlefonts.
   $googlefonts = '//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700';
   $css[$googlefonts] = array(
     'data' => $googlefonts,
@@ -323,7 +318,7 @@ function gratis_css_alter(&$css) {
     'weight' => -2,
   );
 
-   // Add FontAwesome.
+// Add FontAwesome.
   $fontawesome = '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css';
   $css[$fontawesome] = array(
     'data' => $fontawesome,
@@ -335,7 +330,5 @@ function gratis_css_alter(&$css) {
     'browsers' => array('IE' => TRUE, '!IE' => TRUE),
     'weight' => -2,
   );
-
-//  unset($css[drupal_get_path('module', 'system') . '/css/system.theme.css']);
 
 }
