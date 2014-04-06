@@ -111,7 +111,7 @@ a.logo {
   font-size: 1.1em;
 }
 
-article .field ul li,
+article .field ul:not(.links.inline) li,
 aside .block-content ul li {
   list-style: none;
   position: relative;
@@ -122,7 +122,7 @@ aside .block-content ul li {
   left: 0;
 }
 
-article .field ul li:before,
+article .field ul:not(.links.inline) li:before,
 aside .block-content ul li:before {
   content: "\f054";
   font-family: FontAwesome;

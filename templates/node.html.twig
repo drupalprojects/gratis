@@ -95,20 +95,16 @@
 {# We hide the comments and links now so that we can render them later. #}
 
  <div class="content clearfix"{{ content_attributes }}>
-
-{% hide (content.comments) %}
-{% hide(content.links) %}
-{{ content }}
-
+     {{ content }}
  </div>
 
 <div class="clearfix">
 
-  {% if content.links %}
-  <nav class="links node-links clearfix">
-    {{ content.links }}
-  </nav>
-{% endif %}
+    {% if content.links %}
+        <nav class="links node-links clearfix">
+            {{ content.links }}
+        </nav>
+    {% endif %}
 
 {% if content.comments %}
   {{ content.comments }}

@@ -1,14 +1,17 @@
 {#
 /**
  * @file
- * Gratis' theme implementation for comments.
+ * gratis' theme implementation for comments.
  *
  * Available variables:
  * - author: Comment author. Can be a link or plain text.
  * - content: The content-related items for the comment display. Use
  *   {{ content }} to print them all, or print a subset such as
- *   {{ content.field_example }}. Use hide(content.field_example) to temporarily
- *   suppress the printing of a given element.
+ *   {{ content.field_example }}. Use the following code to temporarily suppress
+ *   the printing of a given child element:
+ *   @code
+ *   {{ content|without('field_example') }}
+ *   @endcode
  * - created: Formatted date and time for when the comment was created.
  *   Preprocess functions can reformat it by calling format_date() with the
  *   desired parameters on the 'comment.created' variable.
@@ -61,49 +64,65 @@
  * @ingroup themeable
  */
 #}
-<div class="{{ attributes.class}} clearfix"{{ attributes }} >
+<article class="{{ attributes.class }} clearfix"{{ attributes }} role="article">
 
-  <div class="attribution">
-      {% if user_picture %}
-    {{ user_picture }}
-      {% endif %}
+    <header class="comment-header">
+        <div class="attribution">
+            {{ user_picture }}
 
-    <div class="submitted">
-      <p class="commenter-name">
-        {{ author }}
-      </p>
-      <p class="comment-time">
-        {{ created }}
-      </p>
-      <p class="comment-permalink">
-        {{ permalink }}
-      </p>
-    </div>
-  </div>
+            <div class="submitted">
+                <p class="commenter-name">
+                    {{ author }}
+                </p>
+                <p class="comment-time">
+                    {{ created }}
+                </p>
+                <p class="comment-permalink">
+                    {{ permalink }}
+                </p>
+                {#
+                  // Indicate the semantic relationship between parent and child comments
+                  // for accessibility. The list is difficult to navigate in a screen
+                  // reader without this information.
+                #}
+                {% if parent %}
+                    <p class="comment-parent visually-hidden">
+                        {{ parent }}
+                    </p>
+                {% endif %}
+            </div>
+        </div> <!-- /.attribution -->
+    </header> <!-- /.comment-header -->
 
-  <div class="comment-text">
-    <div class="comment-arrow"></div>
+    <div class="comment-text">
+        <div class="comment-arrow"></div>
 
-    {% if new %}
-      <span class="new">{{ new }}</span>
-    {% endif %}
+        {#
+        Hide the "new" indicator by default, let a piece of JavaScript ask
+        the server which comments are new for the user. Rendering the final
+        "new" indicator here would break the render cache.
+        #}
+        <span class="hidden new" data-comment-timestamp="{{ new_indicator_timestamp }}"></span>
 
-    {{ title_prefix }}
-    <h3{{ title_attributes }}>{{ title }}</h3>
-    {{ title_suffix }}
+        {{ title_prefix }}
+        <h3{{ title_attributes }}>{{ title }}</h3>
+        {{ title_suffix }}
 
-    <div class="content"{{ content_attributes }}>
-      {#
-// We hide the comments and links now so that we can render them later.
-#}        {% hide(content.links) %}
-        {{ content }}
-      {% if signature %}
-      <div class="user-signature clearfix">
-        {{ signature }}
-      </div>
-      {% endif %}
-    </div> <!-- /.content -->
+        <div{{ content_attributes }}>
+            {{ content|without('links') }}
+        </div> <!-- /.content -->
 
-    {{ content.links }}
-  </div> <!-- /.comment-text -->
-</div>
+        <footer class="comment-footer">
+            {% if signature %}
+                <div class="user-signature clearfix">
+                    {{ signature }}
+                </div>
+            {% endif %}
+
+            <nav>
+                {{ content.links }}
+            </nav>
+        </footer> <!-- /.comment-footer -->
+    </div> <!-- /.comment-text -->
+
+</article>
