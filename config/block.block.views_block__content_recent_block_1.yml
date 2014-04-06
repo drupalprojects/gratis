@@ -1,0 +1,29 @@
+id: views_block__content_recent_block_1
+weight: -1
+status: true
+uuid: 22994e29-970d-462e-850e-14265aaec501
+langcode: en
+theme: gratis
+region: sidebar_second
+plugin: 'views_block:content_recent-block_1'
+settings:
+  module: views
+  admin_label: ''
+  label: ''
+  label_display: visible
+  cache: -1
+  override:
+    items_per_page: none
+  views_label_checkbox: 0
+  views_label: ''
+  items_per_page: none
+visibility:
+  path:
+    visibility: 0
+    pages: ''
+  role:
+    roles: {  }
+  node_type:
+    types:
+      article: '0'
+      page: '0'
