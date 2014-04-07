@@ -218,10 +218,66 @@ function gratis_preprocess_page(&$vars, $hook) {
   }
   drupal_render($custompathcss);
 
-  // Render the library as laid out in gratis.libraries.yml
-  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
-  drupal_render($libraries);
+//  // Render the library as laid out in gratis.libraries.yml
+//  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
+//  drupal_render($libraries);
 
+}
+
+/**
+ * Perform alterations before a page is rendered.
+ *
+ * Use this hook when you want to remove or alter elements at the page
+ * level, or add elements at the page level that depend on an other module's
+ * elements (this hook runs after hook_page_build().
+ *
+ * If you are making changes to entities such as forms, menus, or user
+ * profiles, use those objects' native alter hooks instead (hook_form_alter(),
+ * for example).
+ *
+ * The $page array contains top level elements for each block region:
+ * @code
+ *   $page['page_top']
+ *   $page['header']
+ *   $page['sidebar_first']
+ *   $page['content']
+ *   $page['sidebar_second']
+ *   $page['page_bottom']
+ * @endcode
+ *
+ * The 'content' element contains the main content of the current page, and its
+ * structure will vary depending on what module is responsible for building the
+ * page. Some legacy modules may not return structured content at all: their
+ * pre-rendered markup will be located in $page['content']['main']['#markup'].
+ *
+ * Pages built by Drupal's core Node module use a standard structure:
+ *
+ * @code
+ *   // Node body.
+ *   $page['content']['system_main']['nodes'][$nid]['body']
+ *   // Array of links attached to the node (add comments, read more).
+ *   $page['content']['system_main']['nodes'][$nid]['links']
+ *   // The node entity itself.
+ *   $page['content']['system_main']['nodes'][$nid]['#node']
+ *   // The results pager.
+ *   $page['content']['system_main']['pager']
+ * @endcode
+ *
+ * Blocks may be referenced by their module/delta pair within a region:
+ * @code
+ *   // The login block in the first sidebar region.
+ *   $page['sidebar_first']['user_login']['#block'];
+ * @endcode
+ *
+ * @param $page
+ *   Nested array of renderable elements that make up the page.
+ *
+ * @see hook_page_build()
+ * @see drupal_render_page()
+ */
+function gratis_page_alter(&$page) {
+  // Render the library as laid out in gratis.libraries.yml
+  $page['#attached']['library'][] = 'gratis/gratis-corescripts';
 }
 
 /**
