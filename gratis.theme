@@ -12,7 +12,7 @@ function gratis_preprocess_html(&$vars) {
 
   if (theme_get_setting('gratis_viewport') == FALSE) {
 
-  // No pinch and zoom.
+    // No pinch and zoom.
     $viewport = array(
       '#type' => 'html_tag',
       '#tag' => 'meta',
@@ -26,7 +26,7 @@ function gratis_preprocess_html(&$vars) {
 
   else {
 
-  // Pinch and Zoom enabled.
+    // Pinch and Zoom enabled.
     $viewport = array(
       '#type' => 'html_tag',
       '#tag' => 'meta',
@@ -83,17 +83,16 @@ function gratis_preprocess_html(&$vars) {
 function gratis_preprocess_page(&$vars, $hook) {
 
 // Build the main menu links tree.
-  $vars['primary_nav'] = FALSE;
   if (!empty($vars['main_menu'])) {
-  // Build links.
+    // Build links.
     $config = Drupal::config('menu.settings');
     $menu_enabled = Drupal::moduleHandler()->moduleExists('menu');
-    // When menu module is not enabled, we need a hardcoded default values.
+    // When menu module is not enabled, we need hardcoded default values.
     $main_links_source = $menu_enabled ? $config->get('main_links') : 'main';
-    $vars['main_menu'] = menu_tree($main_links_source);
-    $vars['main_menu']['#theme_wrappers'] = array('menu_tree__primary');
+    $vars['main_menu'] = \Drupal::service('menu_link.tree')->renderMenu($main_links_source);
     $vars['main_menu']['#attributes']['id'] = 'main-menu-links';
     $vars['main_menu']['#attributes']['class'] = array('links', 'clearfix');
+    $vars['main_menu']['#theme_wrappers'] = array('menu_tree__primary');
   }
 
   // If the default logo is used, then determine which color and set the path.
@@ -172,7 +171,7 @@ function gratis_preprocess_page(&$vars, $hook) {
 
   $path = drupal_get_path('theme', 'gratis');
 
-  // Add IE 9 fixes style sheet.
+//   Add IE 9 fixes style sheet.
   $ie9_css = array(
     '#attached' => array(
       'css' => array(
@@ -185,7 +184,7 @@ function gratis_preprocess_page(&$vars, $hook) {
   );
   drupal_render($ie9_css);
 
-  // Add local css if true.
+//   Add local css if true.
   if (theme_get_setting('gratis_localcss') == TRUE) {
     $local_css = array(
       '#attached' => array(
@@ -222,6 +221,13 @@ function gratis_preprocess_page(&$vars, $hook) {
 //  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
 //  drupal_render($libraries);
 
+}
+
+/**
+ * Theme wrapper function for the primary menu links.
+ */
+function gratis_menu_tree__primary(&$vars) {
+  return '<ul class="toggle-menu">' . $vars['tree'] . '</ul>';
 }
 
 /**
@@ -334,10 +340,10 @@ function gratis_breadcrumb($vars) {
 
 // Show breadcrumbs if checked.
   if (theme_get_setting('breadcrumb') == 1) {
-  // Theme the breadcrumbs.
+    // Theme the breadcrumbs.
     $breadcrumb = $vars['breadcrumb'];
     if (!empty($breadcrumb)) {
-    // Use CSS to hide titile .element-invisible.
+      // Use CSS to hide titile .element-invisible.
       $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
       // Comment below line to hide current page to breadcrumb.
       $breadcrumb[] = drupal_get_title();
@@ -345,13 +351,6 @@ function gratis_breadcrumb($vars) {
       return $output;
     }
   }
-}
-
-/**
- * Theme wrapper function for the primary menu links.
- */
-function gratis_menu_tree__primary(&$vars) {
-  return '<ul class="toggle-menu">' . $vars['tree'] . '</ul>';
 }
 
 /**
