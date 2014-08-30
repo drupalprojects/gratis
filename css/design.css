@@ -36,9 +36,9 @@ h3,
 h4,
 h5 {
   color: #666;
+  word-wrap: break-word;
   font-weight: normal;
   font-family: 'Open Sans', arial, sans-serif;
-  word-wrap: break-word;
 }
 
 h1 {
@@ -623,6 +623,7 @@ ul.links.inline li {
 
 #main-menu li a {
   text-transform: capitalize;
+  white-space: nowrap;
   letter-spacing: .1em;
   font-weight: normal;
   font-size: 1.01em;
