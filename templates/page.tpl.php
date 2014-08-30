@@ -89,17 +89,17 @@
       <div class="grid-25 logo-wrapper header-grid">
         <div id="brand">
           <div id="logo">
-            
+
             <?php if ($logo): ?>
             <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?> » <?php print $site_slogan; ?>">
               <img id="logo-img" src="<?php print $logo; ?>" alt="<?php print $site_name; ?> » <?php print $site_slogan; ?>"/></a>
             <?php else : ?>
-     
+
         <h1 class="site-name">
           <a href="<?php print $front_page; ?>">
             <?php print $site_name; ?></a>
           </h1>
-     
+
             <?php endif; ?>
           </div>
         </div>
@@ -108,7 +108,7 @@
 <div class="grid-75 branding-grid header-grid">
 <?php if ($site_slogan || $site_name) : ?>
   <div id="branding-wrapper">
-    
+
         <?php if ($logo): ?>
         <?php if ($site_name) : ?>
         <h1 class="site-name">
@@ -227,7 +227,7 @@ if ($page['preface_first'] || $page['preface_second'] || $page['preface_third'])
     <?php endif; ?>
 
     <?php print render($page['content']); ?>
-
+    <?php print $feed_icons; ?>
     <?php if ($page['node_block']): ?>
       <?php print render($page['node_block']); ?>
     <?php endif; ?>
@@ -287,16 +287,28 @@ if ($page['postscript_first'] || $page['postscript_second'] || $page['postscript
 
 <?php endif; ?>
 
-<div class="push-sticky"></div>
-
 </div>
 
 <footer id="footer" role="footer">
   <section class="grid-container" style="max-width:<?php print $thegrid; ?>">
-    <div class="grid-100">
-      <?php if (!empty($page['footer_first'])): ?>
+
+    <?php if (!empty($page['footer_first'])): ?>
+      <div class="<?php print $footer_columns; ?> ">
         <?php print render($page['footer_first']); ?>
-      <?php endif; ?>
-    </div>
+      </div>
+    <?php endif; ?>
+
+    <?php if (!empty($page['footer_second'])): ?>
+      <div class="<?php print $footer_columns; ?> ">
+        <?php print render($page['footer_second']); ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if (!empty($page['footer_third'])): ?>
+      <div class="<?php print $footer_columns; ?> ">
+        <?php print render($page['footer_third']); ?>
+      </div>
+    <?php endif; ?>
+
   </section>
 </footer>

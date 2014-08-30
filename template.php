@@ -325,6 +325,23 @@ function gratis_preprocess_page(&$vars, $hook) {
     $vars['pre_columns'] =  'grid-100 preface';
   }
 
+  // Footer columns ('$footer').
+  if (!empty($vars['page']['footer_first']) && !empty($vars['page']['footer_second']) && !empty($vars['page']['footer_third'])) {
+    $vars['footer_columns'] =  'grid-33 footer';
+  }
+  elseif (!empty($vars['page']['footer_first']) && !empty($vars['page']['footer_second'])) {
+    $vars['footer_columns'] = 'grid-50 footer';
+  }
+  elseif (!empty($vars['page']['footer_first']) && !empty($vars['page']['footer_third'])) {
+    $vars['footer_columns'] = 'grid-50 footer';
+  }
+  elseif (!empty($vars['page']['footer_second']) && !empty($vars['page']['footer_third'])) {
+    $vars['footer_columns'] = 'grid-50 footer';
+  }
+  else {
+    $vars['footer_columns'] =  'grid-100 footer';
+  }
+
   // Primary nav.
   $vars['primary_nav'] = FALSE;
   if ($vars['main_menu']) {
