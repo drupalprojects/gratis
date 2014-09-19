@@ -11,31 +11,84 @@
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function gratis_form_system_theme_settings_alter(&$form, &$form_state) {
+function gratis_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
 
+  // @ theme_form_system_theme_settings_alter() name-clash.
+  // See http://drupal.org/node/943212.
+  if (isset($form_id)) {
+    return;
+  }
 
+  // Form alters to put drupal settings in vertical tabs.
+  $form['logo']['#group'] = 'gratis_settings';
+  unset($form['logo']['#attributes']['class']);
+  $form['favicon']['#group'] = 'gratis_settings';
+  $form['theme_settings']['#group'] = 'gratis_settings';
+
+  // Set the vertical tabs up.
   $form['gratis_settings'] = array(
+    '#type' => 'vertical_tabs',
+    '#weight' => 99,
+  );
+
+  // Gratis typography.
+  $form['gratis_typography'] = array(
     '#type' => 'fieldset',
-    '#title' => t('gratis Theme Settings'),
+    '#title' => t('Gratis typography'),
     '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
+    '#group' => 'gratis_settings',
   );
 
-  $form['gratis_settings']['breadcrumb'] = array(
+  $form['gratis_typography']['gratis_setfonts'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Show page breadcrumbs'),
-    '#default_value' => theme_get_setting('breadcrumb', 'gratis'),
-    '#description' => t("Check this option to show page breadcrumbs. Uncheck to hide."),
+    '#title' => t('Would you like to use Gratis\' default typography? '),
+    '#default_value' => theme_get_setting('gratis_setfonts'),
+    '#description' => t('Check this box to use gratis\' built-in fonts, leave unchecked to use the @font-your-face module or other font providers.'),
   );
 
-  $form['gratis_settings']['general_settings']['gratis_themelogo'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Use theme Logo?'),
-    '#default_value' => theme_get_setting('gratis_themelogo', 'gratis'),
-    '#description' => t("Check for yes, uncheck to upload your own logo!"),
+  $form['gratis_typography']['gratis_typography_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Font choices'),
+    '#collapsible' => TRUE,
+    '#description' => t('Choose your fonts.'),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="gratis_setfonts"]' => array('checked' => TRUE),
+      ),
+    ),
   );
 
-  $form['gratis_settings']['general_settings']['theme_color_config']['theme_color_palette'] = array(
+  $form['gratis_typography']['gratis_typography_settings']['gratis_heading_typeface'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose a heading typeface'),
+    '#default_value' => theme_get_setting('gratis_heading_typeface'),
+    '#options' => array(
+      'opensans' => t('Open Sans (modern clean sans-serif)'),
+      'garamond' => t('EB Garamond (tradtional serif)'),
+      'imfell' => t('IM Fell (antique style)'),
+    ),
+  );
+
+  $form['gratis_typography']['gratis_typography_settings']['gratis_body_typeface'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose a body typeface'),
+    '#default_value' => theme_get_setting('gratis_body_typeface'),
+    '#options' => array(
+      'opensans' => t('Open Sans (modern clean sans-serif)'),
+      'garamond' => t('EB Garamond (tradtional serif)'),
+    ),
+  );
+
+  // Gratis color settings tab area.
+  $form['gratis_color_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Gratis color settings'),
+    '#collapsible' => TRUE,
+    '#group' => 'gratis_settings',
+    '#description' => t("Set the theme color palette for Gratis from the list below."),
+  );
+
+  $form['gratis_color_settings']['theme_color_palette'] = array(
     '#type' => 'select',
     '#title' => t('Choose a color palette'),
     '#default_value' => theme_get_setting('theme_color_palette'),
@@ -48,64 +101,108 @@ function gratis_form_system_theme_settings_alter(&$form, &$form_state) {
       'seafoam' => t('Seafoam Green'),
       'greengray' => t('Green Gray'),
       'pink' => t('Pink'),
+      'mustard' => t('Mustard'),
+      'surf-green' => t('Surf Green'),
+      'maillot-jaune' => t('Maillot Jaune (Dark background)'),
+      'caribe' => t('Caribe (Dark background)'),
+      'chartreuse' => t('Chartreuse (Dark background)'),
     ),
   );
 
-  $form['additional_settings'] = array(
+  // gratis additional settings.
+  $form['gratis_css'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Additional gratis Settings'),
+    '#title' => t('Gratis css settings'),
     '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
+    '#group' => 'gratis_settings',
   );
 
-  $form['additional_settings']['other_settings']['gratis_localcss'] = array(
+  $form['gratis_css']['gratis_localcss'] = array(
     '#type' => 'checkbox',
     '#title' => t('Use local.css?'),
-    '#default_value' => theme_get_setting('gratis_localcss', 'gratis'),
+    '#default_value' => theme_get_setting('gratis_localcss'),
     '#description' => t("This setting allows you to use your own custom css file within the gratis
-    theme folder. Only check this box if you have renamed local.sample.css to local.css.
-    You must clear the Drupal cache after doing this."),
+theme folder. Only check this box if you have renamed local.sample.css to local.css.
+You must clear the Drupal cache after doing this."),
   );
 
-  $form['additional_settings']['other_settings']['gratis_grid_container_width'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Optional grid width value. e.g 1020px, 100% etc...'),
-    '#default_value' => theme_get_setting('gratis_grid_container_width', 'gratis'),
-    '#description' => t("This setting allows you to set the width of the entire gird container.
-      Leave blank for the default max width of 1200px.  All inner grids are percentage based
-      so this should work with most any value you set within reason.
-      <strong style='color: #cc0000;'>*** Warning, only use this if you know what
-      you are doing!</strong>"),
-  );
-
-  $form['additional_settings']['other_settings']['gratis_viewport'] = array(
+  $form['gratis_css']['gratis_hacks_settings'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Use Touch device pinch and zoom?'),
-    '#default_value' => theme_get_setting('gratis_viewport', 'gratis'),
-    '#description' => t("** Check this box ONLY if you want to enable touch device users to be able to pinch and zoom.
-    Note this is purely experimental and if you enable this, there is no support for layouts breaking."),
+    '#title' => t('Enable gratis hacks css?'),
+    '#default_value' => theme_get_setting('gratis_hacks_settings'),
+    '#description' => t('Check this if you want these hacks. <ul><li>no admin menu  /
+    toolbar at narrow viewports. (this might be good while in development.) </li></ul>'),
   );
 
-  $form['custom_css_path_settings'] = array(
+  $form['gratis_css']['gratis_header_layout'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Gratis Header Layout'),
+    '#default_value' => theme_get_setting('gratis_header_layout'),
+    '#description' => t("Check this option to have the header logo left and the site slogan right. (default is both centered"),
+  );
+
+  $form['gratis_css']['custom_css_path_settings'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Custom CSS Path Settings'),
-    '#description' => t("<strong style='color: #cc0000;'>Note only use this feature if you know what you are doing!</strong>"),
-    '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
+    '#title' => t('Custom css path settings'),
+    '#collapsible' => FALSE,
   );
 
-  $form['custom_css_path_settings']['custom_css_path']['gratis_custom_css_location'] = array(
+  $form['gratis_css']['custom_css_path_settings']['custom_css_path']['gratis_custom_css_location'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Only check the box if you want to specify a custom path below to your local css file.'),
-    '#default_value' => theme_get_setting('gratis_custom_css_location', 'gratis'),
+    '#title' => t('Only check this box if you want to specify a custom path below to your local css file.'),
+    '#default_value' => theme_get_setting('gratis_custom_css_location'),
   );
 
-  $form['custom_css_path_settings']['custom_css_path']['gratis_custom_css_path'] = array(
+  $form['gratis_css']['custom_css_path_settings']['custom_css_path']['gratis_custom_css_path'] = array(
     '#type' => 'textfield',
     '#title' => t('Path to Custom Stylesheet'),
     '#description' => t('Specify a custom path to the local.css file without the leading slash:
-    e.g.: sites/default/files/custom-css/local.css you must check the box above for this to work.'),
-    '#default_value' => theme_get_setting('gratis_custom_css_path', 'gratis'),
+e.g.: sites/default/files/custom-css/local.css you must check the box above for this to work.'),
+    '#default_value' => theme_get_setting('gratis_custom_css_path'),
+  );
+
+  $form['gratis_gridwidth'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Gratis grid width'),
+    '#collapsible' => TRUE,
+    '#group' => 'gratis_settings',
+  );
+
+  $form['gratis_gridwidth']['gratis_grid_container_width'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Optional grid width value. e.g 1020px, 100% etc...'),
+    '#default_value' => theme_get_setting('gratis_grid_container_width'),
+    '#description' => t('This setting allows you to set the width of the entire gird container.
+Leave blank for the default max width of 1200px.  All inner grids are percentage based
+so this should work with most any value you set within reason.'),
+  );
+
+  $form['gratis_breadcrumb'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Gratis breadcrumbs'),
+    '#collapsible' => TRUE,
+    '#group' => 'gratis_settings',
+  );
+
+  $form['gratis_breadcrumb']['breadcrumb'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show page breadcrumbs'),
+    '#default_value' => theme_get_setting('breadcrumb'),
+    '#description' => t("Check this option to show page breadcrumbs. Uncheck to hide."),
+  );
+
+  $form['gratis_touch'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Gratis touch device'),
+    '#collapsible' => TRUE,
+    '#group' => 'gratis_settings',
+  );
+
+  $form['gratis_touch']['gratis_viewport'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use Touch device pinch and zoom?'),
+    '#default_value' => theme_get_setting('gratis_viewport'),
+    '#description' => t('Check this box ONLY if you want to enable touch device users to be able to pinch and zoom.'),
   );
 
 }
