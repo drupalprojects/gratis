@@ -1,0 +1,401 @@
+<?php
+
+/**
+ * @file
+ * Contains theme override functions and preprocess functions
+ */
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function gratis_preprocess_html(&$vars) {
+
+  if (theme_get_setting('gratis_viewport') == FALSE) {
+
+    // No pinch and zoom.
+    $viewport = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'viewport',
+        'content' => 'initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no',
+      ),
+    );
+    drupal_add_html_head($viewport, 'viewport');
+  }
+
+  else {
+
+    // Pinch and Zoom enabled.
+    $viewport = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'viewport',
+        'content' => 'width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=0.55, user-scalable=yes',
+      ),
+    );
+    drupal_add_html_head($viewport, 'viewport');
+  }
+
+  // Add a body class is the site name is hidden or not.
+  if (theme_get_setting('toggle_name') == FALSE) {
+    $vars['attributes']['class'][] = 'site-name-hidden';
+  }
+  else {
+    $vars['attributes']['class'][] = 'site-name';
+  }
+
+  // Add a body class is the site slogan is hidden or not.
+  if (theme_get_setting('toggle_slogan')) {
+    $vars['attributes']['class'][] = 'site-slogan';
+  }
+  else {
+    $vars['attributes']['class'][] = 'site-slogan-hidden';
+  }
+
+  // Add a body class is the theme logo is hidden or not.
+  if (theme_get_setting('gratis_themelogo') == TRUE) {
+    $vars['attributes']['class'][] = 'theme-logo';
+  }
+  else {
+    $vars['attributes']['class'][] = 'theme-logo-none';
+  }
+
+  // Extra body classes for theme variables.
+  // The Color Palette.
+  $file = theme_get_setting('theme_color_palette');
+  $vars['attributes']['class'][] = drupal_html_class('color-palette-' . $file);
+
+  // Test if page is a node or not and then add a body class.
+  if ($node = \Drupal::request()->attributes->get('node')) {
+    $vars['attributes']['class'][] = 'is-node';
+  }
+  else {
+    $vars['attributes']['class'][] = 'not-node';
+  }
+
+}
+
+/**
+ * Override or insert variables into the page template.
+ */
+function gratis_preprocess_page(&$vars, $hook) {
+
+  // Build the main menu links tree.
+  if (!empty($vars['main_menu'])) {
+    // Build links.
+    $config = Drupal::config('menu_ui.settings');
+    $menu_enabled = Drupal::moduleHandler()->moduleExists('menu_ui');
+    // When menu module is not enabled, we need hardcoded default values.
+    $main_links_source = $menu_enabled ? $config->get('main_links') : 'main';
+    // Allowed max depth.
+    // @see MenuTreeStorage::MAX_DEPTH
+    $level = 9;
+    $menu_tree = \Drupal::menuTree();
+    $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($main_links_source);
+    $parameters->setMaxDepth($level);
+    $tree = $menu_tree->load($main_links_source, $parameters);
+    $manipulators = array(
+      array('callable' => 'menu.default_tree_manipulators:checkAccess'),
+      array('callable' => 'menu.default_tree_manipulators:generateIndexAndSort'),
+    );
+    $tree = $menu_tree->transform($tree, $manipulators);
+    $vars['main_menu'] = $menu_tree->build($tree);
+    $vars['main_menu']['#attributes']['id'] = 'main-menu-links';
+    $vars['main_menu']['#attributes']['class'] = array('links', 'clearfix');
+    $vars['main_menu']['#theme_wrappers'] = array('menu_tree__primary');
+  }
+
+  // If the default logo is used, then determine which color and set the path.
+  $file = theme_get_setting('theme_color_palette');
+  if (theme_get_setting('gratis_themelogo') == TRUE) {
+    $vars['logo'] = base_path() . path_to_theme() . '/images/logo-' . $file . '.png';
+  }
+
+  // Check if it's a node and set a variable.
+  $vars['is_node'] = FALSE;
+  if ($node = \Drupal::request()->attributes->get('node')) {
+    $vars['is_node'] = TRUE;
+  }
+
+  // Set the custom grid width in a variable.
+  $gridwidth = theme_get_setting('gratis_grid_container_width');
+  $vars['thegrid'] = $gridwidth;
+
+  // Add information about the number of sidebars.
+  // Both sidebars.
+  if (!empty($vars['page']['sidebar_first']) && !empty($vars['page']['sidebar_second'])) {
+    $vars['sb_columns'] = 'grid-20 pull-60';
+    $vars['content_columns'] = 'grid-60 push-20';
+  }
+
+  // Sidebar first.
+  elseif (!empty($vars['page']['sidebar_first'])) {
+    $vars['sb_columns'] = 'grid-20 pull-80';
+    $vars['content_columns'] = 'grid-80 push-20';
+  }
+
+  // Sidebar second.
+  elseif (!empty($vars['page']['sidebar_second'])) {
+    $vars['sb_columns'] = 'grid-20 sidebar';
+    $vars['content_columns'] = 'grid-80';
+  }
+// no sidebars
+  else {
+    $vars['sb_columns'] = 1;
+    $vars['content_columns'] = 'grid-100';
+  }
+
+  // Postscript columns ('$pos_columns').
+  if (!empty($vars['page']['postscript_first']) && !empty($vars['page']['postscript_second']) && !empty($vars['page']['postscript_third'])) {
+    $vars['pos_columns'] = 'grid-33 postscript';
+  }
+  elseif (!empty($vars['page']['postscript_first']) && !empty($vars['page']['postscript_second'])) {
+    $vars['pos_columns'] = 'grid-50 postscript';
+  }
+  elseif (!empty($vars['page']['postscript_first']) && !empty($vars['page']['postscript_third'])) {
+    $vars['pos_columns'] = 'grid-50 postscript';
+  }
+  elseif (!empty($vars['page']['postscript_second']) && !empty($vars['page']['postscript_third'])) {
+    $vars['pos_columns'] = 'grid-50 postscript';
+  }
+  else {
+    $vars['pos_columns'] = 'grid-100 postscript';
+  }
+
+  // Postscript columns ('$pre_columns').
+  if (!empty($vars['page']['preface_first']) && !empty($vars['page']['preface_second']) && !empty($vars['page']['preface_third'])) {
+    $vars['pre_columns'] = 'grid-33 preface';
+  }
+  elseif (!empty($vars['page']['preface_first']) && !empty($vars['page']['preface_second'])) {
+    $vars['pre_columns'] = 'grid-50 preface';
+  }
+  elseif (!empty($vars['page']['preface_first']) && !empty($vars['page']['preface_third'])) {
+    $vars['pre_columns'] = 'grid-50 preface';
+  }
+  elseif (!empty($vars['page']['preface_second']) && !empty($vars['page']['preface_third'])) {
+    $vars['pre_columns'] = 'grid-50 preface';
+  }
+  else {
+    $vars['pre_columns'] = 'grid-100 preface';
+  }
+
+  $path = drupal_get_path('theme', 'gratis');
+
+//   Add IE 9 fixes style sheet.
+  $ie9_css = array(
+    '#attached' => array(
+      'css' => array(
+        $path . '/css/ie9-fixes.css' => array(
+          'group' => CSS_AGGREGATE_THEME,
+          'weight' => 999
+        ),
+      ),
+    ),
+  );
+  drupal_render($ie9_css);
+
+//   Add local css if true.
+  if (theme_get_setting('gratis_localcss') == TRUE) {
+    $local_css = array(
+      '#attached' => array(
+        'css' => array(
+          $path . '/css/local.css' => array(
+            'group' => CSS_AGGREGATE_THEME,
+            'weight' => 999
+          ),
+        ),
+      ),
+    );
+  }
+  drupal_render($local_css);
+
+  // Add local path css if true.
+  if (theme_get_setting('gratis_custom_css_location') == TRUE) {
+    $custompath = theme_get_setting('gratis_custom_css_path');
+    if (file_exists($path)) {
+      $custompathcss = array(
+        '#attached' => array(
+          'css' => array(
+            $path . $custompath => array(
+              'group' => CSS_AGGREGATE_THEME,
+              'weight' => 999
+            ),
+          ),
+        ),
+      );
+    }
+  }
+  drupal_render($custompathcss);
+
+//  // Render the library as laid out in gratis.libraries.yml
+//  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
+//  drupal_render($libraries);
+
+}
+
+/**
+ * Theme wrapper function for the primary menu links.
+ */
+function gratis_menu_tree__primary(&$vars) {
+  return '<ul class="toggle-menu">' . $vars['tree'] . '</ul>';
+}
+
+/**
+ * Perform alterations before a page is rendered.
+ *
+ * Use this hook when you want to remove or alter elements at the page
+ * level, or add elements at the page level that depend on an other module's
+ * elements (this hook runs after hook_page_build().
+ *
+ * If you are making changes to entities such as forms, menus, or user
+ * profiles, use those objects' native alter hooks instead (hook_form_alter(),
+ * for example).
+ *
+ * The $page array contains top level elements for each block region:
+ * @code
+ *   $page['page_top']
+ *   $page['header']
+ *   $page['sidebar_first']
+ *   $page['content']
+ *   $page['sidebar_second']
+ *   $page['page_bottom']
+ * @endcode
+ *
+ * The 'content' element contains the main content of the current page, and its
+ * structure will vary depending on what module is responsible for building the
+ * page. Some legacy modules may not return structured content at all: their
+ * pre-rendered markup will be located in $page['content']['main']['#markup'].
+ *
+ * Pages built by Drupal's core Node module use a standard structure:
+ *
+ * @code
+ *   // Node body.
+ *   $page['content']['system_main']['nodes'][$nid]['body']
+ *   // Array of links attached to the node (add comments, read more).
+ *   $page['content']['system_main']['nodes'][$nid]['links']
+ *   // The node entity itself.
+ *   $page['content']['system_main']['nodes'][$nid]['#node']
+ *   // The results pager.
+ *   $page['content']['system_main']['pager']
+ * @endcode
+ *
+ * Blocks may be referenced by their module/delta pair within a region:
+ * @code
+ *   // The login block in the first sidebar region.
+ *   $page['sidebar_first']['user_login']['#block'];
+ * @endcode
+ *
+ * @param $page
+ *   Nested array of renderable elements that make up the page.
+ *
+ * @see hook_page_build()
+ * @see drupal_render_page()
+ */
+function gratis_page_alter(&$page) {
+  // Render the library as laid out in gratis.libraries.yml
+  $page['#attached']['library'][] = 'gratis/gratis-corescripts';
+}
+
+/**
+ * Override or insert variables into the node template.
+ */
+function gratis_preprocess_node(&$vars, $hook) {
+
+// Global node.
+  $node = $vars['node'];
+
+  if ($vars['view_mode'] == 'full' && node_is_page($node)) {
+    $vars['attributes']['class'][] = 'node-full';
+  }
+
+  if ($vars['view_mode'] == 'teaser' && node_is_page($node)) {
+    $vars['attributes']['class'][] = 'node-teaser';
+  }
+
+  // Some nice expanded classes for Nodes.
+  $vars['attributes_array']['role'][] = 'article';
+  $vars['title_attributes_array']['class'][] = 'article-title';
+  $vars['content_attributes_array']['class'][] = 'article-content';
+
+  // Show only the username in submitted, the date is handled by node.tpl.php.
+  $vars['submitted'] = t('Submitted by !username', array('!username' => $vars['name']));
+
+  /*
+  Set date variables using drupal's format_date function.
+  node base fields have methods now, that are defined in NodeInterface.
+  https://api.drupal.org/api/drupal/core!modules!node!lib!Drupal!node!NodeInterface.php/interface/NodeInterface/8
+  */
+
+  // $vars['themonth'] = format_date($node->created, "custom", "M");
+  $vars['thedate'] = format_date($node->getCreatedTime(), "custom", "j");
+  $vars['themonth'] = format_date($node->getCreatedTime(), "custom", "M");
+  $vars['theyear'] = format_date($node->getCreatedTime(), "custom", "Y");
+}
+
+/**
+ * Process variables for comment.html.twig.
+ *
+ * @see comment.html.twig
+ */
+function gratis_preprocess_comment(&$vars) {
+  $comment = $vars['elements']['#comment'];
+  $vars['comment'] = $comment;
+  $vars['created'] = format_date($comment->created->value, "custom", "m / j / y");
+}
+
+/**
+ * Insert themed breadcrumb page navigation at top of the node content.
+ */
+function gratis_breadcrumb($vars) {
+
+// Show breadcrumbs if checked.
+  if (theme_get_setting('breadcrumb') == 1) {
+    // Theme the breadcrumbs.
+    $breadcrumb = $vars['breadcrumb'];
+    if (!empty($breadcrumb)) {
+      // Use CSS to hide titile .element-invisible.
+      $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
+      // Comment below line to hide current page to breadcrumb.
+      $breadcrumb[] = drupal_get_title();
+      $output .= '<nav class="breadcrumb">' . implode(' » ', $breadcrumb) . '</nav>';
+      return $output;
+    }
+  }
+}
+
+/**
+ * Implements hook_css_alter().
+ *
+ * @TODO gratis_css_alter() - Refactor if needed.
+ */
+function gratis_css_alter(&$css) {
+  $theme_path = drupal_get_path('theme', 'gratis');
+  // Add googlefonts.
+  $googlefonts = '//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700';
+  $css[$googlefonts] = array(
+    'data' => $googlefonts,
+    'type' => 'external',
+    'every_page' => TRUE,
+    'media' => 'all',
+    'preprocess' => FALSE,
+    'group' => CSS_AGGREGATE_THEME,
+    'browsers' => array('IE' => TRUE, '!IE' => TRUE),
+    'weight' => -2,
+  );
+
+// Add FontAwesome.
+  $fontawesome = '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css';
+  $css[$fontawesome] = array(
+    'data' => $fontawesome,
+    'type' => 'external',
+    'every_page' => TRUE,
+    'media' => 'all',
+    'preprocess' => FALSE,
+    'group' => CSS_AGGREGATE_THEME,
+    'browsers' => array('IE' => TRUE, '!IE' => TRUE),
+    'weight' => -2,
+  );
+
+}

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGA,uBAAwB;EACtB,UAAU,EAAE,IAAI;;AAEZ,sDAAE;EACA,KAAK,EAAE,OAAO;;AACd,wPAGS;EACP,KAAK,EAAE,IAAI;EACX,eAAe,EAAE,SAAS",
+"sources": ["../sass/gratis.hacks.scss"],
+"names": [],
+"file": "gratis.hacks.css"
+}

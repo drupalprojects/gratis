@@ -1,7 +1,7 @@
 gratis-corescripts:
   version: VERSION
   js:
-    js/scripts.js: {}
+    js/gratis.js: {}
   dependencies:
     - core/jquery
     - core/drupal.ajax

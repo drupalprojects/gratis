@@ -24,6 +24,11 @@ span.date {
   }
 }
 
+span.author {
+  display: block;
+  margin-bottom: $vert-spacing-unit;
+}
+
 .user-picture {
   position: relative;
   float: right;

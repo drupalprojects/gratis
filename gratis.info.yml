@@ -7,12 +7,15 @@ type: theme
 screenshot: screenshot.png
 stylesheets:
   all:
-   - css/style.css
-   - css/design.css
-   - css/forms.css
-   - css/unsemantic-grid-responsive.css
-   - css/responsive.css
-   - css/menu.css
+   - css/gratis.normalize.css
+   - css/gratis.hacks.css
+   - css/gratis.color-palettes.css
+   - css/gratis.core.css
+   - css/gratis.styles.css
+# Override a CSS file:
+stylesheets-override:
+  - system.theme.css
+  - system.menus.css
 regions:
    top_links: 'Top Links'
    thirdparty_menu: 'Main menu (third party menu systems)'
@@ -24,14 +27,11 @@ regions:
    sidebar_first: 'Sidebar First'
    sidebar_second: 'Sidebar Second'
    content: 'Content'
-   node_block: 'Node Block'
    postscript_first: 'Postscript first'
    postscript_second: 'Postscript second'
    postscript_third: 'Postscript third'
    footer_first: 'Footer first'
-   top_panel: 'Top Panel (special use)'
 settings:
-   gratis_themelogo: '1'
    breadcrumbs: '1'
    gratis_viewport: '0'
    theme_color_palette: 'orange'
