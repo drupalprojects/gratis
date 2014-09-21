@@ -13,9 +13,8 @@ stylesheets:
    - css/gratis.core.css
    - css/gratis.styles.css
 # Override a CSS file:
-stylesheets-override:
+stylesheets-remove:
   - system.theme.css
-  - system.menus.css
 regions:
    top_links: 'Top Links'
    thirdparty_menu: 'Main menu (third party menu systems)'
@@ -31,8 +30,9 @@ regions:
    postscript_second: 'Postscript second'
    postscript_third: 'Postscript third'
    footer_first: 'Footer first'
+   footer_second: 'Footer Second'
+   footer_third: 'Footer Third'
 settings:
-   breadcrumbs: '1'
    gratis_viewport: '0'
    theme_color_palette: 'orange'
    gratis_localcss: '0'

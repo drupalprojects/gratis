@@ -79,6 +79,10 @@ function gratis_preprocess_html(&$variables) {
  */
 function gratis_preprocess_page(&$variables, $hook) {
 
+    // Render the library as laid out in gratis.libraries.yml
+  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
+  drupal_render($libraries);
+
   /** @var \Drupal\Core\Page\HtmlPage $page_object */
   $page_object = $variables['page']['#page'];
   $attributes = $page_object->getBodyAttributes();

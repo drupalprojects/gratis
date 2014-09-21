@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * gratis' theme implementation for comments.
+ * Gratis' theme implementation for comments.
  *
  * Available variables:
  * - author: Comment author. Can be a link or plain text.
@@ -60,11 +60,9 @@
  * - entity: Entity the comments are attached to.
  *
  * @see template_preprocess_comment()
- *
- * @ingroup themeable
  */
 #}
-<article class="{{ attributes.class }} clearfix"{{ attributes }} role="article">
+<article class="{{ attributes.class }} clearfix" role="article"{{ attributes|without('class', 'role') }}>
 
     <header class="comment-header">
         <div class="attribution">
@@ -104,9 +102,11 @@
         #}
         <span class="hidden new" data-comment-timestamp="{{ new_indicator_timestamp }}"></span>
 
-        {{ title_prefix }}
-        <h3{{ title_attributes }}>{{ title }}</h3>
-        {{ title_suffix }}
+        {% if title %}
+            {{ title_prefix }}
+            <h3{{ title_attributes }}>{{ title }}</h3>
+            {{ title_suffix }}
+        {% endif %}
 
         <div{{ content_attributes }}>
             {{ content|without('links') }}
@@ -119,9 +119,11 @@
                 </div>
             {% endif %}
 
-            <nav>
-                {{ content.links }}
-            </nav>
+            {% if content.links %}
+                <nav>
+                    {{ content.links }}
+                </nav>
+            {% endif %}
         </footer> <!-- /.comment-footer -->
     </div> <!-- /.comment-text -->
 

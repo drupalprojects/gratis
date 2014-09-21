@@ -177,20 +177,6 @@ Leave blank for the default max width of 1200px.  All inner grids are percentage
 so this should work with most any value you set within reason.'),
   );
 
-  $form['gratis_breadcrumb'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Gratis breadcrumbs'),
-    '#collapsible' => TRUE,
-    '#group' => 'gratis_settings',
-  );
-
-  $form['gratis_breadcrumb']['breadcrumb'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Show page breadcrumbs'),
-    '#default_value' => theme_get_setting('breadcrumb'),
-    '#description' => t("Check this option to show page breadcrumbs. Uncheck to hide."),
-  );
-
   $form['gratis_touch'] = array(
     '#type' => 'fieldset',
     '#title' => t('Gratis touch device'),
