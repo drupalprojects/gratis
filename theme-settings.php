@@ -13,12 +13,6 @@
  */
 function gratis_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
 
-  // @ theme_form_system_theme_settings_alter() name-clash.
-  // See http://drupal.org/node/943212.
-  if (isset($form_id)) {
-    return;
-  }
-
   // Form alters to put drupal settings in vertical tabs.
   $form['logo']['#group'] = 'gratis_settings';
   unset($form['logo']['#attributes']['class']);
@@ -33,7 +27,7 @@ function gratis_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
 
   // Gratis typography.
   $form['gratis_typography'] = array(
-    '#type' => 'fieldset',
+    '#type' => 'details',
     '#title' => t('Gratis typography'),
     '#collapsible' => TRUE,
     '#group' => 'gratis_settings',
@@ -81,7 +75,7 @@ function gratis_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
 
   // Gratis color settings tab area.
   $form['gratis_color_settings'] = array(
-    '#type' => 'fieldset',
+    '#type' => 'details',
     '#title' => t('Gratis color settings'),
     '#collapsible' => TRUE,
     '#group' => 'gratis_settings',
@@ -111,7 +105,7 @@ function gratis_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
 
   // gratis additional settings.
   $form['gratis_css'] = array(
-    '#type' => 'fieldset',
+    '#type' => 'details',
     '#title' => t('Gratis css settings'),
     '#collapsible' => TRUE,
     '#group' => 'gratis_settings',
@@ -142,7 +136,7 @@ You must clear the Drupal cache after doing this."),
   );
 
   $form['gratis_css']['custom_css_path_settings'] = array(
-    '#type' => 'fieldset',
+    '#type' => 'details',
     '#title' => t('Custom css path settings'),
     '#collapsible' => FALSE,
   );
@@ -162,7 +156,7 @@ e.g.: sites/default/files/custom-css/local.css you must check the box above for 
   );
 
   $form['gratis_gridwidth'] = array(
-    '#type' => 'fieldset',
+    '#type' => 'details',
     '#title' => t('Gratis grid width'),
     '#collapsible' => TRUE,
     '#group' => 'gratis_settings',
@@ -178,7 +172,7 @@ so this should work with most any value you set within reason.'),
   );
 
   $form['gratis_touch'] = array(
-    '#type' => 'fieldset',
+    '#type' => 'details',
     '#title' => t('Gratis touch device'),
     '#collapsible' => TRUE,
     '#group' => 'gratis_settings',
@@ -189,6 +183,20 @@ so this should work with most any value you set within reason.'),
     '#title' => t('Use Touch device pinch and zoom?'),
     '#default_value' => theme_get_setting('gratis_viewport'),
     '#description' => t('Check this box ONLY if you want to enable touch device users to be able to pinch and zoom.'),
+  );
+
+  $form['gratis_breadcrumb'] = array(
+    '#type' => 'details',
+    '#title' => t('Gratis breadcrumbs'),
+    '#collapsible' => TRUE,
+    '#group' => 'gratis_settings',
+  );
+
+  $form['gratis_breadcrumb']['gratis_breadcrumbs'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show page breadcrumbs'),
+    '#default_value' => theme_get_setting('gratis_breadcrumbs'),
+    '#description' => t("Check this option to show page breadcrumbs. Uncheck to hide."),
   );
 
 }

@@ -153,12 +153,17 @@ function gratis_preprocess_page(&$variables, $hook) {
     $classes[] = 'footer-one';
   }
 
-  // Store back the classes to the htmlpage object.
-  $attributes['class'] = $classes;
-
   // Set the custom grid width in a variable.
   $gridwidth = theme_get_setting('gratis_grid_container_width');
   $variables['setwidth'] = String::checkPlain($gridwidth);
+
+  if (theme_get_setting('gratis_breadcrumbs') == TRUE) {
+    $variables['breadcrumbs'] = '';
+    $classes[] = 'foozbar';
+  }
+
+  // Store back the classes to the htmlpage object.
+  $attributes['class'] = $classes;
 
   // Primary nav.
   // Build the main menu links tree.
@@ -344,25 +349,6 @@ function gratis_page_alter($page) {
       ),
     );
     drupal_add_html_head($viewport, 'viewport');
-  }
-}
-
-/**
- * Insert themed breadcrumb page navigation at top of the node content.
- */
-function gratis_breadcrumb($variables) {
-  // Show breadcrumbs if checked.
-  if (theme_get_setting('breadcrumb') == 1) {
-    // Theme the breadcrumbs.
-    $breadcrumb = $variables['breadcrumb'];
-    if (!empty($breadcrumb)) {
-      // Use CSS to hide titile .element-invisible.
-      $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
-      // Comment below line to hide current page to breadcrumb.
-      $breadcrumb[] =  \Drupal::config('system.site')->get('name');
-      $output .= '<nav class="breadcrumb">' . implode(' » ', $breadcrumb) . '</nav>';
-      return $output;
-    }
   }
 }
 

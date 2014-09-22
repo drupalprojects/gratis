@@ -53,7 +53,8 @@
 .comment h2.title {
   margin-bottom: 1em;
 }
-.comment div.user-picture img {
+.comment div.user-picture img,
+.comment div.field-user--user-picture img {
   margin-left: 0;
 }
 .comment ul.links {
@@ -83,7 +84,8 @@
     padding: 0 30px 10px 0;
     width: inherit;
   }
-  .comment .attribution .user-picture {
+  .comment .attribution .user-picture,
+  .comment .attribution .field-user--user-picture {
     float: left;
     margin: 0 10px 0 0;
     text-align: center;
@@ -548,17 +550,20 @@ span.author {
   margin-bottom: 20px;
 }
 
-.user-picture {
+.user-picture,
+.field-user--user-picture {
   position: relative;
   float: right;
 }
-.user-picture img {
+.user-picture img,
+.field-user--user-picture img {
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
 }
 @media (min-width: 0) and (max-width: 48em) {
-  .user-picture img {
+  .user-picture img,
+  .field-user--user-picture img {
     float: none;
   }
 }
@@ -574,7 +579,8 @@ figure figcaption {
 }
 
 @media (min-width: 0) and (max-width: 48em) {
-  .node-submitted .user-picture {
+  .node-submitted .user-picture,
+  .node-submitted .field-user--user-picture {
     float: none;
     text-align: center;
     margin: 10px 0 0 0;
@@ -648,6 +654,26 @@ body {
     padding: 0;
   }
 }
+.breadcrumb {
+  padding-bottom: 0.5em;
+}
+.breadcrumb ol {
+  margin: 0;
+  padding: 0;
+}
+.breadcrumb ol li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.breadcrumb ol li:before {
+  content: ' » ';
+}
+.breadcrumb ol li:first-child:before {
+  content: none;
+}
+
 ul.tabs.primary {
   display: table;
   position: relative;

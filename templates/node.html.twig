@@ -87,17 +87,16 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 
         {% if display_submitted %}
             <div class="node__meta">
-                {{ author_picture }}
+
                 <span{{ author_attributes }} class="author">
          {% trans %}
                     <span class="submitted">by {{ author_name|passthrough }}
                         </span>
                     {% endtrans %}
                     <span class="date">
-                        {{ post.published_at|date(format='m / ') }}
-                        {{ post.published_at|date(format='j / ') }}
-                        {{ post.published_at|date(format='y / ') }}
+                        {{ post.published_at|date(format='m / j / y') }}
                         </span>
+                    {{ author_picture }}
 
         </span>
                 {{ metadata }}

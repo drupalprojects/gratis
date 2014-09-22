@@ -1,0 +1,23 @@
+uuid: f96d4d87-24bf-4bc6-a311-170cdb2118c5
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - gratis
+id: gratis_powered
+theme: gratis
+region: '-1'
+weight: -4
+provider: null
+plugin: system_powered_by_block
+settings:
+  visibility: {  }
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+  cache:
+    max_age: -1
+    contexts: {  }

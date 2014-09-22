@@ -29,7 +29,8 @@ span.author {
   margin-bottom: $vert-spacing-unit;
 }
 
-.user-picture {
+.user-picture,
+.field-user--user-picture {
   position: relative;
   float: right;
   img {
@@ -54,7 +55,8 @@ figure {
 
 @include breakpoint(0 $tab) {
   .node-submitted {
-    .user-picture {
+    .user-picture,
+    .field-user--user-picture {
       float: none;
       text-align: center;
       margin: 10px 0 0 0;

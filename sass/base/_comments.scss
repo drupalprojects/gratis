@@ -57,7 +57,8 @@
   h2.title {
     margin-bottom: 1em;
   }
-  div.user-picture img {
+  div.user-picture img,
+  div.field-user--user-picture img {
     margin-left: 0;
   }
   ul.links {
@@ -89,7 +90,8 @@
       display: block;
       padding: 0 30px 10px 0;
       width: inherit;
-      .user-picture {
+      .user-picture,
+      .field-user--user-picture {
         float: left;
         margin: 0 10px 0 0;
         text-align: center;

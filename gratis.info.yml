@@ -1,5 +1,5 @@
 name: Gratis
-description: Drupal 8 version of the Gratis Theme by Danny Englander
+description: Drupal 8.x-2.x version of the Gratis Theme by <a href="http://highrockmedia.com">Danny Englander</a>
 core: 8.x
 engine: twig
 version: VERSION
@@ -37,3 +37,4 @@ settings:
    theme_color_palette: 'orange'
    gratis_localcss: '0'
    gratis_custom_css_location: '0'
+   breadcrumbs: '0'

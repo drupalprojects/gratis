@@ -1,0 +1,23 @@
+uuid: 850d74cf-5660-44e2-8800-c796f511fb63
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gratis
+id: gratis_help
+theme: gratis
+region: help
+weight: 0
+provider: null
+plugin: system_help_block
+settings:
+  visibility: {  }
+  id: system_help_block
+  label: 'System Help'
+  provider: system
+  label_display: '0'
+  cache:
+    max_age: -1
+    contexts: {  }

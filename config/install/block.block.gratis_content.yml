@@ -1,0 +1,23 @@
+uuid: 7df5e693-8007-4790-8200-a283b1f8cb2c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gratis
+id: gratis_content
+theme: gratis
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  visibility: {  }
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+  cache:
+    max_age: 0
+    contexts: {  }

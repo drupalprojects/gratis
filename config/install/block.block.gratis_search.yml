@@ -1,0 +1,27 @@
+uuid: e233107a-f744-4bb7-b507-07676ee58c2b
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - gratis
+id: gratis_search
+theme: gratis
+region: sidebar_first
+weight: -3
+provider: null
+plugin: search_form_block
+settings:
+  visibility:
+    request_path:
+      id: request_path
+      pages: '<front>'
+      negate: true
+  id: search_form_block
+  label: Search
+  provider: search
+  label_display: visible
+  cache:
+    max_age: 0
+    contexts: {  }

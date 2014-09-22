@@ -65,15 +65,15 @@
             </div>
         </div>
 
-        {% if breadcrumb %}
+        {% if breadcrumbs is defined %}
         <div id="breadcrumbs-wrapper" class="l-breadcrumbs">
             <div class="breadcrumbs l-setwidth" style="max-width:{{ setwidth }}">
-                <div class="s-grid">{{ breadcrumb }}</div>
+                <div class="breadcrumb">{{ breadcrumb }}</div>
             </div>
         </div>
         {% endif %}
 
-        <!-- preface -->
+        {# Define and divide the preface page regions.#}
         {% if page.preface_first or page.preface_second or page.preface_third %}
 
         <div id="preface-wrap" class="l-preface-wrap">
