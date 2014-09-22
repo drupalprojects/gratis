@@ -133,20 +133,20 @@ body .l-page-wrapper {
 .l-menu-wrapper,
 .l-breadcrumbs,
 .l-preface-wrap,
-article {
+article.node {
   *zoom: 1;
   margin-bottom: 20px;
 }
 .l-menu-wrapper:after,
 .l-breadcrumbs:after,
 .l-preface-wrap:after,
-article:after {
+article.node:after {
   content: "";
   display: table;
   clear: both;
 }
 
-article {
+article.node {
   padding-bottom: 20px;
   border-bottom: 1px dashed #666;
 }

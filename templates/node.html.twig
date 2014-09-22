@@ -76,7 +76,7 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 ] %}
 <article{{ attributes.addClass(classes) }}>
 
-    <header>
+
         {{ title_prefix }}
         {% if not page %}
             <h2{{ title_attributes.addClass('node__title') }}>
@@ -86,27 +86,24 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
         {{ title_suffix }}
 
         {% if display_submitted %}
-            <div class="node__meta">
-
-                <span{{ author_attributes }} class="author">
+         <div class="node__meta">
+         <span{{ author_attributes }} class="author">
          {% trans %}
-                    <span class="submitted">by {{ author_name|passthrough }}
-                        </span>
-                    {% endtrans %}
-                    <span class="date">
-                        {{ post.published_at|date(format='m / j / y') }}
-                        </span>
-                    {{ author_picture }}
+          <span class="submitted">by {{ author_name|passthrough }}</span>
+        {% endtrans %}
+         <span class="date">{{ post.published_at|date(format='m / j / y') }}</span>
+         {{ author_picture }}
+        </span><!-- // author-->
+             <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+                 {{ content|without('comment', 'links') }}
+             </div>
 
-        </span>
                 {{ metadata }}
             </div>
         {% endif %}
-    </header>
 
-    <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
-        {{ content|without('comment', 'links') }}
-    </div>
+
+
 
     {% if content.links %}
         <div class="node__links">
