@@ -16,6 +16,9 @@ stylesheets:
 stylesheets-remove:
   - system.theme.css
 regions:
+   footer_first: 'Footer first'
+   footer_second: 'Footer Second'
+   footer_third: 'Footer Third'
    top_links: 'Top Links'
    thirdparty_menu: 'Main menu (third party menu systems)'
    preface_first: 'Preface first'
@@ -29,9 +32,6 @@ regions:
    postscript_first: 'Postscript first'
    postscript_second: 'Postscript second'
    postscript_third: 'Postscript third'
-   footer_first: 'Footer first'
-   footer_second: 'Footer Second'
-   footer_third: 'Footer Third'
 settings:
    gratis_viewport: '0'
    theme_color_palette: 'orange'
