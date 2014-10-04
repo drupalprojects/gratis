@@ -1,1 +1,1 @@
-Please us the 2.x version of Gratis
+Please use the 2.x branch of Gratis
