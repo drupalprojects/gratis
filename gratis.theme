@@ -26,25 +26,6 @@ function gratis_preprocess_html(&$variables) {
   $file = theme_get_setting('theme_color_palette');
   $classes[]= 'color-palette-' . $file;
 
-
-//  // Vars for empty / checked / not empty site name and slogan.
-//  $variables['hide_site_name'] = theme_get_setting('toggle_name') ? FALSE : TRUE;
-//  $variables['hide_site_slogan'] = theme_get_setting('toggle_slogan') ? FALSE : TRUE;
-//
-//  if ($variables['hide_site_name']) {
-//    $classes[] = 'site-name-hidden';
-//  }
-//  else {
-//    $classes[] = 'site-name-show';
-//  }
-//
-//  if ($variables['hide_site_slogan']) {
-//    $classes[] = 'site-slogan-hidden';
-//  }
-//  else {
-//    $classes[] = 'site-slogan-show';
-//  }
-
   if (theme_get_setting('theme_color_palette') == 'chartreuse' || 'caribe' || 'maillot-jaune') {
     $classes[] = 'dark-bg';
   }
@@ -165,32 +146,6 @@ function gratis_preprocess_page(&$variables, $hook) {
   // Store back the classes to the htmlpage object.
   $attributes['class'] = $classes;
 
-  // Primary nav.
-  // Build the main menu links tree.
-  if (!empty($variables['main_menu'])) {
-    // Build links.
-    $config = Drupal::config('menu_ui.settings');
-    $menu_enabled = Drupal::moduleHandler()->moduleExists('menu_ui');
-    // When menu module is not enabled, we need hardcoded default values.
-    $main_links_source = $menu_enabled ? $config->get('main_links') : 'main';
-    // Allowed max depth.
-    // @see MenuTreeStorage::MAX_DEPTH
-    $level = 9;
-    $menu_tree = \Drupal::menuTree();
-    $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($main_links_source);
-    $parameters->setMaxDepth($level);
-    $tree = $menu_tree->load($main_links_source, $parameters);
-    $manipulators = array(
-      array('callable' => 'menu.default_tree_manipulators:checkAccess'),
-      array('callable' => 'menu.default_tree_manipulators:generateIndexAndSort'),
-    );
-    $tree = $menu_tree->transform($tree, $manipulators);
-    $variables['main_menu'] = $menu_tree->build($tree);
-    $variables['main_menu']['#attributes']['id'] = 'main-menu-links';
-    $variables['main_menu']['#attributes']['class'] = array('links', 'clearfix');
-    $variables['main_menu']['#theme_wrappers'] = array('menu_tree__primary');
-  }
-
   // Set the options that apply to both page and maintenance page.
   _gratis_process_page($variables);
 
@@ -228,13 +183,6 @@ function _gratis_process_page(&$variables) {
   else {
     $classes[] = 'site-slogan-show';
   }
-}
-
-/**
- * Theme wrapper function for the primary menu links.
- */
-function gratis_menu_tree__primary(&$variables) {
-  return '<ul class="menu primary">' . $variables['tree'] . '</ul>';
 }
 
 /**
@@ -398,4 +346,14 @@ function gratis_css_alter(&$css) {
     'weight' => -2,
   );
 
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function gratis_preprocess_block(&$variables) {
+  // Set the custom grid width in a variable.
+  $gridwidth = theme_get_setting('gratis_grid_container_width');
+  $variables['setwidth'] = String::checkPlain($gridwidth);
 }

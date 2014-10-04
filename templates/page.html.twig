@@ -44,26 +44,14 @@
             </header>
         </div><!-- // l-header -wrapper-->
 
-        <div id="menu-wrapper" class="l-menu-wrapper main-menu" role="navigation">
-            <div class="l-setwidth" style="max-width:{{ setwidth }}">
+        {% if page.primary_menu %}
+            {{ page.primary_menu }}
+        {% endif %} <!-- // primary_menu -->
 
-                {% if main_menu %}
-                <a id="off-canvas-left-show" href="#off-canvas" class="l-off-canvas-show l-off-canvas-show--left">{{ 'Show Navigation'|t }}</a>
-                <div id="off-canvas-left" class="l-off-canvas l-off-canvas--left">
-                    <a id="off-canvas-left-hide" href="#" class="l-off-canvas-hide l-off-canvas-hide--left">{{ 'Hide Navigation'|t }}</a>
-                    <div class="main-menu-wrapper">
-                        {{ main_menu }}
-                    </div>
-                </div><!-- // off-canvas-left -->
-                {% endif %} <!-- //main menu -->
-
-                <!-- for third party menu systems or modules-->
-                {% if page.thirdparty_menu %}
-                    {{ page.thirdparty_menu }}
-                {% endif %}
-
-            </div>
-        </div>
+        {#for third party menu systems or modules, theme on your own. #}
+        {% if page.thirdparty_menu %}
+            {{ page.thirdparty_menu }}
+        {% endif %}
 
         {% if breadcrumbs is defined %}
         <div id="breadcrumbs-wrapper" class="l-breadcrumbs">
