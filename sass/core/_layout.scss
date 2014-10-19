@@ -51,6 +51,10 @@ img {
     @include pie-clearfix;
   }
 
+  .l-header-wrapper {
+    margin-bottom: $vert-spacing-unit;
+  }
+
   .l-region--header {
     @include span(8 at 5);
   }
@@ -60,7 +64,7 @@ img {
 
   // Two sidebars.
   .two-sidebars {
-    .region-sidebar-first {
+    .l-sidebar-first {
       @include span(3 at 1);
       @include pull(9);
       @include pad(0, 2%);
@@ -70,7 +74,7 @@ img {
       @include push(3);
       padding-bottom: $vert-spacing-unit;
     }
-    .region-sidebar-second {
+    .l-sidebar-second {
       @include span(3 at 10);
       @include pad(2%, 0);
     }
@@ -82,7 +86,7 @@ img {
       @include span(8 at 5);
       padding-bottom: $vert-spacing-unit;
     }
-    .region-sidebar-first {
+    .l-sidebar-first {
       @include span(4 at 1);
       @include pad(0, 3%);
     }
@@ -96,7 +100,7 @@ img {
       @include bleed(0 2% 0 0);
       padding-bottom: $vert-spacing-unit;
     }
-    .region-sidebar-second {
+    .l-sidebar-second {
       @include span(7 at 18 of 24);
       @include bleed(0 0 0 2%);
       clear: none;

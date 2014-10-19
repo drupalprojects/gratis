@@ -45,6 +45,10 @@ img {
     clear: both;
   }
 
+  .l-header-wrapper {
+    margin-bottom: 20px;
+  }
+
   .l-region--header {
     width: 66.10169%;
     float: right;
@@ -60,7 +64,7 @@ img {
     clear: both;
   }
 
-  .two-sidebars .region-sidebar-first {
+  .two-sidebars .l-sidebar-first {
     width: 23.72881%;
     float: left;
     margin-right: 1.69492%;
@@ -75,7 +79,7 @@ img {
     margin-left: 25.42373%;
     padding-bottom: 20px;
   }
-  .two-sidebars .region-sidebar-second {
+  .two-sidebars .l-sidebar-second {
     width: 23.72881%;
     float: right;
     margin-right: 0;
@@ -89,7 +93,7 @@ img {
     margin-right: 0;
     padding-bottom: 20px;
   }
-  .one-sidebar.sidebar-first .region-sidebar-first {
+  .one-sidebar.sidebar-first .l-sidebar-first {
     width: 32.20339%;
     float: left;
     margin-right: 1.69492%;
@@ -105,7 +109,7 @@ img {
     padding-right: 2%;
     padding-bottom: 20px;
   }
-  .one-sidebar.sidebar-second .region-sidebar-second {
+  .one-sidebar.sidebar-second .l-sidebar-second {
     width: 28.57143%;
     float: right;
     margin-right: 0;

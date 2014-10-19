@@ -9,45 +9,6 @@ use Drupal\Component\Utility\String;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Template\Attribute;
 
-function gratis_preprocess_html(&$variables) {
-  /** @var $page \Drupal\Core\Page\HtmlPage */
-  $page = $variables['page_object'];
-
-  $variables['html_attributes'] = $page->getHtmlAttributes();
-  $variables['attributes'] = $page->getBodyAttributes();
-  $variables['page'] = $page;
-
-  // Compile a list of classes that are going to be applied to the body element.
-  // This allows advanced theming based on context (home page, node of certain type, etc.).
-  $classes = $variables['attributes']['class'];
-  $classes[] = 'html';
-
-  // Color palette.
-  $file = theme_get_setting('theme_color_palette');
-  $classes[]= 'color-palette-' . $file;
-
-  if (theme_get_setting('theme_color_palette') == 'chartreuse' || 'caribe' || 'maillot-jaune') {
-    $classes[] = 'dark-bg';
-  }
-
-  // Typography.
-  if (theme_get_setting('gratis_setfonts') == TRUE) {
-    // Heading typeface.
-    $file = theme_get_setting('gratis_heading_typeface');
-    $classes[] = 'heading-typeface-' . $file;
-
-    // Body typeface.
-    $file = theme_get_setting('gratis_body_typeface');
-    $classes[] = 'body-typeface-' . $file;
-  }
-
-  // Layout options.
-  if (theme_get_setting('gratis_header_layout') == TRUE) {
-    $classes[] = 'header-left-right';
-  }
-
-}
-
 /**
  * @file
  * Custom preprocess functions and theme function overrides.
@@ -58,17 +19,12 @@ function gratis_preprocess_html(&$variables) {
 /**
  * Override or insert variables into the page template.
  */
-function gratis_preprocess_page(&$variables, $hook) {
-
-    // Render the library as laid out in gratis.libraries.yml
-  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
-  drupal_render($libraries);
-
+function gratis_preprocess_page(&$variables) {
+  // Add information about the number of sidebars.
   /** @var \Drupal\Core\Page\HtmlPage $page_object */
   $page_object = $variables['page']['#page'];
   $attributes = $page_object->getBodyAttributes();
   $classes = $attributes['class'];
-
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
     $classes[] = 'two-sidebars';
   }
@@ -134,20 +90,47 @@ function gratis_preprocess_page(&$variables, $hook) {
     $classes[] = 'footer-one';
   }
 
+  // Color palette.
+  $file = theme_get_setting('theme_color_palette');
+  $classes[]= 'color-palette-' . $file;
+
+  if (theme_get_setting('theme_color_palette') == 'chartreuse' || 'caribe' || 'maillot-jaune') {
+    $classes[] = 'dark-bg';
+  }
+
+  // Typography.
+  if (theme_get_setting('gratis_setfonts') == TRUE) {
+    // Heading typeface.
+    $file = theme_get_setting('gratis_heading_typeface');
+    $classes[] = 'heading-typeface-' . $file;
+
+    // Body typeface.
+    $file = theme_get_setting('gratis_body_typeface');
+    $classes[] = 'body-typeface-' . $file;
+  }
+
+  // Layout options.
+  if (theme_get_setting('gratis_header_layout') == TRUE) {
+    $classes[] = 'header-left-right';
+  }
+
+  // Store back the classes to the htmlpage object.
+  $attributes['class'] = $classes;
+
   // Set the custom grid width in a variable.
   $gridwidth = theme_get_setting('gratis_grid_container_width');
   $variables['setwidth'] = String::checkPlain($gridwidth);
 
   if (theme_get_setting('gratis_breadcrumbs') == TRUE) {
     $variables['breadcrumbs'] = '';
-    $classes[] = 'foozbar';
   }
-
-  // Store back the classes to the htmlpage object.
-  $attributes['class'] = $classes;
 
   // Set the options that apply to both page and maintenance page.
   _gratis_process_page($variables);
+
+  // Render the library as laid out in gratis.libraries.yml
+  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
+  drupal_render($libraries);
 
 }
 

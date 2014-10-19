@@ -65,7 +65,8 @@
  */
 #}
 
-{% set classes = [
+{%
+set classes = [
 'node',
 'node--type-' ~ node.bundle|clean_class,
 node.isPromoted() ? 'node--promoted',
@@ -73,42 +74,40 @@ node.isSticky() ? 'node--sticky',
 not node.isPublished() ? 'node--unpublished',
 view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 'clearfix',
-] %}
+]
+%}
 <article{{ attributes.addClass(classes) }}>
 
+    {{ title_prefix }}
+    {% if not page %}
+        <h2{{ title_attributes.addClass('node__title') }}>
+            <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+    {% endif %}
+    {{ title_suffix }}
 
-        {{ title_prefix }}
-        {% if not page %}
-            <h2{{ title_attributes.addClass('node__title') }}>
-                <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-            </h2>
-        {% endif %}
-        {{ title_suffix }}
+    <div class="node__meta">
 
         {% if display_submitted %}
-         <div class="node__meta">
          <span{{ author_attributes }} class="author">
          {% trans %}
-          <span class="submitted">by {{ author_name|passthrough }}</span>
-        {% endtrans %}
-         <span class="date">{{ post.published_at|date(format='m / j / y') }}</span>
-         {{ author_picture }}
+             <span class="submitted">by {{ author_name|passthrough }}</span>
+             {% endtrans %}
+             <span class="date">{{ post.published_at|date(format='m / j / y') }}</span>
+             {{ author_picture }}
         </span><!-- // author-->
-             <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
-                 {{ content|without('comment', 'links') }}
-             </div>
-
-                {{ metadata }}
-            </div>
         {% endif %}
 
+        <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+            {{ content|without('comment', 'links') }}
+        </div>
 
+        {{ metadata }}
 
+    </div>
 
     {% if content.links %}
-        <div class="node__links">
-            {{ content.links }}
-        </div>
+        <div class="node__links">{{ content.links }}</div>
     {% endif %}
 
     {{ content.comment }}
