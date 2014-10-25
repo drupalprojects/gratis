@@ -51,10 +51,6 @@ img {
     @include pie-clearfix;
   }
 
-  .l-header-wrapper {
-    margin-bottom: $vert-spacing-unit;
-  }
-
   .l-region--header {
     @include span(8 at 5);
   }
