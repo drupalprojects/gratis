@@ -20,6 +20,7 @@ use Drupal\Core\Template\Attribute;
  * Override or insert variables into the page template.
  */
 function gratis_preprocess_page(&$variables) {
+
   // Add information about the number of sidebars.
   /** @var \Drupal\Core\Page\HtmlPage $page_object */
   $page_object = $variables['page']['#page'];
@@ -132,6 +133,56 @@ function gratis_preprocess_page(&$variables) {
   $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
   drupal_render($libraries);
 
+  // Define the module path for use below.
+  $theme_path = drupal_get_path('theme', 'gratis');
+
+  //   Add local css if true.
+  if (theme_get_setting('gratis_localcss') == TRUE) {
+    $local_css = array(
+      '#attached' => array(
+        'css' => array(
+          $theme_path . '/css/local.css' => array(
+            'group' => CSS_AGGREGATE_THEME,
+            'weight' => 999,
+          ),
+        ),
+      ),
+    );
+  }
+  drupal_render($local_css);
+
+  if (theme_get_setting('gratis_hacks_settings') == TRUE) {
+    $hacks_css = array(
+      '#attached' => array(
+        'css' => array(
+          $theme_path . '/css/gratis.hacks.css' => array(
+            'group' => CSS_THEME,
+            'preprocess' => TRUE,
+          ),
+        ),
+      ),
+    );
+    drupal_render($hacks_css);
+  }
+
+  // Add local path css if true.
+  if (theme_get_setting('gratis_custom_css_location') == TRUE) {
+    $custompath = theme_get_setting('gratis_custom_css_path');
+    if (file_exists($theme_path)) {
+      $custompathcss = array(
+        '#attached' => array(
+          'css' => array(
+            $theme_path . $custompath => array(
+              'group' => CSS_AGGREGATE_THEME,
+              'weight' => 999,
+            ),
+          ),
+        ),
+      );
+    }
+  }
+  drupal_render($custompathcss);
+
 }
 
 /**
@@ -200,62 +251,6 @@ function gratis_html_head_alter(&$head_elements) {
   $head_elements['system_meta_content_type']['#attributes'] = array(
     'charset' => 'utf-8',
   );
-}
-
-/**
- * Implements hook_page_alter().
- */
-function gratis_page_alter($page) {
-  // Define the module path for use below.
-  $theme_path = drupal_get_path('theme', 'gratis');
-
-  if (theme_get_setting('gratis_hacks_settings') == TRUE) {
-    $hacks_css = array(
-      '#attached' => array(
-        'css' => array(
-          $theme_path . '/css/gratis.hacks.css' => array(
-            'group' => CSS_THEME,
-            'preprocess' => TRUE,
-          ),
-        ),
-      ),
-    );
-    drupal_render($hacks_css);
-  }
-
-  //   Add local css if true.
-  if (theme_get_setting('gratis_localcss') == TRUE) {
-    $local_css = array(
-      '#attached' => array(
-        'css' => array(
-          $theme_path . '/css/local.css' => array(
-            'group' => CSS_AGGREGATE_THEME,
-            'weight' => 999,
-          ),
-        ),
-      ),
-    );
-  }
-  drupal_render($local_css);
-
-  // Add local path css if true.
-  if (theme_get_setting('gratis_custom_css_location') == TRUE) {
-    $custompath = theme_get_setting('gratis_custom_css_path');
-    if (file_exists($theme_path)) {
-      $custompathcss = array(
-        '#attached' => array(
-          'css' => array(
-            $theme_path . $custompath => array(
-              'group' => CSS_AGGREGATE_THEME,
-              'weight' => 999,
-            ),
-          ),
-        ),
-      );
-    }
-  }
-  drupal_render($custompathcss);
-
 }
 
 /**
