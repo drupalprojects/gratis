@@ -33,12 +33,12 @@
 
 <div{{ attributes }}>
     {% if not label_hidden %}
-        <div class="field-label"{{ title_attributes }}>{{ label }}:&nbsp;</div>
+        <div{{ title_attributes.addClass('field-label') }}>{{ label }}</div>
     {% endif %}
-    <figure class="field-items"{{ content_attributes }}>
-        {% for delta, item in items %}
-            <div class="field-item {{ cycle(["even", "odd"], delta) }}"{{ item_attributes[delta] }}>{{ item }}</div>
-            <figcaption>{{ item['#item'].title }}</figcaption>
+    <figure{{ content_attributes.addClass('field-items') }}>
+        {% for item in items %}
+            <div{{ item.attributes.addClass('field-item') }}>{{ item.content }}</div>
+        {% if item.content['#item'].alt %} <figcaption>{{ item.content['#item'].alt }}</figcaption> {% endif %}
         {% endfor %}
     </figure>
 </div>
