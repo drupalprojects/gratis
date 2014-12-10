@@ -14,10 +14,10 @@
 function gratis_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
 
   // Form alters to put drupal settings in vertical tabs.
-  $form['logo']['#group'] = 'gratis_settings';
-  unset($form['logo']['#attributes']['class']);
-  $form['favicon']['#group'] = 'gratis_settings';
-  $form['theme_settings']['#group'] = 'gratis_settings';
+//  $form['logo']['#group'] = 'gratis_settings';
+//  unset($form['logo']['#attributes']['class']);
+ // $form['favicon']['#group'] = 'gratis_settings';
+ // $form['theme_settings']['#group'] = 'gratis_settings';
 
   // Set the vertical tabs up.
   $form['gratis_settings'] = array(

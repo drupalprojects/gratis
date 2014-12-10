@@ -5,13 +5,8 @@ engine: twig
 version: VERSION
 type: theme
 screenshot: screenshot.png
-stylesheets:
-  all:
-   - css/gratis.normalize.css
-   - css/gratis.hacks.css
-   - css/gratis.color-palettes.css
-   - css/gratis.core.css
-   - css/gratis.styles.css
+libraries:
+  - gratis/global-styling
 # Override a CSS file:
 stylesheets-remove:
   - system.theme.css
