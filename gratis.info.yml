@@ -7,6 +7,7 @@ type: theme
 screenshot: screenshot.png
 libraries:
   - gratis/global-styling
+  - gratis/gratis-corescripts
 # Override a CSS file:
 stylesheets-remove:
   - system.theme.css

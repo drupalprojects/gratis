@@ -10,18 +10,10 @@ use Drupal\Component\Utility\Xss;
 use Drupal\Core\Template\Attribute;
 
 /**
- * @file
- * Custom preprocess functions and theme function overrides.
- *
- * If you need to add or modify theme functions do it in your sub-theme.
- */
-
-/**
  * Override or insert variables into the page template.
  */
 function gratis_preprocess_html(&$variables) {
   // Add information about the number of sidebars.
-
 
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
     $variables['attributes']['class'][] = 'two-sidebars';
@@ -130,10 +122,6 @@ function gratis_preprocess_page(&$variables) {
   // Set the options that apply to both page and maintenance page.
   _gratis_process_page($variables);
 
-  // Render the library as laid out in gratis.libraries.yml
-  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
-  drupal_render($libraries);
-
   // Define the module path for use below.
   $theme_path = drupal_get_path('theme', 'gratis');
 
@@ -189,57 +177,31 @@ function gratis_preprocess_page(&$variables) {
 /**
  * Helper function for handling the site name and slogan.
  */
-//function _gratis_process_page(&$variables) {
-//  /** @var \Drupal\Core\Page\HtmlPage $page_object */
-//  $page_object = $variables['page']['#page'];
-//  $attributes = $page_object->getBodyAttributes();
-//  $classes = $attributes['class'];
-//
-//  $site_config = \Drupal::config('system.site');
-//  // Always print the site name and slogan, but if they are toggled off, we'll
-//  // just hide them visually.
-//  $variables['hide_site_name']   = theme_get_setting('features.name') ? FALSE : TRUE;
-//  $variables['hide_site_slogan'] = theme_get_setting('features.slogan') ? FALSE : TRUE;
-//  if ($variables['hide_site_name']) {
-//    // If toggle_name is FALSE, the site_name will be empty, so we rebuild it.
-//    $variables['site_name'] = String::checkPlain($site_config->get('name'));
-//    $variables['attributes']['class'][] = 'site-name-hidden';
-//  }
-//  else {
-//    $variables['attributes']['class'][] = 'site-name-show';
-//  }
-//
-//  if ($variables['hide_site_slogan']) {
-//    $variables['attributes']['class'][] = 'site-slogan-hidden';
-//    // If toggle_site_slogan is FALSE, the site_slogan will be empty, so we
-//    // rebuild it.
-//    $variables['site_slogan'] = Xss::filterAdmin($site_config->get('slogan'));
-//  }
-//  else {
-//    $variables['attributes']['class'][] = 'site-slogan-show';
-//  }
-//}
-
-/**
- * Helper function for handling the site name and slogan.
- */
 function _gratis_process_page(&$variables) {
   $site_config = \Drupal::config('system.site');
   // Always print the site name and slogan, but if they are toggled off, we'll
   // just hide them visually.
-  $variables['hide_site_name']   = theme_get_setting('features.name') ? FALSE : TRUE;
+  $variables['hide_site_name']  = theme_get_setting('features.name') ? FALSE : TRUE;
   $variables['hide_site_slogan'] = theme_get_setting('features.slogan') ? FALSE : TRUE;
   if ($variables['hide_site_name']) {
     // If toggle_name is FALSE, the site_name will be empty, so we rebuild it.
     $variables['site_name'] = String::checkPlain($site_config->get('name'));
+    $variables['attributes']['class'][] = 'site-name-hidden';
   }
+  else {
+    $variables['attributes']['class'][] = 'site-name-show';
+  }
+
   if ($variables['hide_site_slogan']) {
+    $variables['attributes']['class'][] = 'site-slogan-hidden';
     // If toggle_site_slogan is FALSE, the site_slogan will be empty, so we
     // rebuild it.
     $variables['site_slogan'] = Xss::filterAdmin($site_config->get('slogan'));
   }
+  else {
+    $variables['attributes']['class'][] = 'site-slogan-show';
+  }
 }
-
 
 /**
  * Implements hook_process_html().
@@ -292,6 +254,10 @@ function gratis_html_head_alter(&$head_elements) {
  * @see hook_page_attachments_alter()
  */
 function gratis_page_attachments_alter(array &$page) {
+
+  // Render the library as laid out in gratis.libraries.yml
+  $libraries['#attached']['library'][] = 'gratis/gratis-corescripts';
+
   if (theme_get_setting('gratis_viewport') == FALSE) {
     // No pinch and zoom.
     $viewport = array(
