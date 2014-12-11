@@ -1,21 +1,19 @@
 #Gratis and LibSass
 
+Gratis now uses Grunt and LibSass via Node.js NPM (Node packaaged modules).  To get up and running, follow the steps below:
+
+1. Install node.js from http://nodejs.org/
+2. cd to the gratis folder
+3. run sudo npm install (if all went well, you will now have your local node modules)
+4. run grunt
+5. make changes
+6. profit
 
 
 ## Barebones Sass Structure
-The barebones CSS structure provided in this starterkit uses many of the ideas
-discussed in Jonathan [Snook's SMACSS](http://smacss.com) and is intended to
-provide a starting point for building modular, scalable CSS using Sass and
-Drupal.
-
 Multiple Sass partials are used to help organise the styles, these are combined
 by including them in styles.scss which is compiled into styles.css in the css/
 directory.
-
-All styles are included in order of specificity, this means that as you go down
-the document each section builds upon and inherits sensibly from the previous
-ones. This results in less undoing of styles, less specificity problems and
-all-round better architected and lighter stylesheets.
 
 The file and directory structure contained in this folder looks something like
 this:
