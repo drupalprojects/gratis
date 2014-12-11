@@ -1,4 +1,4 @@
-@import "compass";
+
 
 @import "../variables/vars";
 
@@ -92,5 +92,14 @@
 @mixin nobullet {
   list-style-type: none;
 }
+
+@mixin headings($h1: 42px, $decreaseBy: 6px) {
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: ($h1+$decreaseBy) - $i * $decreaseBy;
+    }
+  }
+}
+
 
 

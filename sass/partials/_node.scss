@@ -2,8 +2,8 @@
 @import "../variables/vars";
 
 // Core imports.
-@import "compass";
-@import "breakpoint";
+
+
 
 .node-submitted {
   margin-bottom: 10px;
@@ -36,7 +36,7 @@ span.author {
   img {
     @include border-radius(50px);
   }
-  @include breakpoint(0 $tab) {
+  @include media($mobile) {
     img {
       float: none;
     }
@@ -53,7 +53,7 @@ figure {
   }
 }
 
-@include breakpoint(0 $tab) {
+@include media($mobile) {
   .node-submitted {
     .user-picture,
     .field-user--user-picture {
@@ -64,7 +64,7 @@ figure {
   }
 }
 
-@include breakpoint(0 $mobile) {
+@include media($mobile) {
   .node-submitted {
     .submitted {
       display: block;

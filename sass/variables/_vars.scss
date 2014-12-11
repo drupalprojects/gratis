@@ -1,5 +1,5 @@
-@import "susy";
-@import "compass";
+
+
 
 // Legacy support.
 $legacy-support-for-ie8: true;
@@ -18,15 +18,25 @@ $grid-padding: 10px;
 $container-style: magic;
 $container-width: 1100px;
 
-$mobile: 30em;
-$tab: 48em;
-$menu: 64.5em;
-$desk: 70em;
+//$mobile: 30em;
+//$tab: 48em;
+//$menu: 64.5em;
+//$desk: 70em;
 
-$susy: (
-columns: 12,
-gutters: .25,
-);
+
+// Neat Breakpoints.
+$off_canvas: new-breakpoint(min-width 0 max-width 64.5em); // min max range
+$menu: new-breakpoint(64.51em); // (defaults to min width)
+$mobile: new-breakpoint(max-width 767px); // 0 - 767
+$tab: new-breakpoint(min-width 768px); // min 768
+$tab_range: new-breakpoint(min-width 768px max-width 1024px); // min max range
+$tab_end: new-breakpoint(max-width 1024px); // max 1024
+$desk: new-breakpoint(min-width 1025px); // 1025 or >
+
+//$susy: (
+//columns: 12,
+//gutters: .25,
+//);
 
 // Gray tones
 $white: #fff;
@@ -120,3 +130,24 @@ $baseMenuColor: $white;
 $gutter: 1em;
 $input: "input[type=checkbox]";
 $path-to-images: '../images';
+
+
+$text-color: #333;
+$quiet-color: #ccc;
+$loud-color: #000;
+$heading-color: #111;
+
+$link-color: $orange;
+$link-hover-color: $dark_gray;
+$link-visited-color: $orange;
+
+$base-font-family: 'Open Sans', sans-serif;
+$base-font-size: 18px;
+$base-font-weight: 300;
+
+$fixed-font-family: 'Source Code Pro', monospace;
+$fixed-font-size: 15px;
+$fixed-line-height: 1.2;
+
+$heading-font-family: 'Open Sans', sans-serif;
+$heading-font-weight: 700;

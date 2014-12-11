@@ -1,10 +1,13 @@
-Version 8.x-2.0-beta1, October, 2014
+Gratis, Version 8.x-2.0-dev, December, 2014 for Drupal 8
 
 -- SUMMARY --
 
-Gratis is a responsive Drupal 8 HTML5 Sass based theme designed and developed
+Gratis is a responsive Drupal 8 HTML5 (Lib)Sass based theme designed and developed
 by Danny Englander (Twitter: @Danny_Englander). It allows for a choice color
 palettes on the theme's settings page.
+
+Gratis for Drupal 8 now uses Grunt, LibSass, Bourbon, and Neat to generate its CSS.
+For more information on how to set this up, see the readme file under /sass.
 
 Gratis is aimed at users who want to get a nice looking theme up and
 running in short order, may not want to take the time to create a sub-theme
@@ -96,9 +99,9 @@ This theme supports CSS3 / HTML5 and media queries. There is no support for
 IE9 and below.
 
 Buy me a Latte - Help support Gratis but it's not a requirement.
-http://highrockmedia.com/buy-me-latte
+http://dannyenglander.com/buy-me-latte
 
 -- Danny Englander Drupal Themer and Photographer --
 San Diego, California
-http://highrockmedia.com
+http://dannyenglander.com
 http://highrockphoto.com

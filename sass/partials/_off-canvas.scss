@@ -2,8 +2,8 @@
 @import "../variables/vars";
 
 // Core imports.
-@import "compass";
-@import "breakpoint";
+
+
 
 // Off canvas layout styling.
 
@@ -28,7 +28,7 @@
   background: transparent url("#{$path-to-images}/gratis-sprite.png") 0px -6px no-repeat;
 }
 
-@include breakpoint(0 $menu) {
+@include media($off_canvas) {
 
   .off-canvas-left-is-visible {
     .l-off-canvas--left {
@@ -130,7 +130,7 @@
 
 }
 
-@include breakpoint($menu) {
+@include media($menu) {
 
   .l-off-canvas-show {
     display: none;
@@ -148,7 +148,7 @@
 
 }
 
-@include breakpoint(0 $mobile) {
+@include media($mobile) {
   .l-off-canvas {
     width: 80%;
     left: -80%;

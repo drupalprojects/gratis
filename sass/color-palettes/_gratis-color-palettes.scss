@@ -1,23 +1,25 @@
 // Palettes defined in colors.
 
-@each $hexvar, $designcolor in $palette {
-  .color-palette-#{$hexvar} {
+// palette map.
+@each $designcolor in map-keys($palette) {
+  $hexvar: map-get($palette, $designcolor);
+  .color-palette-#{$designcolor} {
 
     blockquote {
       &:before {
-        color: $designcolor;
+        color: $hexvar;
       }
     }
 
     .feed-icon {
       img {
-        background-color: $designcolor;
+        background-color: $hexvar;
         padding: 4px;
       }
     }
 
     .more-link a {
-      background-color: $designcolor;
+      background-color: $hexvar;
       &:hover {
         background-color: $medium_gray;
         color: $white;
@@ -28,30 +30,30 @@
       li {
         a {
           &:hover {
-            background-color: $designcolor;
+            background-color: $hexvar;
           }
         }
         &.pager-current {
-          background-color: $designcolor;
+          background-color: $hexvar;
         }
       }
     }
 
     .vocabulary-links {
       &:before {
-        color: $designcolor;
+        color: $hexvar;
       }
     }
 
     .l-off-canvas--left {
-      background-color: $designcolor;
+      background-color: $hexvar;
     }
     .l-header-wrapper {
-      color: $designcolor;
+      color: $hexvar;
     }
 
     a {
-      color: $designcolor;
+      color: $hexvar;
       &:hover {
         text-decoration: none;
         color: $medium_gray;
@@ -62,7 +64,7 @@
     input[type="reset"],
     button,
     .button a {
-      background-color: $designcolor;
+      background-color: $hexvar;
       color: $white;
       &:hover {
         background-color: $medium_gray;
@@ -70,21 +72,21 @@
     }
 
     .l-menu-wrapper {
-      background-color: $designcolor;
+      background-color: $hexvar;
     }
     &.site-name-show h1.site-name a:after {
-      color: $designcolor;
+      color: $hexvar;
     }
     .comment-by-node-author {
       .comment-arrow {
         // Get the mixin.
-        @include flex-triangle(20px, 20px, 20px, 0, $designcolor);
+        @include flex-triangle(20px, 20px, 20px, 0, $hexvar);
       }
     }
   }
 }
 
-// End color palettes loop. ***********
+// End color palettes loop.
 
 // Dark bg / light headings and text for light color palettes.
 
@@ -95,9 +97,6 @@ body.color-palette-chartreuse {
   color: $light_gray2;
   .l-page-wrapper {
     background-color: $charcoal_gray;
-  }
-  #{headings()} {
-    color: $light_gray2;
   }
   blockquote,
   code,
@@ -110,14 +109,14 @@ body.color-palette-chartreuse {
     color: $light_gray;
   }
   .main-menu-wrapper {
-    @include breakpoint(0 $menu) {
+    @include media($menu) {
       > ul {
         > li > a {
           color: $light_gray2;
         }
       }
     }
-    @include breakpoint($menu) {
+    @include media($menu) {
       > ul {
         > li {
           &.active-trail {

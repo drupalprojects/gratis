@@ -2,8 +2,8 @@
 @import "../variables/vars";
 
 // Core imports.
-@import "compass";
-@import "breakpoint";
+
+
 
 // Comment styles paying homage to Bartik.
 
@@ -81,7 +81,7 @@
 
 // Media query
 
-@include breakpoint(0 $tab) {
+@include media($mobile) {
 
   .comment {
     padding: 10px;

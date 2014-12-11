@@ -2,8 +2,8 @@
 @import "../variables/vars";
 
 // Core imports.
-@import "compass";
-@import "breakpoint";
+
+
 
 body {
   background-color: $charcoal_gray;
@@ -34,7 +34,7 @@ body {
 .l-breadcrumbs,
 .l-preface-wrap,
 article.node {
-  @include pie-clearfix;
+  @include clearfix;
   margin-bottom: $vert-spacing-unit;
 }
 
@@ -45,7 +45,7 @@ article.node {
 
 .l-logo {
   padding-bottom: 10px;
-  @include breakpoint(0 $tab) {
+  @include media($mobile) {
       margin: 34px 0 0;
   }
 }

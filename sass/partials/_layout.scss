@@ -1,13 +1,8 @@
 // Import variables.
 @import "../variables/vars";
 
-// Core imports.
-@import "compass";
-@import "breakpoint";
-@import "susy";
-
 .l-off-canvas {
-  @include pie-clearfix;
+  @include clearfix;
 }
 
 img {
@@ -27,16 +22,15 @@ img {
   }
 }
 
-@include breakpoint(0 $tab) {
-
-  .l-setwidth {
-    padding: 0 20px;
-  }
-
+// Set the default container max-width in case it's not set in the gratis' theme UI which would override this.
+.l-setwidth {
+  @include outer-container;
+  padding: 0 20px;
+  @include clearfix;
 }
 
 // Tablet, set the width var with a susy grid element.
-@include susy-breakpoint($tab, 12) {
+@include media($tab) {
 
   // Extends
 
@@ -44,62 +38,54 @@ img {
     border: 1px solid $medium_gray;
   }
 
-  // Set the default container max-width in case it's not set in the gratis' theme UI which would override this.
-  .l-setwidth {
-    @include container(1100px);
-    padding: 0 20px;
-    @include pie-clearfix;
-  }
-
-  .l-region--header {
-    @include span(8 at 5);
-  }
   .l-region--navigation {
-    @include pie-clearfix;
+    @include clearfix;
   }
 
   // Two sidebars.
   .two-sidebars {
     .l-sidebar-first {
-      @include span(3 at 1);
-      @include pull(9);
-      @include pad(0, 2%);
+      @include span-columns(4 of 20);
+      @include shift(-16);
+      @include pad(0 2%);
     }
     .l-content {
-      @include span(6 at 4);
-      @include push(3);
+      @include span-columns(12 of 20);
+      @include shift(4);
+      @include pad(0 2%);
       padding-bottom: $vert-spacing-unit;
     }
     .l-sidebar-second {
-      @include span(3 at 10);
-      @include pad(2%, 0);
+      @include span-columns(4 of 20);
+      @include omega();
     }
   }
 
   // One sidebar - sidebar first.
   .one-sidebar.sidebar-first {
     .l-content {
-      @include span(8 at 5);
+      @include span-columns(9);
+      @include shift(3);
+      @include pad(0 2%);
       padding-bottom: $vert-spacing-unit;
     }
     .l-sidebar-first {
-      @include span(4 at 1);
-      @include pad(0, 3%);
+      @include span-columns(3);
+      @include shift(-12);
+      @include omega();
     }
   }
 
   // One sidebar - sidebar second.
   .one-sidebar.sidebar-second {
     .l-content {
-      // Override susy default here.
-      @include span(17 of 24);
-      @include bleed(0 2% 0 0);
+      @include span-columns(9);
+      @include pad(0 2%);
       padding-bottom: $vert-spacing-unit;
     }
     .l-sidebar-second {
-      @include span(7 at 18 of 24);
-      @include bleed(0 0 0 2%);
-      clear: none;
+      @include span-columns(3);
+      @include omega();
     }
   }
 
@@ -107,38 +93,38 @@ img {
   .footer-one .footer,
   .postscript-one .postscript,
   .preface-one .preface {
-    @include span(12);
+    @include span-columns(12);
   }
   .footer-two .footer,
   .postscript-two .postscript,
   .preface-two .preface {
-    @include span(6);
-    @include pad(0, 2%);
-    &:last-child {
-      @include omega;
-    }
+    @include pad(0 2%);
+    @include span-columns(6);
+    @include omega(2n);
   }
   .footer-three .footer,
   .postscript-three .postscript,
   .preface-three .preface {
-    @include gallery(4);
-    @include pad(0, 2%);
+    @include span-columns(4);
+    @include omega(3n);
+    @include pad(0 2%);
   }
 
 }
 
 // Wide screen layout grid.
 
-@include susy-breakpoint($desk, 12) {
+@include media($desk) {
 
  .header-left-right .l-header {
     .l-logo {
-      @include span(5 at 1);
+      @include span-columns(5);
       padding-bottom: $vert-spacing-unit;
       text-align: left;
     }
     .l-branding {
-      @include span(7 at 6);
+      @include span-columns(7);
+      @include omega();
       text-align: right;
       padding: 10px 0 0 0;
     }

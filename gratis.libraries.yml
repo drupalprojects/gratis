@@ -5,7 +5,6 @@ global-styling:
       css/gratis.normalize.css: {}
       css/gratis.hacks.css: {}
       css/gratis.color-palettes.css: {}
-      css/gratis.core.css: {}
       css/gratis.styles.css: {}
 gratis-corescripts:
   version: VERSION

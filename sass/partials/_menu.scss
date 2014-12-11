@@ -2,8 +2,8 @@
 @import "../variables/vars";
 
 // Core imports.
-@import "compass";
-@import "breakpoint";
+
+
 
 // Applies to desktop and off-canvas menu.
 .main-menu-wrapper {
@@ -18,7 +18,7 @@
 }
 
 // Desktop specific menu within the media query.
-@include breakpoint($menu) {
+@include media($menu) {
 
   // Small reset, global.
   .main-menu-wrapper {
@@ -47,7 +47,7 @@
   .main-menu-wrapper > ul {
     display: table;
     margin: 0 auto;
-    @include pie-clearfix;
+    @include clearfix;
     > li {
       float: left;
       border-right: 1px solid lighten($baseMenuBackground, 5%);

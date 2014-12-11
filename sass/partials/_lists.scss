@@ -2,11 +2,11 @@
 @import "../variables/vars";
 
 // Core imports.
-@import "compass";
-@import "breakpoint";
+
+
 
 // Compass list reset (for menus, asides, blocks etc...
-ul,
+/*ul,
 .item-list ul {
   @include padding-reset;
   @include reset-list-style;
@@ -14,7 +14,7 @@ ul,
     @include no-bullets;
     @include padding-reset;
   }
-}
+}*/
 
 // Override list style for body.
 .node-content {
@@ -108,7 +108,7 @@ ol.search-results {
   li {
     h3.title {
       line-height: inherit;
-      @include adjust-font-size-to($h2);
+     // @include adjust-font-size-to($h2);
       margin: 0 auto rhythm(.3) auto;
     }
     span.search-snippet-info {
