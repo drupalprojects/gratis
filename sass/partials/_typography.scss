@@ -1,12 +1,9 @@
 // Core imports.
 
 // Google font import.
+// @TODO make this a library
 @import url(//fonts.googleapis.com/css?family=EB+Garamond|IM+Fell+Double+Pica|Open+Sans|Montserrat);
 
-
-/*
- * Base styles
- */
 
 body {
   color: $text-color;
@@ -191,15 +188,13 @@ a {
 .heading-typeface-garamond {
   h2 {
   //  @include adjust-font-size-to($h2 + 6);
-    margin: 0 auto rhythm(.6) auto;
   }
 }
 
 h1.site-name {
  // @include adjust-font-size-to($h3);
-  margin: 0 auto rhythm(.4) auto;
   padding-bottom: 0;
-  margin-bottom: 0;
+  margin: 0;
   display: inline-block;
 }
 
