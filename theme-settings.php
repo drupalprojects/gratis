@@ -171,6 +171,76 @@ Leave blank for the default max width of 1200px.  All inner grids are percentage
 so this should work with most any value you set within reason.'),
   );
 
+  $form['gratis_gridwidth']['gratis_page_style'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose a page style'),
+    '#default_value' => theme_get_setting('gratis_page_style'),
+    '#options' => array(
+      'default' => t('Default'),
+      'boxed' => t('Boxed'),
+    ),
+    '#description' => t("Deafult appears as a fuil width layout with a container within. Boxed
+    appears more as a fixed width container, yet is still responsive. With boxed, you can
+    utilize background tints and patterns for wider screen layouts."),
+  );
+
+  // Gratis bg patterns settings.
+  $form['gratis_bg_settings'] = array(
+    '#type' => 'details',
+    '#title' => t('Gratis boxed layout background settings'),
+    '#collapsible' => TRUE,
+    '#group' => 'gratis_settings',
+    '#description' => t("Choose a background pattern. These will only show if you choose 'Boxed Layout.'"),
+  );
+
+  $form['gratis_bg_settings']['theme_bg_pattern'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose a background pattern'),
+    '#default_value' => theme_get_setting('theme_bg_pattern'),
+    '#description' => t("See the theme page for patterns key"),
+    '#options' => array(
+      'bg_pattern_01' => t('Background pattern 1'),
+      'bg_pattern_02' => t('Background pattern 2'),
+      'bg_pattern_03' => t('Background pattern 3'),
+      'bg_pattern_04' => t('Background pattern 4'),
+      'bg_pattern_05' => t('Background pattern 5'),
+      'bg_pattern_06' => t('Background pattern 6'),
+      'bg_pattern_07' => t('Background pattern 7'),
+      'bg_pattern_08' => t('Background pattern 8'),
+      'bg_pattern_09' => t('Background pattern 9'),
+      'bg_pattern_10' => t('Background pattern 10'),
+      'bg_pattern_11' => t('Background pattern 11'),
+      'bg_pattern_12' => t('Background pattern 12'),
+      'bg_pattern_13' => t('Background pattern 13'),
+      'bg_pattern_14' => t('Background pattern 14'),
+      'bg_pattern_15' => t('Background pattern 15'),
+    )
+  );
+
+  $form['gratis_bg_settings']['theme_bg_tint'] = array(
+    '#type' => 'select',
+    '#title' => t('Background Tint'),
+    '#default_value' => theme_get_setting('theme_bg_tint'),
+    '#description' => t("Choose a tint hue for your background"),
+    '#options' => array(
+      'no_tint' => t('None'),
+      'bg-tint-turquoise' => t('Tint Turquoise Blue'),
+      'bg-tint-purple' => t('Tint Cool Purple'),
+      'bg-tint-orange' => t('Tint Pumpkin Orange'),
+      'bg-tint-green' => t('Tint Olive Green'),
+      'bg-tint-pomegranate' => t('Tint Pomegranate Red'),
+      'bg-tint-seafoam' => t('Tint Seafoam Green'),
+      'bg-tint-greengray' => t('Tint Green Gray'),
+      'bg-tint-pink' => t('Tint Pink'),
+      'bg-tint-mustard' => t('Tint Mustard'),
+      'bg-tint-surf-green' => t('Tint Surf Green'),
+      'bg-tint-maillot-jaune' => t('Tint Maillot Jaune'),
+      'bg-tint-caribe' => t('Tint Caribe'),
+      'bg-tint-chartreuse' => t('Tint Chartreuse'),
+      'bg-tint-mediterranean-red' => t('Tint Mystic Blue'),
+    )
+  );
+
   $form['gratis_touch'] = array(
     '#type' => 'details',
     '#title' => t('Gratis touch device'),

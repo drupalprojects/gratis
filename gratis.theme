@@ -104,6 +104,24 @@ function gratis_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'header-left-right';
   }
 
+  // Add a class for the page style.
+  if ((theme_get_setting('gratis_page_style') == 'default')) {
+    $variables['attributes']['class'][] = 'default-layout';
+  }
+  else {
+    $variables['attributes']['class'][] = 'box-layout';
+  }
+
+  $bg_pattern = theme_get_setting('theme_bg_pattern');
+  $variables['attributes']['class'][] = $bg_pattern;
+
+  $bg_tint = theme_get_setting('theme_bg_tint');
+  $variables['attributes']['class'][] = $bg_tint;
+
+  if (theme_get_setting('theme_bg_tint') != 'no_tint') {
+    $variables['attributes']['class'][] = 'has-tint';
+  }
+
 }
 
 /**
