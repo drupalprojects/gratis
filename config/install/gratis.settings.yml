@@ -7,3 +7,6 @@ features:
    node_user_picture: true
    slogan: true
 theme_color_palette: orange
+gratis_setfonts: true
+gratis_page_style: default
+

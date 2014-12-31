@@ -4,7 +4,7 @@
         <!-- top links-->
         {% if page.top_links %}
             <div id="top-bar" class="">
-                <div class="l-top-wrapper l-setwidth" style="max-width:{{ setwidth }}">
+                <div class="l-top-wrapper l-setwidth" {% if setwidth %}  style="max-width:{{ setwidth }}" {% endif %}>
                     <div class="top-links s-grid">
                         {{ page.top_links }}
                     </div>
@@ -15,7 +15,7 @@
 
         <!-- header -->
         <div id="header-bar" class="l-header-wrapper" role="banner">
-            <header class="l-header l-setwidth" style="max-width:{{ setwidth }}">
+            <header class="l-header l-setwidth" {% if setwidth %}  style="max-width:{{ setwidth }}" {% endif %}>
 
                 {% if logo %}
                     <div class="l-logo">
@@ -56,17 +56,19 @@
 
         {% if breadcrumbs is defined %}
             <div id="breadcrumbs-wrapper" class="l-breadcrumbs">
-                <div class="breadcrumbs l-setwidth" style="max-width:{{ setwidth }}">
+                <div class="breadcrumbs l-setwidth" {% if setwidth %}  style="max-width:{{ setwidth }}" {% endif %}>
                     <div class="breadcrumb">{{ breadcrumb }}</div>
                 </div>
             </div>
         {% endif %}
 
+    <div class="l-content-wrap">
+
         {# Define and divide the preface page regions.#}
         {% if page.preface_first or page.preface_second or page.preface_third %}
 
             <div id="preface-wrap" class="l-preface-wrap">
-                <div id="preface-container" class="l-preface l-setwidth" style="max-width:{{ setwidth }}">
+                <div id="preface-container" class="l-preface l-setwidth" {% if setwidth %}  style="max-width:{{ setwidth }}" {% endif %}>
 
                     <!--Preface -->
                     {% if page.preface_first %}
@@ -94,7 +96,7 @@
         {% endif %}
 
         <div class="main">
-            <div class="l-main l-setwidth" role="main" style="max-width:{{ setwidth }}">
+            <div class="l-main l-setwidth" role="main" {% if setwidth %}  style="max-width:{{ setwidth }}" {% endif %}>
 
                 <div class="l-content">
                     <a id="main-content"></a>
@@ -138,7 +140,7 @@
         {% if page.postscript_first or page.postscript_second or page.postscript_third %}
 
             <div id="postscript-wrapper">
-                <div id="postscript-container" class="l-postscript l-setwidth" style="max-width:{{ setwidth }}">
+                <div id="postscript-container" class="l-postscript l-setwidth" {% if setwidth %}  style="max-width:{{ setwidth }}" {% endif %}>
 
                     <!--Postscript -->
                     {% if page.postscript_first %}
@@ -164,7 +166,7 @@
         {% endif %}
 
         <footer id="footer" role="footer" class="l-footer-wrapper">
-            <div class="l-setwidth l-footer" style="max-width:{{ setwidth }}">
+            <div class="l-setwidth l-footer" {% if setwidth %}  style="max-width:{{ setwidth }}" {% endif %}>
 
                 <!--footer -->
                 {% if page.footer_first %}
@@ -187,6 +189,8 @@
 
             </div>
         </footer>
+
+    </div>
 
     </div>
     <a href="#" class="scrolltop">Scroll to the top</a>
