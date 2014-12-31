@@ -143,6 +143,7 @@ function gratis_preprocess_page(&$variables) {
   // Define the module path for use below.
   $theme_path = drupal_get_path('theme', 'gratis');
 
+  // @TODO convert all these to the new methods.
   //   Add local css if true.
   if (theme_get_setting('gratis_localcss') == TRUE) {
     $local_css = array(
@@ -301,7 +302,6 @@ function gratis_page_attachments_alter(array &$page) {
     );
     $page['#attached']['html_head'][] = [$viewport, 'viewport'];
   }
-
 }
 
 /**
@@ -344,14 +344,26 @@ function gratis_css_alter(&$css) {
     'type' => 'external',
     'every_page' => TRUE,
     'media' => 'all',
-    'preprocess' => FALSE,
+    'preprocess' => TRUE,
     'group' => CSS_AGGREGATE_THEME,
     'browsers' => array('IE' => TRUE, '!IE' => TRUE),
-    'weight' => -2,
   );
 
-}
+  if (theme_get_setting('gratis_setfonts') == TRUE) {
+    // Google fonts.
+    $googlefonts = '//fonts.googleapis.com/css?family=EB+Garamond|IM+Fell+Double+Pica|Open+Sans|Montserrat';
+    $css[$googlefonts] = array(
+      'data' => $googlefonts,
+      'type' => 'external',
+      'every_page' => TRUE,
+      'media' => 'all',
+      'preprocess' => TRUE,
+      'group' => CSS_AGGREGATE_THEME,
+      'browsers' => array('IE' => TRUE, '!IE' => TRUE),
+    );
+  }
 
+}
 
 /**
  * Implements hook_preprocess_HOOK() for block templates.
