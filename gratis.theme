@@ -82,7 +82,7 @@ function gratis_preprocess_html(&$variables) {
 
   // Color palette.
   $file = theme_get_setting('theme_color_palette');
-  $variables['attributes']['class'][]= 'color-palette-' . $file;
+  $variables['attributes']['class'][] = 'color-palette-' . $file;
 
   if (theme_get_setting('theme_color_palette') == 'chartreuse' || 'caribe' || 'maillot-jaune') {
     $variables['attributes']['class'][] = 'dark-bg';
@@ -120,6 +120,10 @@ function gratis_preprocess_html(&$variables) {
 
   if (theme_get_setting('theme_bg_tint') != 'no_tint') {
     $variables['attributes']['class'][] = 'has-tint';
+  }
+
+  if (!empty($vars['page']['full_width_highlight'])) {
+    $vars['classes_array'][] = 'fullwidth-highlight';
   }
 
 }
@@ -200,7 +204,7 @@ function _gratis_process_page(&$variables) {
   $site_config = \Drupal::config('system.site');
   // Always print the site name and slogan, but if they are toggled off, we'll
   // just hide them visually.
-  $variables['hide_site_name']  = theme_get_setting('features.name') ? FALSE : TRUE;
+  $variables['hide_site_name'] = theme_get_setting('features.name') ? FALSE : TRUE;
   $variables['hide_site_slogan'] = theme_get_setting('features.slogan') ? FALSE : TRUE;
   if ($variables['hide_site_name']) {
     // If toggle_name is FALSE, the site_name will be empty, so we rebuild it.
@@ -239,7 +243,7 @@ function gratis_html_head_alter(&$head_elements) {
   // Get our current uri.
   //$uri = drupal_get_path_alias();
 
-  $uri =  \Drupal::request()->getRequestUri();
+  $uri = \Drupal::request()->getRequestUri();
 
   // We try to match it by forming the right key with the info we have.
   $key = 'drupal_add_html_head_link:canonical:</' . $uri . '>;';
@@ -337,7 +341,7 @@ function gratis_preprocess_feed_icon(&$variables) {
  */
 function gratis_css_alter(&$css) {
 
-// Add FontAwesome.
+  // Add FontAwesome.
   $fontawesome = '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css';
   $css[$fontawesome] = array(
     'data' => $fontawesome,
