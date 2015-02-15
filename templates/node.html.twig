@@ -90,12 +90,10 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 
         {% if display_submitted %}
          <span{{ author_attributes }} class="author">
-         {% trans %}
-             <span class="submitted">by {{ author_name|passthrough }}</span>
-             {% endtrans %}
-             <span class="date">{{ post.published_at|date(format='m / j / y') }}</span>
+             <span class="submitted">{% trans %}by {{ author_name|passthrough }}{% endtrans %}</span>
+             <span class="date">{% trans %} on {{ date|passthrough }}{% endtrans %}</span>
              {{ author_picture }}
-        </span><!-- // author-->
+        </span>
         {% endif %}
 
         <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
