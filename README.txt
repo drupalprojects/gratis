@@ -1,10 +1,10 @@
-Version 2.4, December 30, 2014
+Version 2.4, February, 2014
 
 -- SUMMARY --
 
-Gratis 2 is a responsive Drupal 7 HTML5 theme designed and developed by
+Gratis 2 is a responsive Drupal 8 HTML5 theme designed and developed by
 Danny Englander (Twitter: @Danny_Englander). Gratis 2.0 has been
-re-architected from the ground up using LibSass, Neat, Boubon, and Grunt.
+re-architected from the ground up using LibSass, Susy, Bourbon, and Grunt.
 
 Gratis is aimed at users who want to get a nice looking theme up and
 running in short order, but may not want to take the time to create a sub-theme
@@ -58,6 +58,12 @@ with building sites. This theme also does not require any base theme.
   menu and then click a menu item and edit. If you need help with this,
   please consult Drupal core documentation.
 
+- Full Width Highlight block region
+   This region is meant to be used for full width images and slideshows. This will
+   require addtional theming on the user's end. There is no inner div element out
+   of the box so if you would like to use this for something other than an image,
+   you will need to theme it yourself.
+
 -- REQUIREMENTS --
 
 No base theme needed, simply use this theme on its own.
@@ -96,14 +102,19 @@ To get up and running, follow the steps below:
 
 1. Install node.js from http://nodejs.org/
 2. In terminal, cd to the gratis folder (or your subtheme)
-3. Run sudo npm install (if all went well, you will now have your
-    local node modules)
-4. Still in terminal, run grunt
-5. make sass changes
+3. Run npm install (if all went well, you will now have your
+    local node modules) Note you may need to preface this
+    with sudo if you run into permissions issues or fix the
+    permissions.
+4. Still in terminal, run 'grunt' (no quotes)
+5. Make sass changes
 6. Watch Grunt and LibSass instantly render your changes.
 7. For a better experience, activate LiveReload in the theme settings UI
-    and you'll no longer have to keep reloading your page. (Assumes
-    you are using Chrome)
+    and you'll no longer have to keep reloading your page.
+     You'll need to manually reload the page once for this to work
+     after activation. (Note, coming soon to D8)
+8. You can also run 'grunt format' (no quotes) for nicely formatted CSS.
+    You should do this in a new terminal tab or window.
 
 -- NOTES --
 
@@ -111,8 +122,8 @@ This theme supports CSS3 / HTML5 and media queries. There is no support for
 IE9 or below so please do not file any issues in regard to this.
 
 If you require specific customizations that you are not able to do on your
-own, you may need to hire a developer. Please email me: contact@dannyenglander.com
-or through my website's contact form. http://dannyenglander.com/contact-us
+own, you may need to hire a developer. Please email me through my website's
+contact form. http://dannyenglander.com/contact-us
 
 Buy me a Latte - Help support gratis but it's not a requirement.
 http://dannyenglander.com/buy-me-latte
