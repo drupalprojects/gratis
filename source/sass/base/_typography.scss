@@ -47,7 +47,7 @@ body {
 }
 
 .h1 {
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 .h2 {
@@ -61,15 +61,15 @@ body {
 
 .h1 {
   font-size: 260%;
-  @include media($mobile) {
+  @include susy-media(0 $bp-narrow-end) {
     font-size: 200%;
-    line-height: 1.4;
+    line-height: 1.2;
   }
 }
 
 .h2 {
   font-size: 220%;
-  @include media($mobile) {
+  @include susy-media(0 $bp-narrow-end) {
     font-size: 170%;
     line-height: 1.5;
   }
@@ -92,12 +92,15 @@ body {
 }
 
 .block-margins {
-  margin: 0 0 .5em 0;
+  margin: 0 0 .7em 0;
 }
 
 .unordered-list {
   list-style-type: disc;
   margin: 0 0 0 40px;
+  aside & {
+    margin: 0 0 0 20px;
+  }
 }
 
 .ordered-list {
@@ -107,96 +110,97 @@ body {
 
 .list-margin {
   margin: 0 0 .45em 0;
+  .l-menu-wrapper & {
+    margin: 0;
+  }
 }
 
 a {
   @extend .link;
 }
 
-.l-content-wrap {
-  i,
-  em {
-    @extend .italic;
-  }
+i,
+em {
+  @extend .italic;
+}
 
-  i.fa,
-  em.fa {
-    font-style: normal;
-  }
+i.fa,
+em.fa {
+  font-style: normal;
+}
 
-  b,
-  strong {
-    @extend .bold;
-  }
+b,
+strong {
+  @extend .bold;
+}
 
-  h1,
-  .h1 {
-    @extend .h1;
-    margin: 0 0 0.5em 0;
-  }
+h1,
+.h1 {
+  @extend .h1;
+  margin: 0 0 0.5em 0;
+}
 
-  h2,
-  .h2 {
-    @extend .h2;
-    margin: 0 0 0.5em 0;
-  }
+h2,
+.h2 {
+  @extend .h2;
+  margin: 0 0 0.5em 0;
+}
 
-  h3,
-  .h3 {
-    @extend .h3;
-    margin: 0 0 0.5em 0;
-  }
+h3,
+.h3 {
+  @extend .h3;
+  margin: 0 0 0.5em 0;
+}
 
-  h4,
-  .h4 {
-    @extend .h4;
-    margin: 0 0 0.5em 0;
-  }
+h4,
+.h4 {
+  @extend .h4;
+  margin: 0 0 0.5em 0;
+}
 
-  h5,
-  .h5 {
-    @extend .h5;
-    margin: 0 0 0.5em 0;
-  }
+h5,
+.h5 {
+  @extend .h5;
+  margin: 0 0 0.5em 0;
+}
 
-  h6,
-  .h6 {
-    @extend .h6;
-    margin: 0 0 0.5em;
-  }
+h6,
+.h6 {
+  @extend .h6;
+  margin: 0 0 0.5em;
+}
 
-  p,
-  ul,
-  ol,
-  pre {
-    @extend .block-margins;
-  }
+p,
+ul,
+ol,
+pre {
+  @extend .block-margins;
+}
 
+ul {
+  @extend .unordered-list;
+  li {
+    @extend .list-margin;
+  }
   ul {
-    @extend .unordered-list;
-    li {
-      @extend .list-margin;
-    }
-    ul {
-      list-style: square;
-      margin: 10px 0 0 20px;
-    }
+    list-style: square;
+    margin: 10px 0 0 20px;
   }
+}
 
+ol {
+  @extend .ordered-list;
+  li {
+    @extend .list-margin;
+  }
   ol {
-    @extend .ordered-list;
-    li {
-      @extend .list-margin;
-    }
-    ol {
-      list-style: lower-roman;
-      margin: 10px 0 0 20px;
-    }
+    list-style: lower-roman;
+    margin: 10px 0 0 20px;
   }
+}
 
-  pre, code {
-    @extend .fixed;
-  }
+pre, code {
+  @extend .fixed;
 }
 
 .header-block {
@@ -225,17 +229,11 @@ a {
   text-align: right !important;
 }
 
-.heading-typeface-garamond {
-  h2 {
-    //margin: 0 auto rhythm(.6) auto;
-  }
-}
-
 h1.site-name {
   display: inline-block;
-  margin: 0 auto 1em auto;
-  margin-bottom: 0;
+  margin: 0 auto;
   padding-bottom: 0;
+  font-size: 190%;
 }
 
 h3.site-slogan {
@@ -243,6 +241,7 @@ h3.site-slogan {
   display: inline-block;
   margin: 0;
   padding-bottom: 0;
+  font-size: 150%;
 }
 
 .footer h2 {
@@ -266,14 +265,14 @@ blockquote {
     left: 10px;
     line-height: 0.9;
     position: absolute;
-    @include media($mobile) {
+    @include susy-media(0 $bp-narrow-end) {
       opacity: .6;
     }
   }
   &:after {
     content: "";
   }
-  @include media($mobile) {
+  @include susy-media(0 $bp-narrow-end) {
     padding: 14px;
   }
 }
@@ -316,15 +315,3 @@ samp {
     }
   }
 }
-
-//.body-typeface-garamond .l-page-wrapper .l-main {
-//  p,
-//  span,
-//  li {
-//    font-size: 1.2rem;
-//    line-height: 1.6;
-//  }
-//  li {
-//    line-height: 1.6;
-//  }
-//}

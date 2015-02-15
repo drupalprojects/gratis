@@ -9,7 +9,7 @@ global-styling:
 gratis-corescripts:
   version: 1.x
   js:
-    js/gratis.js: {}
+    js/site.min.js: {}
   dependencies:
     - core/jquery
     - core/drupal.ajax

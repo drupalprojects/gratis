@@ -64,6 +64,12 @@
 
     <div class="l-content-wrap">
 
+        {% if page.full_width_highlight %}
+            <div class="l-fullwidth-highlight">
+                {{ page.full_width_highlight }}
+            </div>
+        {% endif %}
+
         {# Define and divide the preface page regions.#}
         {% if page.preface_first or page.preface_second or page.preface_third %}
 

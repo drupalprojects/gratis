@@ -12,14 +12,32 @@ $grid-padding: 10px;
 $container-style: magic;
 $container-width: 1100px;
 
-// Neat Breakpoints.
-$off_canvas: new-breakpoint(min-width 0 max-width 64.5em); // min max range
-$menu: new-breakpoint(64.51em); // (defaults to min width)
-$mobile: new-breakpoint(min-width 0 max-width 767px); // 0 - 767
-$tab: new-breakpoint(768px); // min 768
-$tab_range: new-breakpoint(min-width 768px max-width 1024px); // min max range
-$tab_end: new-breakpoint(max-width 1024px); // max 1024
-$desk: new-breakpoint(min-width 1025px); // 1025 or >
+// Breakpoints - primary, adjust as needed
+$bp-narrow: 30em;  // 480px
+
+$bp-narrow-end: 47.938em; // 767px;
+$bp-med: 48em; // 768px
+
+$bp-med-end: 59.938em; // 959px;
+$bp-large: 60em; // 960px
+
+$bp-large2: 64em; // 1024px
+$bp-xl: 73.125em; // 1170px
+
+// menus
+$menu: 59.938em; // 959px
+$off_canvas: 60em; // 960px
+
+// Define susy
+$susy: (
+        columns: 12,
+        gutters: 1.2,
+);
+
+// Define custom susy maps.
+// 16 cols
+$susy16: layout(16 5 fluid float);
+
 
 // Gray tones
 $white: #fff;
@@ -69,7 +87,7 @@ $tint: ("greengray": $green_gray, "pink": $pink, "orange": $orange, "green": $ol
 
 // Font families and default text color.
 $montserrat: 'Montserrat', sans-serif;
-$font-sans: 'Open-Sans', Helvetica, Arial, sans-serif;
+$font-sans: 'Open Sans', Helvetica, Arial, sans-serif;
 $font-serif: 'EB Garamond', serif;
 $font-mono: 'Lucida Console', Monaco, monospace;
 $antique: 'IM Fell Double Pica', serif;
@@ -119,7 +137,7 @@ $link-visited-color: $orange;
 $base-font-family: 'Open Sans', sans-serif;
 $base-font-size: 1.1rem;
 $base-font-weight: 300;
-$base-line-height: 1.7;
+$base-line-height: 1.5;
 
 $fixed-font-family: 'Source Code Pro', monospace;
 $fixed-font-size: 15px;

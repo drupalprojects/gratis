@@ -34,20 +34,23 @@ article.node {
   margin-bottom: $vert-spacing-unit;
 }
 
+.fullwidth-highlight .l-menu-wrapper {
+  margin-bottom: 0;
+}
+
 article.node {
   padding-bottom: $vert-spacing-unit;
- // border-bottom: 1px dashed $medium_gray2;
 }
 
 .l-logo {
-  padding-top: 10px;
-  @include media($mobile) {
-      margin: 34px 0 0;
+  padding: #{($vert-spacing-unit / 2)} 0;
+  @include susy-media(0 $bp-narrow-end) {
+    margin: 34px 0 0;
   }
 }
 
 .l-branding {
-  padding-bottom: $vert-spacing-unit;
+  padding-bottom: #{($vert-spacing-unit / 2)};
 }
 
 .l-branding,

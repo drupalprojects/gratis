@@ -28,11 +28,15 @@ span.author {
 .user-picture,
 .field-user--user-picture {
   position: relative;
-  float: right;
+  text-align: center;
+  margin: 10px 0 0 0;
+  .comment & {
+    margin: 0;
+  }
   img {
     @include border-radius(50px);
   }
-  @include media($mobile) {
+  @include susy-media(0 $bp-narrow-end) {
     img {
       float: none;
     }
@@ -48,18 +52,17 @@ figure {
   }
 }
 
-@include media($mobile) {
+@include susy-media(0 $bp-narrow-end) {
   .node-submitted {
     .user-picture,
     .field-user--user-picture {
       float: none;
       text-align: center;
-      margin: 10px 0 0 0;
     }
   }
 }
 
-@include media($mobile) {
+@include susy-media(0 $bp-narrow-end) {
   .node-submitted {
     .submitted {
       display: block;

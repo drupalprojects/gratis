@@ -9,7 +9,7 @@
     attach: function (context) {
 
       // Scroll to top.
-      $(window).scroll(function(){
+      $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
           $('.scrolltop').fadeIn();
         } else {
@@ -17,13 +17,12 @@
         }
       });
 
-      $('.scrolltop').click(function(){
-        $("html, body").animate({ scrollTop: 0 }, 500);
+      $('.scrolltop').click(function () {
+        $("html, body").animate({scrollTop: 0}, 500);
         return false;
       });
 
       // End scroll to top.
-
     }
   };
 
@@ -75,17 +74,16 @@
     attach: function (context) {
 
       // Off-canvas, check for child elements on parent menu.
-      $('.main-menu-wrapper ul li').once(function(){
-        if($('ul',this).length){
+      $('.main-menu-wrapper ul li').each(function () {
+        if ($('ul', this).length) {
           $(this).addClass('has-child');
         }
       });
 
       // Nested off canvas menu items.
       $('.menu .has-child').not('.active-trail').removeClass('has-child');
-      $('.menu li a').once(function () {
+      $('.menu li a').each(function () {
         if ($(this).parent().children('ul').length !== 0) {
-          $(this).addClass('alink');
           $(this).after('<a href="#" class="nested-menu-item-toggle"></a>');
         }
       });
