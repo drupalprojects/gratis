@@ -19,7 +19,7 @@
 }
 
 .box-layout.bg-tint-orange:before {
-  background-color: #333;
+  background-color: #e04604;
 }
 
 .box-layout.bg-tint-green:before {
@@ -211,16 +211,16 @@
 }
 
 .color-palette-orange blockquote:before {
-  color: #333;
+  color: #e04604;
 }
 
 .color-palette-orange .feed-icon img {
-  background-color: #333;
+  background-color: #e04604;
   padding: 4px;
 }
 
 .color-palette-orange .more-link a {
-  background-color: #333;
+  background-color: #e04604;
 }
 
 .color-palette-orange .more-link a:hover {
@@ -229,27 +229,27 @@
 }
 
 .color-palette-orange .item-list-pager li a:hover {
-  background-color: #333;
+  background-color: #e04604;
 }
 
 .color-palette-orange .item-list-pager li.pager-current {
-  background-color: #333;
+  background-color: #e04604;
 }
 
 .color-palette-orange .vocabulary-links:before {
-  color: #333;
+  color: #e04604;
 }
 
 .color-palette-orange .l-off-canvas--left {
-  background-color: #333;
+  background-color: #e04604;
 }
 
 .color-palette-orange .l-header-wrapper {
-  color: #333;
+  color: #e04604;
 }
 
 .color-palette-orange a {
-  color: #333;
+  color: #e04604;
 }
 
 .color-palette-orange a:hover {
@@ -258,7 +258,7 @@
 }
 
 .color-palette-orange input[type="submit"], .color-palette-orange input[type="reset"], .color-palette-orange button, .color-palette-orange .button a {
-  background-color: #333;
+  background-color: #e04604;
   color: #fff;
 }
 
@@ -267,11 +267,11 @@
 }
 
 .color-palette-orange .l-menu-wrapper {
-  background-color: #333;
+  background-color: #e04604;
 }
 
 .color-palette-orange.site-name-show h1.site-name a:after {
-  color: #333;
+  color: #e04604;
 }
 
 .color-palette-orange .comment-by-node-author .comment-arrow {
@@ -279,7 +279,7 @@
   height: 0;
   border-style: solid;
   border-width: 20px 20px 20px 0;
-  border-color: transparent #333 transparent transparent;
+  border-color: transparent #e04604 transparent transparent;
 }
 
 .color-palette-green blockquote:before {
