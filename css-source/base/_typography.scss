@@ -13,6 +13,10 @@ body {
   }
 }
 
+p, li {
+  line-height: 1.9em;
+}
+
 .fixed {
   font-family: $fixed-font-family;
   font-size: $fixed-font-size;
@@ -113,10 +117,6 @@ body {
   .l-menu-wrapper & {
     margin: 0;
   }
-}
-
-a {
-  @extend .link;
 }
 
 i,

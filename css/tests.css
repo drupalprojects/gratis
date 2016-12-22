@@ -1,0 +1,30 @@
+/** media query tests **/
+/** Note, this CSS file is for testing and is not being rendered in the theme. **/
+/* @media (min-width: 48em) and (max-width: 59.99em) {
+* @include media(">=48em", "<60em") {
+*/
+@media (min-width: 48em) and (max-width: 59.99em) {
+  .foo {
+    color: #000;
+  }
+}
+
+/* @media (min-width: 60em) {
+* @include media(">=60em") {
+*/
+@media (min-width: 60em) {
+  .foo {
+    color: #000;
+  }
+}
+
+/* @media (min-width: 60.01em) {
+* @include media(">60em") {
+*/
+@media (min-width: 60.01em) {
+  .foo {
+    color: #000;
+  }
+}
+
+/*# sourceMappingURL=tests.css.map */

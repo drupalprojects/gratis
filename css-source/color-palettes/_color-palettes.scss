@@ -142,7 +142,7 @@ body.color-palette-mediterranean-red {
         }
       }
     }
-    @include media(">#{$gbp-large}") {
+    @include media(">=#{$gbp-large}") {
       > ul {
         > li {
           &.active-trail {

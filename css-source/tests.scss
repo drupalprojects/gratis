@@ -1,0 +1,37 @@
+// Node modules
+@import "../node_modules/include-media/dist/include-media";
+@import "../node_modules/compass-sass-mixins/lib/compass";
+@import "../node_modules/susy/sass/susy";
+// Definitions
+@import "definitions/mixins";
+@import "definitions/vars";
+
+/** media query tests **/
+/** Note, this CSS file is for testing and is not being rendered in the theme. **/
+
+/* @media (min-width: 48em) and (max-width: 59.99em) {
+* @include media(">=#{$gbp-med}", "<#{$gbp-large}") {
+*/
+@include media(">=#{$gbp-med}", "<#{$gbp-large}") {
+  .foo {
+    color: #000;
+  }
+}
+
+/* @media (min-width: 60em) {
+* @include media(">=#{$gbp-large}") {
+*/
+@include media(">=#{$gbp-large}") {
+  .foo {
+    color: #000;
+  }
+}
+
+/* @media (min-width: 60.01em) {
+* @include media(">#{$gbp-large}") {
+*/
+@include media(">#{$gbp-large}") {
+  .foo {
+    color: #000;
+  }
+}

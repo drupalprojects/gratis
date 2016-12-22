@@ -128,7 +128,7 @@
 
 }
 
-@include media(">#{$gbp-large}") {
+@include media(">=#{$gbp-large}") {
   .l-off-canvas-show {
     display: none;
     display: none;

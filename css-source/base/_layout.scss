@@ -47,11 +47,10 @@ img {
       }
     }
   }
-
 }
 
 // Media query for wide layouts.
-@include media(">#{$gbp-large}") {
+@include media(">=#{$gbp-large}") {
 
   // Extends
   %grayborder {

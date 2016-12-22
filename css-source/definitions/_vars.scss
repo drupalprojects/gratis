@@ -17,13 +17,13 @@ $gbp-narrow: 30em; // 480px
 $gbp-med: 48em; // 768px
 $gbp-large: 60em; // 960px
 $gbp-wide: 64em; // 1024px
-$gbp-xwide: 73em;
+$gbp-xwide: 74em;
 
 // Define the interval for the media queries, this overrides the interval from /source/sass/vendors/_include-media.scss
 // See https://github.com/eduardoboucas/include-media/issues/14 for more info.
 $unit-intervals: (
         'px': 1,
-        'em': 0.062, // .063 = .99px
+        'em': .01,
         'rem': 0.1
 );
 
@@ -36,7 +36,6 @@ $susy: (
 // Define custom susy maps.
 // 16 cols
 $susy16: layout(16 5 fluid float);
-
 
 // Gray tones
 $white: #fff;
