@@ -65,7 +65,7 @@ p, li {
 
 .h1 {
   font-size: 260%;
-  @include media( "<#{$gbp-med}") {
+  @include media("<#{$gbp-med}") {
     font-size: 200%;
     line-height: 1.2;
   }
@@ -73,7 +73,7 @@ p, li {
 
 .h2 {
   font-size: 220%;
-  @include media( "<#{$gbp-med}") {
+  @include media("<#{$gbp-med}") {
     font-size: 170%;
     line-height: 1.5;
   }
@@ -256,6 +256,7 @@ blockquote {
   min-height: 120px;
   padding: 15px 20px 15px 170px;
   position: relative;
+
   &:before {
     color: $medium_gray;
     content: "\201C";
@@ -265,14 +266,16 @@ blockquote {
     left: 10px;
     line-height: 0.9;
     position: absolute;
-    @include media( "<#{$gbp-med}") {
-      opacity: .6;
+    
+    @include media("<#{$gbp-med}") {
+      opacity: .4;
     }
   }
+
   &:after {
     content: "";
   }
-  @include media( "<#{$gbp-med}") {
+  @include media("<#{$gbp-med}") {
     padding: 14px;
   }
 }
