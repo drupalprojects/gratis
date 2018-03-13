@@ -5,7 +5,7 @@
  * Functions to support theming in the Gratis theme.
  */
 
-use Drupal\Component\Utility\String;
+use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Template\Attribute;
 
@@ -135,7 +135,7 @@ function gratis_preprocess_page(&$variables) {
 
   // Set the custom grid width in a variable.
   $gridwidth = theme_get_setting('gratis_grid_container_width');
-  $variables['setwidth'] = String::checkPlain($gridwidth);
+  $variables['setwidth'] = SafeMarkup::checkPlain($gridwidth);
 
   if (theme_get_setting('gratis_breadcrumbs') == TRUE) {
     $variables['breadcrumbs'] = '';
@@ -208,7 +208,7 @@ function _gratis_process_page(&$variables) {
   $variables['hide_site_slogan'] = theme_get_setting('features.slogan') ? FALSE : TRUE;
   if ($variables['hide_site_name']) {
     // If toggle_name is FALSE, the site_name will be empty, so we rebuild it.
-    $variables['site_name'] = String::checkPlain($site_config->get('name'));
+    $variables['site_name'] = SafeMarkup::checkPlain($site_config->get('name'));
     $variables['attributes']['class'][] = 'site-name-hidden';
   }
   else {
@@ -321,7 +321,7 @@ function gratis_page_attachments_alter(array &$page) {
  */
 function gratis_preprocess_feed_icon(&$variables) {
   $theme_path = drupal_get_path('theme', 'gratis');
-  $text = t('Subscribe to !feed-title', array('!feed-title' => $variables['title']));
+  $text = t('Subscribe to !feed-title', array('@feed-title' => $variables['title']));
   $variables['icon'] = array(
     '#theme' => 'image__feed_icon',
     '#uri' => $theme_path . '/images/feed.png',
@@ -339,7 +339,7 @@ function gratis_preprocess_feed_icon(&$variables) {
  *
  * @TODO gratis_css_alter() - Refactor if needed.
  */
-function gratis_css_alter(&$css) {
+function gratis_css_alter(&$css, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
 
   // Add FontAwesome.
   $fontawesome = '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css';
@@ -375,5 +375,5 @@ function gratis_css_alter(&$css) {
 function gratis_preprocess_block(&$variables) {
   // Set the custom grid width in a variable.
   $gridwidth = theme_get_setting('gratis_grid_container_width');
-  $variables['setwidth'] = String::checkPlain($gridwidth);
+  $variables['setwidth'] = SafeMarkup::checkPlain($gridwidth);
 }
