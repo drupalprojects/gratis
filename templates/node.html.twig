@@ -90,8 +90,8 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 
         {% if display_submitted %}
          <span{{ author_attributes }} class="author">
-             <span class="submitted">{% trans %}by {{ author_name|passthrough }}{% endtrans %}</span>
-             <span class="date">{% trans %} on {{ date|passthrough }}{% endtrans %}</span>
+             <span class="submitted">{% trans %}by {{ author_name|raw }}{% endtrans %}</span>
+             <span class="date">{% trans %} on {{ date|raw }}{% endtrans %}</span>
              {{ author_picture }}
         </span>
         {% endif %}

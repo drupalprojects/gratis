@@ -6,8 +6,6 @@ global-styling:
       css/hacks.css: {}
       css/color-palettes.css: {}
       css/styles.css: {}
-      # //maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css: {type: external, every_page: true, media: all, browsers: {'IE': true, '!IE': true}}
-      # //fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic: {type: external, every_page: true, media: all, browsers: {'IE': true, '!IE': true}}
 gratis-corescripts:
   version: 1.x
   js:
